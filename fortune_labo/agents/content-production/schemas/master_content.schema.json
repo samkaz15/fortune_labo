@@ -1,0 +1,375 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/content-production/schemas/master_content.schema.json",
+  "title": "Master Content",
+  "description": "The canonical draft of one piece, produced by Content Production Agent (A08) from a Content Brief. Everything downstream derives from this artifact: A10 adapts it per channel, A28 checks it, A30 assesses risk, Codex publishes it after human approval. Content is presentation-free Markdown-flavoured text; HTML, schema markup and WordPress concerns belong to Codex. source_map makes the no-fabrication rule auditable rather than aspirational.",
+  "type": "object",
+  "required": [
+    "id",
+    "brief_id",
+    "revision",
+    "content_type",
+    "h1",
+    "lead",
+    "sections",
+    "cta",
+    "meta_description_candidates",
+    "source_map",
+    "self_check",
+    "status",
+    "created_at"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^MC-[0-9]{4}$" },
+    "brief_id": { "type": "string", "pattern": "^CB-[0-9]{4}$" },
+    "revision": { "type": "integer", "minimum": 1 },
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "shrine_visit_report", "annual_outlook", "forecast_review", "method_explainer",
+        "situation_guide", "practitioner_profile", "service_page", "hub_page",
+        "faq_page", "case_reflection"
+      ]
+    },
+    "tier": { "type": ["string", "null"], "enum": ["A", "B", "C", null] },
+    "primary_keyword": { "type": ["string", "null"] },
+
+    "h1": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Exactly one H1, drawn from the brief's title_candidates or a compliance-equivalent variant."
+    },
+    "slug_suggestion": { "type": ["string", "null"], "description": "Proposal only. Codex owns URLs; A06 owns the URL graph." },
+
+    "lead": {
+      "type": "object",
+      "required": ["text"],
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "3-5 sentences: name the reader's situation, state what the page resolves, make unique_value visible. If the query has a short answer, it appears here."
+        },
+        "answers_query_directly": {
+          "type": "boolean",
+          "default": false,
+          "description": "Must be true when the query has a short answer. Making the reader scroll for what they searched for is a defect."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["section_id", "heading_level", "heading", "body", "source_requirement", "status"],
+        "properties": {
+          "section_id": { "type": "string" },
+          "heading_level": { "type": "string", "enum": ["h2", "h3"] },
+          "heading": { "type": "string" },
+          "body": {
+            "type": "string",
+            "description": "Markdown-flavoured plain text. No HTML, no schema markup, no WordPress blocks."
+          },
+          "source_requirement": {
+            "type": "string",
+            "enum": ["visit_notes", "practitioner_judgment", "research", "ai_structurable"]
+          },
+          "attribution_markers": {
+            "type": "array",
+            "items": { "type": "string" },
+            "default": [],
+            "description": "The in-prose markers used here, e.g. 私の見立てでは / 感じました. Required non-empty for practitioner_judgment sections: an unmarked judgment is an asserted fact and a compliance violation."
+          },
+          "featured_snippet_target": { "type": "boolean", "default": false },
+          "status": {
+            "type": "string",
+            "enum": ["written", "awaiting_source", "deviated", "cut"],
+            "description": "awaiting_source means the section was gapped, not written. A gap is never filled with plausible prose."
+          },
+          "sns_source_block": {
+            "type": ["string", "null"],
+            "enum": ["strongest_observation", "clearest_answer", "quotable_judgment", "visual_moment", null],
+            "description": "Marked for A10. A08 marks; A10 rewrites. A08 never writes social copy."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "faq": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["question", "answer", "question_source"],
+        "properties": {
+          "question": { "type": "string" },
+          "answer": { "type": "string", "description": "Standalone, 2-4 sentences. May be displayed out of context." },
+          "question_source": {
+            "type": "string",
+            "enum": ["client_questions", "brief", "serp_paa", "gsc_query"],
+            "description": "Inventing questions to pad a page is a defect. Manufactured FAQ must never be marked up as FAQPage."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "featured_snippet_block": {
+      "type": ["object", "null"],
+      "properties": {
+        "section_id": { "type": "string" },
+        "shape": { "type": "string", "enum": ["definition", "steps", "list", "comparison", "direct_answer"] },
+        "text": { "type": "string", "maxLength": 200 },
+        "not_targeted_reason": {
+          "type": ["string", "null"],
+          "description": "Set when the brief requested a snippet but the honest answer could not be stated in snippet form without becoming a claim that may not be made."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "cta": {
+      "type": "object",
+      "required": ["primary_type", "text", "placement"],
+      "properties": {
+        "primary_type": { "type": "string", "enum": ["booking", "list_signup", "related_content", "none"] },
+        "text": {
+          "type": "string",
+          "description": "Calm, specific, low-pressure. No urgency-through-anxiety, no untrue scarcity, no guaranteed outcome."
+        },
+        "placement": { "type": "string" },
+        "secondary": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+
+    "disclaimer": {
+      "type": ["string", "null"],
+      "description": "Required text where the brief sets disclaimer_required. Never used as licence to make stronger claims in the body."
+    },
+
+    "meta_description_candidates": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 3,
+      "items": { "type": "string", "maxLength": 120 },
+      "description": "Accurate to what is on the page. Subject to the same compliance rules as titles: fear framing here is a violation even with a clean body."
+    },
+    "structured_data_intent": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Article", "Person", "Place", "Event", "FAQPage", "BreadcrumbList", "LocalBusiness"]
+      },
+      "default": [],
+      "description": "Intent carried from the brief. Codex implements the actual markup."
+    },
+
+    "source_map": {
+      "type": "array",
+      "description": "Traceability record. Every section whose source_requirement is visit_notes, practitioner_judgment or research MUST appear here with a resolvable source_reference. An untraceable claim is treated as fabricated.",
+      "items": {
+        "type": "object",
+        "required": ["section_id", "source_requirement", "source_reference"],
+        "properties": {
+          "section_id": { "type": "string" },
+          "source_requirement": {
+            "type": "string",
+            "enum": ["visit_notes", "practitioner_judgment", "research", "ai_structurable"]
+          },
+          "source_reference": {
+            "type": ["string", "null"],
+            "description": "Visit record id, practitioner input id, or a citable source. Null is permitted only for ai_structurable."
+          },
+          "verbatim_anchor": {
+            "type": ["string", "null"],
+            "description": "The line of source material this section rests on, quoted, so verification does not require re-reading everything."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "internal_links_placed": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["target_url", "anchor_text", "section_id"],
+        "properties": {
+          "target_url": { "type": "string", "format": "uri-reference" },
+          "anchor_text": { "type": "string", "description": "Descriptive and natural. Never こちら / 詳しくはこちら." },
+          "section_id": { "type": "string" },
+          "is_booking_page": { "type": "boolean", "default": false }
+        },
+        "additionalProperties": false
+      }
+    },
+    "suggested_links": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["target_url", "rationale"],
+        "properties": {
+          "target_url": { "type": "string", "format": "uri-reference" },
+          "rationale": { "type": "string" }
+        },
+        "additionalProperties": false
+      },
+      "description": "Link ideas not in the brief. Proposed to A07, never inserted into the body."
+    },
+
+    "structure_deviations": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["kind", "detail", "reason"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["section_added", "section_removed", "section_reordered", "heading_reworded"] },
+          "detail": { "type": "string" },
+          "reason": { "type": "string" }
+        },
+        "additionalProperties": false
+      },
+      "description": "An undeclared deviation reads to QA as a defect. Declare it."
+    },
+    "seo_conflicts": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["requirement", "why_it_harms_the_reader", "what_was_done"],
+        "properties": {
+          "requirement": { "type": "string" },
+          "why_it_harms_the_reader": { "type": "string" },
+          "what_was_done": { "type": "string" }
+        },
+        "additionalProperties": false
+      },
+      "description": "Where an SEO requirement fought comprehension. Write for the reader and declare it; silent compliance and silent non-compliance are both violations."
+    },
+    "open_questions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Questions for A07 or the practitioner that did not block the draft."
+    },
+
+    "self_check": {
+      "type": "object",
+      "description": "The 11-point gate from workflow.md. A draft does not leave A08 with a known failure.",
+      "required": [
+        "all_sections_present",
+        "all_firsthand_claims_traceable",
+        "all_judgments_marked",
+        "no_forbidden_expressions",
+        "disclaimer_present_if_required",
+        "booking_link_present_if_required",
+        "heading_hierarchy_valid",
+        "faq_answers_standalone",
+        "meta_compliance_screened",
+        "lead_answers_query",
+        "no_padding_sections"
+      ],
+      "properties": {
+        "all_sections_present": { "type": "boolean" },
+        "all_firsthand_claims_traceable": { "const": true },
+        "all_judgments_marked": { "const": true },
+        "no_forbidden_expressions": { "const": true },
+        "disclaimer_present_if_required": { "type": "boolean" },
+        "booking_link_present_if_required": { "type": "boolean" },
+        "heading_hierarchy_valid": { "const": true },
+        "faq_answers_standalone": { "type": "boolean" },
+        "meta_compliance_screened": { "const": true },
+        "lead_answers_query": { "type": "boolean" },
+        "no_padding_sections": { "type": "boolean" },
+        "expression_replacements": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Replacements made by the fortune_expression sweep, so A28 and A30 can verify the sweep ran."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "readability": {
+      "type": ["object", "null"],
+      "properties": {
+        "style": { "type": "string", "enum": ["keitai_desu_masu", "joutai_da_dearu"], "default": "keitai_desu_masu" },
+        "estimated_char_count": { "type": "integer", "minimum": 0 },
+        "long_sentence_count": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false,
+      "description": "Diagnostics. Character count is never a quality criterion."
+    },
+
+    "revision_notes": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["finding_id", "action"],
+        "properties": {
+          "finding_id": { "type": "string" },
+          "action": { "type": "string", "enum": ["fixed", "contested"] },
+          "what_changed": { "type": ["string", "null"] },
+          "reasoning": { "type": ["string", "null"], "description": "Required when action is contested." },
+          "sections_touched": { "type": "array", "items": { "type": "string" }, "default": [] }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "status": {
+      "type": "string",
+      "enum": ["drafting", "blocked_on_source", "ready_for_qa", "in_qa", "revising", "qa_passed", "approved", "published", "returned_to_strategy"],
+      "description": "A08 may set ready_for_qa but never qa_passed or approved. Only A28 gates; only a human approves."
+    },
+    "gap_report_id": { "type": ["string", "null"], "pattern": "^GAP-[0-9]{4}$" },
+    "created_at": { "type": "string", "format": "date" }
+  },
+
+  "allOf": [
+    {
+      "if": {
+        "properties": { "content_type": { "enum": ["shrine_visit_report", "annual_outlook", "forecast_review", "case_reflection"] } },
+        "required": ["content_type"]
+      },
+      "then": {
+        "properties": {
+          "source_map": {
+            "contains": {
+              "properties": {
+                "source_requirement": { "enum": ["visit_notes", "practitioner_judgment"] },
+                "source_reference": { "type": "string" }
+              },
+              "required": ["source_requirement", "source_reference"]
+            }
+          },
+          "disclaimer": { "type": "string" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "status": { "const": "ready_for_qa" } }, "required": ["status"] },
+      "then": {
+        "properties": {
+          "self_check": {
+            "properties": {
+              "all_firsthand_claims_traceable": { "const": true },
+              "all_judgments_marked": { "const": true },
+              "no_forbidden_expressions": { "const": true }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

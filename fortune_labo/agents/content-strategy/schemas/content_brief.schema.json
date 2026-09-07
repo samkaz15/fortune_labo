@@ -1,0 +1,423 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/content-strategy/schemas/content_brief.schema.json",
+  "title": "Content Brief (A07)",
+  "description": "Editorial commitment issued by Content Strategy Agent (A07) to Content Production Agent (A08). Distinct from agents/seo/schemas/content_brief.schema.json, which is A06's SEO requirement set and is referenced here by seo_brief_id. This brief re-carries every SEO and compliance constraint so A08 reads one file. One brief = one URL = one primary keyword cluster = one primary CTA.",
+  "type": "object",
+  "required": [
+    "id",
+    "seo_opportunity_id",
+    "decision",
+    "tier",
+    "primary_keyword",
+    "search_intent",
+    "target_persona",
+    "persona_source",
+    "reader_state",
+    "content_goal",
+    "content_intent",
+    "content_type",
+    "title_candidates",
+    "outline",
+    "unique_value",
+    "differentiation_basis",
+    "internal_links",
+    "cluster_role",
+    "topic_cluster",
+    "cta",
+    "sns_repurpose",
+    "compliance_requirements",
+    "priority",
+    "status",
+    "created_at"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^CB-[0-9]{4}$" },
+    "seo_opportunity_id": { "type": "string", "pattern": "^SEO-[0-9]{4}$" },
+    "seo_brief_id": {
+      "type": ["string", "null"],
+      "pattern": "^BRIEF-[0-9]{4}$",
+      "description": "The A06 SEO requirement set this brief was built on, if one was issued."
+    },
+
+    "decision": {
+      "type": "string",
+      "enum": ["build_new", "rewrite", "consolidate", "refresh_only"],
+      "description": "Default bias is rewrite. build_new requires build_new_rationale. Declined opportunities are emitted as decline_record.schema.json instead of a brief."
+    },
+    "build_new_rationale": {
+      "type": ["string", "null"],
+      "description": "Required when decision is build_new: why no existing URL can serve this intent."
+    },
+    "existing_url": { "type": ["string", "null"], "format": "uri-reference" },
+    "rewrite_reason": {
+      "type": ["string", "null"],
+      "enum": [
+        "weak_ctr_with_impressions",
+        "stale_time_bound_facts",
+        "intent_shift",
+        "cannibalisation",
+        "missing_mandatory_element",
+        "thin_or_off_positioning",
+        null
+      ]
+    },
+    "consolidation_targets": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri-reference" },
+      "default": [],
+      "description": "URLs to merge into the canonical URL. The redirect instruction is routed through A06 as a technical_issue; A06 owns the URL graph."
+    },
+    "preserve": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Sections, links, or first-hand material on the existing page that must NOT be removed in a rewrite. Destroying visit-backed material destroys moat."
+    },
+
+    "tier": { "type": "string", "enum": ["A", "B", "C"] },
+    "primary_keyword": { "type": "string" },
+    "secondary_keywords": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "search_intent": {
+      "type": "string",
+      "enum": ["informational", "navigational", "commercial", "transactional", "local"]
+    },
+
+    "target_persona": {
+      "type": "string",
+      "description": "Who this reader is: situation, life stage, prior exposure to fortune-telling, relationship to the practice."
+    },
+    "reader_state": {
+      "type": "string",
+      "description": "What is true at the moment they type the query: what they already know, what they are anxious about, what they will do next."
+    },
+    "persona_source": {
+      "type": "string",
+      "enum": ["client_questions", "persona_agent", "research_agent", "serp_paa", "analytics"],
+      "description": "Mandatory. Inventing a persona is a rule violation (rules.md section 2.2). client_questions outranks all other sources."
+    },
+
+    "content_goal": { "type": "string", "description": "The business outcome this page exists to produce." },
+    "content_intent": {
+      "type": "string",
+      "enum": ["answer", "orient", "decide", "trust", "act", "record"],
+      "description": "What the page does to the reader. Mismatch with search_intent is the main cause of 'ranks well, converts nothing'."
+    },
+    "reader_value": {
+      "type": ["string", "null"],
+      "description": "In one sentence, what the reader leaves with that they did not arrive with."
+    },
+
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "shrine_visit_report",
+        "annual_outlook",
+        "forecast_review",
+        "method_explainer",
+        "situation_guide",
+        "practitioner_profile",
+        "service_page",
+        "hub_page",
+        "faq_page",
+        "case_reflection"
+      ]
+    },
+    "title_candidates": {
+      "type": "array",
+      "minItems": 3,
+      "items": { "type": "string", "maxLength": 60 },
+      "description": "A07 owns titles, so title compliance is A07's responsibility. No fear framing, no guaranteed outcome, no efficacy ranking (rules.md section 4)."
+    },
+    "meta_description_direction": { "type": ["string", "null"], "maxLength": 200 },
+
+    "outline": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["heading_level", "heading", "purpose", "target_question", "source_requirement"],
+        "properties": {
+          "heading_level": { "type": "string", "enum": ["h2", "h3"] },
+          "heading": { "type": "string" },
+          "purpose": {
+            "type": "string",
+            "description": "What the reader gains here. 'Explain the background' is not a purpose and produces filler."
+          },
+          "target_question": { "type": "string", "description": "The reader question this section answers." },
+          "source_requirement": {
+            "type": "string",
+            "enum": ["visit_notes", "practitioner_judgment", "research", "ai_structurable"],
+            "description": "visit_notes and practitioner_judgment MUST derive from existing human material. A08 may structure and tighten them; it may never originate them."
+          },
+          "featured_snippet_target": { "type": "boolean", "default": false },
+          "preserve": { "type": "boolean", "default": false }
+        },
+        "additionalProperties": false
+      }
+    },
+    "low_moat_density": {
+      "type": "boolean",
+      "default": false,
+      "description": "Set true when more than half the outline is ai_structurable. Such a brief probably fails the one-line test and must be re-examined before issue."
+    },
+
+    "unique_value": { "type": "string", "description": "In one sentence: the thing this page gives that nothing else on the SERP does." },
+    "differentiation_basis": {
+      "type": "string",
+      "description": "Recorded answer to the one-line test (positioning.md section 9): why a competitor with an AI subscription and no shrine visits could not produce this page tomorrow. An unrecorded test counts as a failed test."
+    },
+    "visit_record_id": {
+      "type": ["string", "null"],
+      "description": "REQUIRED for shrine_visit_report. Must resolve to visit notes and photographs already in the repository."
+    },
+    "practitioner_input_id": {
+      "type": ["string", "null"],
+      "description": "REQUIRED for annual_outlook, forecast_review and case_reflection. Must resolve to recorded practitioner judgment (and, for case_reflection, recorded client consent)."
+    },
+
+    "topic_cluster": { "type": "string" },
+    "cluster_role": {
+      "type": "string",
+      "enum": ["hub", "spoke", "flagship", "conversion", "supporting"],
+      "description": "A spoke whose hub is not live is deferred, not published into a vacuum."
+    },
+    "related_content": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Existing or planned pieces this one should sit beside."
+    },
+    "internal_links": {
+      "type": "object",
+      "required": ["inbound_from", "outbound_to"],
+      "properties": {
+        "inbound_from": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Existing pages that must link to this page. Zero planned inbound links creates an orphan and is rejected at QA.",
+          "items": {
+            "type": "object",
+            "required": ["source_url", "anchor_text", "rationale"],
+            "properties": {
+              "source_url": { "type": "string", "format": "uri-reference" },
+              "anchor_text": { "type": "string" },
+              "rationale": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "outbound_to": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["target_url", "anchor_text", "rationale"],
+            "properties": {
+              "target_url": { "type": "string", "format": "uri-reference" },
+              "anchor_text": { "type": "string" },
+              "rationale": { "type": "string" },
+              "is_booking_page": { "type": "boolean", "default": false }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "cta": {
+      "type": "object",
+      "required": ["primary_type", "placement", "copy_direction"],
+      "properties": {
+        "primary_type": {
+          "type": "string",
+          "enum": ["booking", "list_signup", "related_content", "none"],
+          "description": "Exactly one primary CTA. Match it to reader_state: a first-contact, high-anxiety reader gets list_signup, not booking."
+        },
+        "secondary_type": {
+          "type": ["string", "null"],
+          "enum": ["booking", "list_signup", "related_content", "none", null]
+        },
+        "placement": { "type": "string" },
+        "copy_direction": {
+          "type": "string",
+          "description": "No urgency-through-fear. 'Visiting is good' is permitted; 'not acting is bad' is not."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "sns_repurpose": {
+      "type": "array",
+      "description": "A07 decides whether and why; A10 decides how. 'skip' is a first-class answer.",
+      "items": {
+        "type": "object",
+        "required": ["channel", "viability", "rationale"],
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": ["instagram", "tiktok", "x", "youtube", "threads", "facebook", "line", "ameba", "note"]
+          },
+          "viability": { "type": "string", "enum": ["strong", "possible", "skip"] },
+          "angle": { "type": ["string", "null"] },
+          "objective": {
+            "type": ["string", "null"],
+            "enum": ["reach", "saves", "engagement", "traffic", "trust", "booking", "retention", null]
+          },
+          "rationale": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "structured_data": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Article", "Person", "Place", "Event", "FAQPage", "BreadcrumbList", "LocalBusiness"]
+      },
+      "default": ["Article", "BreadcrumbList"],
+      "description": "Carried through from A06. Person and LocalBusiness are P0 for this site."
+    },
+
+    "compliance_requirements": {
+      "type": "object",
+      "required": ["disclaimer_required", "subjectivity_marking_required", "photo_permission_status"],
+      "properties": {
+        "disclaimer_required": { "type": "boolean" },
+        "subjectivity_marking_required": { "type": "boolean" },
+        "divinatory_basis_required": { "type": "boolean", "default": false },
+        "photo_permission_status": {
+          "type": "string",
+          "enum": ["confirmed", "pending", "not_applicable"],
+          "description": "Publication is blocked downstream while 'pending'."
+        },
+        "client_consent_recorded": {
+          "type": ["boolean", "null"],
+          "description": "Required true for case_reflection content."
+        },
+        "sensitive_domain": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["medical", "financial", "legal", "major_life_decision"] },
+          "default": [],
+          "description": "Any non-empty value routes this brief to A30 Compliance/Risk BEFORE drafting begins."
+        },
+        "forbidden_framings": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [
+            "fear framing (not visiting or not acting leads to misfortune)",
+            "guaranteed outcomes",
+            "efficacy ranking or comparison between shrines",
+            "medical, financial, or legal outcome claims",
+            "fabricated testimonials or result claims",
+            "urgency-through-anxiety CTAs"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "target_length": {
+      "type": ["integer", "null"],
+      "description": "Guidance only. Never a quality criterion."
+    },
+    "capacity_cost": {
+      "type": ["object", "null"],
+      "properties": {
+        "visits": { "type": "integer", "minimum": 0 },
+        "judgment_sessions": { "type": "integer", "minimum": 0 },
+        "review_load": { "type": "string", "enum": ["low", "medium", "high"] }
+      },
+      "additionalProperties": false
+    },
+    "priority": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+    "priority_basis": {
+      "type": "string",
+      "enum": ["measured_booking_attribution", "proxy_based"],
+      "default": "proxy_based",
+      "description": "Must be proxy_based until Phase 3 booking attribution exists (integrations: GA4 booking_complete)."
+    },
+    "publish_by": { "type": ["string", "null"], "format": "date" },
+    "brief_issued_by": { "type": ["string", "null"], "format": "date", "description": "Backward-planned issue deadline from the seasonal window." },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "issued", "in_production", "blocked_on_material", "in_qa", "awaiting_approval", "published", "superseded", "cancelled"]
+    },
+    "created_at": { "type": "string", "format": "date" },
+    "notes": { "type": ["string", "null"] }
+  },
+
+  "allOf": [
+    {
+      "if": { "properties": { "decision": { "const": "build_new" } }, "required": ["decision"] },
+      "then": { "required": ["build_new_rationale"], "properties": { "build_new_rationale": { "type": "string" } } }
+    },
+    {
+      "if": { "properties": { "decision": { "enum": ["rewrite", "refresh_only"] } }, "required": ["decision"] },
+      "then": {
+        "required": ["existing_url", "rewrite_reason"],
+        "properties": { "existing_url": { "type": "string" }, "rewrite_reason": { "type": "string" } }
+      }
+    },
+    {
+      "if": { "properties": { "decision": { "const": "consolidate" } }, "required": ["decision"] },
+      "then": {
+        "required": ["existing_url", "consolidation_targets"],
+        "properties": {
+          "existing_url": { "type": "string" },
+          "consolidation_targets": { "type": "array", "minItems": 1 }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "content_type": { "const": "shrine_visit_report" } }, "required": ["content_type"] },
+      "then": { "required": ["visit_record_id"], "properties": { "visit_record_id": { "type": "string" } } }
+    },
+    {
+      "if": {
+        "properties": { "content_type": { "enum": ["annual_outlook", "forecast_review", "case_reflection"] } },
+        "required": ["content_type"]
+      },
+      "then": { "required": ["practitioner_input_id"], "properties": { "practitioner_input_id": { "type": "string" } } }
+    },
+    {
+      "if": { "properties": { "content_type": { "const": "annual_outlook" } }, "required": ["content_type"] },
+      "then": {
+        "properties": {
+          "compliance_requirements": {
+            "required": ["divinatory_basis_required"],
+            "properties": { "divinatory_basis_required": { "const": true } }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "content_type": { "const": "case_reflection" } }, "required": ["content_type"] },
+      "then": {
+        "properties": {
+          "compliance_requirements": {
+            "required": ["client_consent_recorded"],
+            "properties": { "client_consent_recorded": { "const": true } }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "tier": { "enum": ["A", "B"] } }, "required": ["tier"] },
+      "then": {
+        "properties": {
+          "internal_links": {
+            "properties": {
+              "outbound_to": {
+                "contains": { "properties": { "is_booking_page": { "const": true } }, "required": ["is_booking_page"] }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

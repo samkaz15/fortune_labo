@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/content-strategy/schemas/decline_record.schema.json",
+  "title": "Decline Record",
+  "description": "Record of an SEO Opportunity that Content Strategy Agent declined to brief. Declining is a first-class output. Every decline is recorded so the same idea is not rediscovered and re-argued, and every decline carries a revisit_condition because it is a judgment under current conditions, not a permanent verdict.",
+  "type": "object",
+  "required": [
+    "id",
+    "seo_opportunity_id",
+    "keyword",
+    "decline_reason",
+    "explanation",
+    "evidence",
+    "revisit_condition",
+    "decided_at"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^DEC-[0-9]{4}$" },
+    "seo_opportunity_id": { "type": "string", "pattern": "^SEO-[0-9]{4}$" },
+    "keyword": { "type": "string" },
+    "tier": { "type": ["string", "null"], "enum": ["A", "B", "C", null] },
+    "decline_reason": {
+      "type": "string",
+      "enum": [
+        "fails_one_line_test",
+        "not_winnable",
+        "off_positioning",
+        "over_capacity",
+        "no_source_material",
+        "cluster_not_ready",
+        "duplicate_of_existing",
+        "compliance_risk"
+      ]
+    },
+    "explanation": { "type": "string", "description": "Why this reason applies to this specific opportunity." },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["statement", "source"],
+        "properties": {
+          "statement": { "type": "string" },
+          "source": {
+            "type": "string",
+            "enum": ["serp_observation", "url_inventory", "capacity_ledger", "human_input", "analytics", "research_agent", "compliance_review"]
+          },
+          "observed_at": { "type": "string", "format": "date" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "duplicate_of": {
+      "type": ["string", "null"],
+      "description": "Existing URL or CB id this duplicates. Required when decline_reason is duplicate_of_existing."
+    },
+    "revisit_condition": {
+      "type": "string",
+      "description": "The specific change in conditions that would make this worth reconsidering. Mandatory."
+    },
+    "revisit_after": { "type": ["string", "null"], "format": "date" },
+    "escalated_to": {
+      "type": ["string", "null"],
+      "enum": ["strategy", "seo", "compliance_risk", "human", null],
+      "description": "compliance_risk declines are routed to A30; over_capacity declines are routed to A01 Strategy."
+    },
+    "decided_at": { "type": "string", "format": "date" },
+    "status": {
+      "type": "string",
+      "enum": ["declined", "revisit_scheduled", "reopened", "permanently_closed"],
+      "default": "declined"
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "decline_reason": { "const": "duplicate_of_existing" } }, "required": ["decline_reason"] },
+      "then": { "required": ["duplicate_of"], "properties": { "duplicate_of": { "type": "string" } } }
+    },
+    {
+      "if": { "properties": { "decline_reason": { "const": "over_capacity" } }, "required": ["decline_reason"] },
+      "then": { "properties": { "escalated_to": { "const": "strategy" } } }
+    },
+    {
+      "if": { "properties": { "decline_reason": { "const": "compliance_risk" } }, "required": ["decline_reason"] },
+      "then": { "properties": { "escalated_to": { "const": "compliance_risk" } } }
+    }
+  ],
+  "additionalProperties": false
+}

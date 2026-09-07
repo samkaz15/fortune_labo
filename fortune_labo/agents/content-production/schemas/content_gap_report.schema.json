@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/content-production/schemas/content_gap_report.schema.json",
+  "title": "Content Gap Report",
+  "description": "Emitted by Content Production Agent (A08) when a brief cannot be executed honestly because source material does not exist. This is a normal, expected, correct output. A gap is never resolved by writing around it: producing a plausible paragraph where a visit record should be is the failure this agent is designed to prevent.",
+  "type": "object",
+  "required": ["id", "brief_id", "gaps", "blocking", "created_at"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^GAP-[0-9]{4}$" },
+    "brief_id": { "type": "string", "pattern": "^CB-[0-9]{4}$" },
+    "master_content_id": { "type": ["string", "null"], "pattern": "^MC-[0-9]{4}$" },
+
+    "gaps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "section_heading",
+          "source_requirement",
+          "what_is_missing",
+          "why_it_cannot_be_written",
+          "what_would_resolve_it",
+          "requested_from"
+        ],
+        "properties": {
+          "section_heading": { "type": "string" },
+          "section_id": { "type": ["string", "null"] },
+          "source_requirement": {
+            "type": "string",
+            "enum": ["visit_notes", "practitioner_judgment", "research"],
+            "description": "ai_structurable sections cannot produce a gap; they are writable from the brief alone."
+          },
+          "what_is_missing": { "type": "string" },
+          "why_it_cannot_be_written": {
+            "type": "string",
+            "description": "e.g. 'No visit record exists for this shrine; writing the atmosphere would be AI-originated first-hand experience.'"
+          },
+          "what_would_resolve_it": {
+            "type": "string",
+            "description": "The specific material needed, e.g. 'visit notes including December approach conditions and photo inventory'."
+          },
+          "requested_from": {
+            "type": "string",
+            "enum": ["human_practitioner", "strategy", "research", "seo"]
+          },
+          "is_structural": {
+            "type": "boolean",
+            "default": false,
+            "description": "True when the piece's core rests on this section. Any structural gap forces blocking = true."
+          },
+          "seasonal_deadline_at_risk": { "type": ["string", "null"], "format": "date" }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "blocking": {
+      "type": "boolean",
+      "description": "true = the piece cannot proceed at all. false = the rest of the draft is deliverable with gapped sections marked status: awaiting_source."
+    },
+    "partial_draft_delivered": { "type": "boolean", "default": false },
+    "escalated_to": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["strategy", "seo", "human", "research"] },
+      "default": [],
+      "description": "A gap that puts a seasonal deadline at risk is escalated to the human immediately, not queued."
+    },
+    "created_at": { "type": "string", "format": "date" },
+    "status": {
+      "type": "string",
+      "enum": ["open", "material_requested", "material_received", "resolved", "brief_revised", "cancelled"],
+      "default": "open"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "gaps": { "contains": { "properties": { "is_structural": { "const": true } }, "required": ["is_structural"] } } },
+        "required": ["gaps"]
+      },
+      "then": { "properties": { "blocking": { "const": true } } }
+    }
+  ],
+  "additionalProperties": false
+}
