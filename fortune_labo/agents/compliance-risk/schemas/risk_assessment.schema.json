@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/compliance-risk/schemas/risk_assessment.schema.json",
+  "title": "Risk Assessment",
+  "description": "Compliance verdict from Compliance/Risk Agent (A30) for one artifact. This is layer 1 of the QA gate, delegated in full by A28: A28 enforces this verdict verbatim and cannot overrule, downgrade, or pass around a 'block'. Only a human may accept a flagged risk, and only on the record. The verdict is the worst result across all six risk domains, never an average.",
+  "type": "object",
+  "required": [
+    "id",
+    "target_type",
+    "target_id",
+    "revision",
+    "domain_results",
+    "findings",
+    "verdict",
+    "verdict_rationale",
+    "binding_note",
+    "assessed_at"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^RISK-[0-9]{4}$" },
+    "target_type": {
+      "type": "string",
+      "enum": ["content_brief", "master_content", "channel_content", "published_page", "published_post"]
+    },
+    "target_id": { "type": "string" },
+    "revision": { "type": "integer", "minimum": 1 },
+    "review_stage": {
+      "type": "string",
+      "enum": ["pre_drafting", "pre_publication", "monitoring", "incident"],
+      "description": "pre_drafting issues treatment_rules and costs one revision; the same rules issued post-drafting cost three."
+    },
+
+    "domain_results": {
+      "type": "array",
+      "minItems": 6,
+      "description": "All six domains are assessed on every artifact. The verdict is the worst result across them.",
+      "items": {
+        "type": "object",
+        "required": ["domain", "status"],
+        "properties": {
+          "domain": {
+            "type": "string",
+            "enum": ["solicitation", "sensitive_domain", "truthfulness", "platform", "privacy", "reputational"]
+          },
+          "status": { "type": "string", "enum": ["clear", "conditions", "blocked", "not_applicable"] },
+          "finding_ids": { "type": "array", "items": { "type": "string" }, "default": [] }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "adjacency_check_performed": {
+      "type": "boolean",
+      "description": "Mandatory. Whether the 2-3 sentences preceding each CTA were assessed as a unit with it. Violations assemble themselves out of individually innocuous halves, and reading surfaces in isolation is how they get through."
+    },
+    "surfaces_assessed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "title", "h1", "heading", "lead", "body", "faq", "cta", "meta_description",
+          "disclaimer", "alt_text", "hook", "caption", "on_screen_text", "slide_text",
+          "thumbnail", "video_title", "video_description", "hashtag"
+        ]
+      },
+      "default": [],
+      "description": "A compliant body under a fear-framed title is still a violation, so every surface present in the artifact is assessed."
+    },
+
+    "findings": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["finding_id", "domain", "severity", "surface", "what_is_wrong", "why_it_is_a_risk", "legal_basis", "resolution_type"],
+        "properties": {
+          "finding_id": { "type": "string", "pattern": "^R-[0-9]{3}$" },
+          "domain": {
+            "type": "string",
+            "enum": ["solicitation", "sensitive_domain", "truthfulness", "platform", "privacy", "reputational"]
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["blocking", "conditional", "advisory", "escalate_to_professional"],
+            "description": "escalate_to_professional is a BLOCKING condition: where a question turns on genuine legal interpretation rather than an established rule, A30 does not guess and clear."
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "fear_framing", "anxiety_creation", "anxiety_adjacent_cta", "urgency_through_anxiety",
+              "guaranteed_outcome", "implied_inevitability", "efficacy_ranking", "implied_misfortune",
+              "medical_claim", "financial_claim", "legal_claim", "major_life_decision", "crisis_adjacency",
+              "fabricated_testimonial", "unverifiable_social_proof", "untrue_scarcity",
+              "credentials_not_held", "untraceable_firsthand_claim", "generated_imagery",
+              "unmarked_judgment", "missing_divinatory_basis", "missing_disclaimer",
+              "missing_disclosure", "platform_terms", "engagement_manipulation",
+              "unlicensed_third_party_content", "line_review_missing",
+              "consent_missing", "insufficient_anonymisation", "identifiable_individual",
+              "photo_permission_unconfirmed", "photography_restriction",
+              "disparagement", "shrine_comparison", "community_offence", "political_or_discriminatory",
+              "positioning_drift"
+            ]
+          },
+          "surface": { "type": "string" },
+          "location": { "type": ["string", "null"] },
+          "what_is_wrong": { "type": "string" },
+          "why_it_is_a_risk": { "type": "string" },
+          "legal_basis": {
+            "type": "string",
+            "description": "Which instrument, guidance, or platform rule. 'It feels risky' is not a basis. e.g. 'Act on Prevention of Unjust Solicitation of Donations, fully effective 2023-06-01'."
+          },
+          "current_text": { "type": ["string", "null"] },
+          "resolution_type": {
+            "type": "string",
+            "enum": ["reword", "remove", "add_referral", "add_disclaimer", "obtain_record", "escalate"],
+            "description": "A30 rewords rather than refuses wherever a compliant expression of the same intent exists. A function that only says no gets routed around, and a routed-around gate protects nothing."
+          },
+          "required_text": {
+            "type": ["string", "null"],
+            "description": "Binding on A08 and A10. They may ask for clarification; they may not negotiate it on stylistic grounds. Required when resolution_type is reword, add_referral, or add_disclaimer."
+          },
+          "alternatives": { "type": "array", "items": { "type": "string" }, "default": [] },
+          "owner_agent": {
+            "type": "string",
+            "enum": ["content_production", "sns_content", "content_strategy", "seo", "codex", "human"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["open", "applied", "verified", "human_accepted", "escalated"],
+            "default": "open"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "blocking_count": { "type": "integer", "minimum": 0 },
+
+    "treatment_rules": {
+      "type": "array",
+      "default": [],
+      "description": "Issued at pre_drafting stage for briefs carrying a sensitive_domain flag. Binding on A08 and A10.",
+      "items": {
+        "type": "object",
+        "required": ["domain", "what_may_not_be_claimed", "required_referral", "required_framing"],
+        "properties": {
+          "domain": { "type": "string", "enum": ["medical", "financial", "legal", "major_life_decision", "crisis"] },
+          "what_may_not_be_claimed": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "required_referral": { "type": "string" },
+          "required_framing": { "type": "string" },
+          "required_placement": {
+            "type": ["string", "null"],
+            "description": "Referrals belong in the same section as the topic, not only in a footer."
+          },
+          "cta_restriction": {
+            "type": ["string", "null"],
+            "description": "Whether a CTA may appear near this content. Crisis-adjacent content carries no adjacent paid-service CTA."
+          },
+          "disclaimer_text": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "records_verified": {
+      "type": ["object", "null"],
+      "description": "Records are opened and checked, never vouched for. A missing record is blocking, not pending.",
+      "properties": {
+        "consent_record": { "type": "string", "enum": ["verified", "missing", "not_applicable"] },
+        "photo_permission_record": { "type": "string", "enum": ["verified", "missing", "not_applicable"] },
+        "third_party_licence": { "type": "string", "enum": ["verified", "missing", "not_applicable"] },
+        "firsthand_traceability": { "type": "string", "enum": ["verified", "missing", "not_applicable"] }
+      },
+      "additionalProperties": false
+    },
+
+    "verdict": {
+      "type": "string",
+      "enum": ["clear", "clear_with_conditions", "block"],
+      "description": "Uncertainty never resolves toward clear. Unsure means conditions or block."
+    },
+    "verdict_rationale": { "type": "string" },
+
+    "binding_note": {
+      "type": "string",
+      "const": "This verdict is binding. A28 QA cannot overrule, downgrade, or pass around a blocking finding. Only a human may accept a flagged risk, and only with the acceptance recorded in the risk register.",
+      "description": "Fixed text so the authority boundary cannot be lost when the assessment is read out of context."
+    },
+
+    "human_acceptance": {
+      "type": ["object", "null"],
+      "description": "Present only when a human explicitly accepted a flagged risk. A30 cannot accept a risk on anyone's behalf.",
+      "properties": {
+        "accepted_by": { "type": "string" },
+        "accepted_at": { "type": "string", "format": "date" },
+        "basis": { "type": "string" },
+        "mitigation": { "type": "string" },
+        "review_by": { "type": "string", "format": "date" },
+        "register_entry_id": { "type": "string", "pattern": "^REG-[0-9]{4}$" }
+      },
+      "required": ["accepted_by", "accepted_at", "basis", "review_by", "register_entry_id"],
+      "additionalProperties": false
+    },
+
+    "pressure_events": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Requests to clear, downgrade, or bypass received during this assessment, and from whom. Refused, recorded, and escalated to A01 — whoever asked."
+    },
+    "register_entry_ids": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "assessed_at": { "type": "string", "format": "date" }
+  },
+
+  "allOf": [
+    {
+      "if": {
+        "properties": { "findings": { "contains": { "properties": { "severity": { "enum": ["blocking", "escalate_to_professional"] } }, "required": ["severity"] } } },
+        "required": ["findings"]
+      },
+      "then": { "properties": { "verdict": { "const": "block" } } }
+    },
+    {
+      "if": { "properties": { "verdict": { "const": "clear" } }, "required": ["verdict"] },
+      "then": { "properties": { "blocking_count": { "const": 0 }, "adjacency_check_performed": { "const": true } } }
+    },
+    {
+      "if": { "properties": { "review_stage": { "const": "pre_drafting" } }, "required": ["review_stage"] },
+      "then": { "required": ["treatment_rules"], "properties": { "treatment_rules": { "type": "array", "minItems": 1 } } }
+    }
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/compliance-risk/schemas/risk_register_entry.schema.json",
+  "title": "Risk Register Entry",
+  "description": "One standing risk tracked by Compliance/Risk Agent (A30). Nothing closes silently: a closed entry states what changed, and 'no longer relevant' is not a closure reason. Human-accepted risks stay in the register permanently with a review date; A30 never removes one. Rescission windows of 3 years from realisation / 10 years from the act keep published content in scope for years, so a rule change always triggers a back-catalogue sweep.",
+  "type": "object",
+  "required": ["id", "title", "domain", "description", "severity", "likelihood", "status", "origin", "owner", "created_at"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^REG-[0-9]{4}$" },
+    "title": { "type": "string", "maxLength": 120 },
+    "domain": {
+      "type": "string",
+      "enum": ["solicitation", "sensitive_domain", "truthfulness", "platform", "privacy", "reputational", "regulatory"]
+    },
+    "description": { "type": "string" },
+    "legal_basis": { "type": ["string", "null"], "description": "Which instrument, guidance, or platform rule this risk arises under." },
+
+    "severity": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low"],
+      "description": "Reflects actual exposure, not discomfort."
+    },
+    "likelihood": {
+      "type": "string",
+      "enum": ["high", "medium", "low"],
+      "description": "Reflects observed frequency, not worst case."
+    },
+
+    "origin": {
+      "type": "string",
+      "enum": ["assessment", "incident", "accepted", "regulatory_change", "sweep", "external"]
+    },
+    "affected_artifacts": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Content ids or published URLs. For an incident, this is the result of the mandatory pattern sweep, not just the artifact that triggered it."
+    },
+    "back_catalogue_swept": {
+      "type": ["boolean", "null"],
+      "description": "Required true before a regulatory_change or incident entry may be closed. Content compliant at publication can become non-compliant later, and stays exposed for years."
+    },
+
+    "owner": {
+      "type": "string",
+      "enum": ["compliance_risk", "content_production", "sns_content", "content_strategy", "seo", "codex", "strategy", "human"]
+    },
+    "mitigation": { "type": ["string", "null"] },
+    "review_by": { "type": ["string", "null"], "format": "date" },
+
+    "status": {
+      "type": "string",
+      "enum": ["open", "mitigating", "human_accepted", "escalated_to_professional", "closed"]
+    },
+
+    "human_acceptance": {
+      "type": ["object", "null"],
+      "description": "Only a human may accept a risk. Recorded permanently: A30 does not remove an accepted risk, it carries it with a review date. Accepted risks accumulating in one domain is a systemic pattern escalated to A01 — exposure being normalised one reasonable decision at a time.",
+      "properties": {
+        "accepted_by": { "type": "string" },
+        "accepted_at": { "type": "string", "format": "date" },
+        "basis": { "type": "string" },
+        "mitigation": { "type": "string" },
+        "review_by": { "type": "string", "format": "date" },
+        "reviewed_at": { "type": ["string", "null"], "format": "date" }
+      },
+      "required": ["accepted_by", "accepted_at", "basis", "review_by"],
+      "additionalProperties": false
+    },
+
+    "incident": {
+      "type": ["object", "null"],
+      "description": "Present when origin is incident. Every incident requires a root cause, a pattern sweep, and a new or tightened check. An incident with no rule change is an incident waiting to recur.",
+      "properties": {
+        "discovered_at": { "type": "string", "format": "date" },
+        "published_at": { "type": ["string", "null"], "format": "date" },
+        "exposure_window_days": { "type": ["integer", "null"], "minimum": 0 },
+        "what_was_published": { "type": "string" },
+        "which_check_should_have_caught_it": { "type": "string" },
+        "why_it_did_not": {
+          "type": "string",
+          "enum": ["rule_absent", "rule_present_missed", "assessment_skipped", "finding_downgraded", "regulatory_change"]
+        },
+        "unpublish_recommended": { "type": "boolean", "default": false },
+        "unpublish_action_taken": { "type": ["string", "null"] },
+        "pattern_sweep_completed": { "type": "boolean", "default": false },
+        "rule_change_made": { "type": ["string", "null"], "description": "The check added or tightened so this cannot recur." }
+      },
+      "required": ["discovered_at", "what_was_published", "which_check_should_have_caught_it", "why_it_did_not"],
+      "additionalProperties": false
+    },
+
+    "closure": {
+      "type": ["object", "null"],
+      "description": "Nothing closes silently.",
+      "properties": {
+        "closed_at": { "type": "string", "format": "date" },
+        "reason": {
+          "type": "string",
+          "enum": ["content_removed", "content_corrected", "rule_changed_and_swept", "mitigation_verified", "professional_cleared"],
+          "description": "'No longer relevant', 'seems fine now', and 'nobody complained' are not closure reasons."
+        },
+        "detail": { "type": "string" },
+        "verified_by": { "type": ["string", "null"] }
+      },
+      "required": ["closed_at", "reason", "detail"],
+      "additionalProperties": false
+    },
+
+    "created_at": { "type": "string", "format": "date" },
+    "updated_at": { "type": ["string", "null"], "format": "date" }
+  },
+
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "human_accepted" } }, "required": ["status"] },
+      "then": { "required": ["human_acceptance"], "properties": { "human_acceptance": { "type": "object" } } }
+    },
+    {
+      "if": { "properties": { "origin": { "const": "incident" } }, "required": ["origin"] },
+      "then": { "required": ["incident"], "properties": { "incident": { "type": "object" } } }
+    },
+    {
+      "if": { "properties": { "status": { "const": "closed" } }, "required": ["status"] },
+      "then": { "required": ["closure"], "properties": { "closure": { "type": "object" } } }
+    },
+    {
+      "if": {
+        "properties": { "origin": { "enum": ["incident", "regulatory_change"] }, "status": { "const": "closed" } },
+        "required": ["origin", "status"]
+      },
+      "then": { "properties": { "back_catalogue_swept": { "const": true } } }
+    }
+  ],
+  "additionalProperties": false
+}
