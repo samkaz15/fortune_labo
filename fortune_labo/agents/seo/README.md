@@ -20,12 +20,16 @@ Does not write content, does not write code, does not collect raw data.
               └─────┬─────┘
        ┌────────────┼────────────┬──────────────┐
        ▼            ▼            ▼              ▼
-  Visit Plan   Content Agent   Codex        CRO Agent
-   (human)                       │
+  Visit Plan   A07 Content    Codex        CRO Agent
+   (human)      Strategy         │              │
+       │            │            │              │
+       │      A08 Production     │              │
+       │            │            │              │
+       │      A10 SNS Content    │              │
        │            │            │              │
        └────────────┴─────┬──────┴──────────────┘
                           ▼
-                      QA Agent
+                    A28 QA Agent  ◄── A30 Compliance/Risk
               (compliance → factual → first-hand
                → editorial → SEO → technical)
                           ▼

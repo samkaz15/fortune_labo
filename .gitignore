@@ -1,0 +1,25 @@
+# Secrets — never commit. Only .env.example belongs in Git (/AGENTS.md).
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+service-account*.json
+
+# Cached analytics pulls (GSC / GA4). Analytics Agent writes here; not versioned.
+data/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Node / Python, for anything Codex builds later
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/

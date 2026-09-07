@@ -329,9 +329,21 @@
     "status": {
       "type": "string",
       "enum": ["drafting", "blocked_on_source", "ready_for_qa", "in_qa", "revising", "qa_passed", "approved", "published", "returned_to_strategy"],
-      "description": "A08 may set ready_for_qa but never qa_passed or approved. Only A28 gates; only a human approves."
+      "description": "A08 may set ready_for_qa. qa_passed requires a qa_report_id from A28; approved and published additionally require a recorded human approver. Only A28 gates; only a human approves."
     },
     "gap_report_id": { "type": ["string", "null"], "pattern": "^GAP-[0-9]{4}$" },
+    "qa_report_id": { "type": ["string", "null"], "pattern": "^QA-[0-9]{4}$" },
+    "approval": {
+      "type": ["object", "null"],
+      "description": "Set by the human approver, never by A08. Required before status may reach approved or published, so A08 cannot advance an artifact past the gate on its own.",
+      "properties": {
+        "approved_by": { "type": "string" },
+        "approved_at": { "type": "string", "format": "date" },
+        "notes": { "type": ["string", "null"] }
+      },
+      "required": ["approved_by", "approved_at"],
+      "additionalProperties": false
+    },
     "created_at": { "type": "string", "format": "date" }
   },
 
@@ -354,6 +366,22 @@
           },
           "disclaimer": { "type": "string" }
         }
+      }
+    },
+    {
+      "if": { "properties": { "status": { "const": "qa_passed" } }, "required": ["status"] },
+      "then": {
+        "required": ["qa_report_id"],
+        "properties": { "qa_report_id": { "type": "string" } },
+        "description": "A08 never gates its own draft: qa_passed requires a QA Report from A28."
+      }
+    },
+    {
+      "if": { "properties": { "status": { "enum": ["approved", "published"] } }, "required": ["status"] },
+      "then": {
+        "required": ["approval", "qa_report_id"],
+        "properties": { "approval": { "type": "object" }, "qa_report_id": { "type": "string" } },
+        "description": "A08 never approves or publishes. These states require a recorded human approver and a QA Report."
       }
     },
     {

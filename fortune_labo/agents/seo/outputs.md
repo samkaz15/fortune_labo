@@ -8,7 +8,7 @@ accepted by downstream agents.
 | Artifact | Schema | Consumer |
 | --- | --- | --- |
 | SEO Opportunity | `seo_opportunity.schema.json` | Strategy Agent (triage) |
-| Content Brief | `content_brief.schema.json` | Content Agent |
+| Content Brief | `content_brief.schema.json` | A07 Content Strategy Agent |
 | Technical Issue | `technical_issue.schema.json` | Codex |
 | Visit Plan | `visit_plan.schema.json` | Human practitioner |
 | Internal Link Instruction | `internal_link_instruction.schema.json` | Codex |
@@ -62,10 +62,18 @@ machine-visible.
 
 ## Handoff contracts
 
-**→ Content Agent**
+**→ A07 Content Strategy Agent**
 Sends: content_brief. Never partial requirements, never a bare keyword.
 For Tier A, must reference an existing `visit_record_id`.
-Receives back: draft, plus flagged gaps where the brief was unachievable.
+Receives back: an editorial Content Brief (`CB-xxxx`) or a decline record, and —
+once the piece is produced — flagged gaps where the requirement set was
+unachievable.
+
+This brief is the **SEO requirement set**. A07 decides whether the page deserves
+to exist, sets the angle and persona, and issues the brief A08 Content Production
+actually writes from. Before A07 existed, this artifact went straight to
+production; the requirements it carries are unchanged, only its consumer moved.
+See [`/docs/agents/CONTENT-PIPELINE.md`](../../../docs/agents/CONTENT-PIPELINE.md).
 
 **→ Codex**
 Sends: technical_issue or internal_link_instruction, with acceptance criteria
