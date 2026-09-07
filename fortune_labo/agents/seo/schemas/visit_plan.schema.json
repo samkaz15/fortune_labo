@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/seo/schemas/visit_plan.schema.json",
+  "title": "Visit Plan",
+  "description": "SEO Agent's highest-leverage artifact. Tier A content supply is bounded by human physical visits, not AI capacity (positioning.md section 6). This converts search demand into a shrine visit schedule with backward-planned deadlines.",
+  "type": "object",
+  "required": ["id", "period_start", "period_end", "capacity", "visits", "created_at"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^VISIT-[0-9]{4}$" },
+    "period_start": { "type": "string", "format": "date" },
+    "period_end": { "type": "string", "format": "date" },
+    "capacity": {
+      "type": "object",
+      "required": ["available_visit_days", "planned_visits"],
+      "properties": {
+        "available_visit_days": {
+          "type": "integer",
+          "description": "Stated by the practitioner. SEO Agent must not plan beyond this (rules.md section 1.5)."
+        },
+        "planned_visits": { "type": "integer" },
+        "utilisation": { "type": ["number", "null"], "description": "planned_visits / available_visit_days" },
+        "capacity_warning": {
+          "type": ["string", "null"],
+          "description": "Set when demand exceeds capacity. Escalate to human rather than silently dropping targets."
+        }
+      }
+    },
+    "visits": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "shrine_name",
+          "priority",
+          "target_keywords",
+          "rationale",
+          "seasonal_window",
+          "visit_by",
+          "publish_by",
+          "capture_requirements"
+        ],
+        "properties": {
+          "shrine_name": { "type": "string" },
+          "location": { "type": ["string", "null"] },
+          "priority": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+          "target_keywords": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["keyword", "tier"],
+              "properties": {
+                "keyword": { "type": "string" },
+                "tier": { "type": "string", "enum": ["A", "B"] },
+                "volume_estimate": { "type": ["integer", "null"] },
+                "competition_note": { "type": ["string", "null"] },
+                "winnable": {
+                  "type": "boolean",
+                  "description": "false if the SERP is locked by shrine official sites, national media, or map pack and fortune_labo has no differentiator. Declining to compete is a valid output (responsibilities.md section B)."
+                }
+              }
+            }
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Why this shrine, why now. Must reference search demand, seasonality, or a competitor gap."
+          },
+          "seasonal_window": {
+            "type": ["object", "null"],
+            "properties": {
+              "event": { "type": "string", "description": "e.g. 初詣, 節分, 七五三, 大祓, 例大祭" },
+              "demand_opens": { "type": "string", "format": "date" },
+              "demand_peaks": { "type": "string", "format": "date" }
+            }
+          },
+          "visit_by": {
+            "type": "string",
+            "format": "date",
+            "description": "Backward-planned from publish_by. Missing this date typically costs a full year."
+          },
+          "publish_by": { "type": "string", "format": "date" },
+          "backward_schedule": {
+            "type": ["object", "null"],
+            "properties": {
+              "brief_issued_by": { "type": "string", "format": "date" },
+              "draft_by": { "type": "string", "format": "date" },
+              "qa_by": { "type": "string", "format": "date" },
+              "approval_by": { "type": "string", "format": "date" }
+            }
+          },
+          "capture_requirements": {
+            "type": "object",
+            "required": ["notes", "photos"],
+            "description": "What the practitioner must record on site. These become the irreplaceable raw material.",
+            "properties": {
+              "notes": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "e.g. atmosphere at the haiden, condition of the approach, crowd level, felt impression, time of day"
+              },
+              "photos": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Specific shots needed. Permission must be confirmed before publication."
+              },
+              "practitioner_judgment_prompts": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Questions only the practitioner can answer, e.g. 'how does this shrine read for 2027 under your system, and on what basis'"
+              },
+              "operational_checks": {
+                "type": "array",
+                "items": { "type": "string" },
+                "default": [
+                  "Confirm photo usage policy with the shrine office",
+                  "Record visit date and time",
+                  "Note any posted rules on photography"
+                ]
+              }
+            }
+          },
+          "estimated_travel_hours": { "type": ["number", "null"] },
+          "cluster": {
+            "type": ["string", "null"],
+            "description": "Group nearby shrines into a single trip to raise output per visit day"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["planned", "scheduled", "visited", "notes_recorded", "brief_issued", "published", "cancelled"],
+            "default": "planned"
+          },
+          "visit_record_id": {
+            "type": ["string", "null"],
+            "description": "Populated after the visit. Required before a Tier A content brief may be issued."
+          }
+        }
+      }
+    },
+    "deferred": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "shrine_name": { "type": "string" },
+          "reason": { "type": "string", "enum": ["capacity", "not_winnable", "season_missed", "travel_cost", "permission_unclear"] },
+          "revisit_after": { "type": ["string", "null"], "format": "date" }
+        }
+      },
+      "default": [],
+      "description": "Explicitly recording what was NOT planned, and why, prevents silent scope loss."
+    },
+    "created_at": { "type": "string", "format": "date" },
+    "approved_by_human": { "type": "boolean", "default": false }
+  },
+  "additionalProperties": false
+}

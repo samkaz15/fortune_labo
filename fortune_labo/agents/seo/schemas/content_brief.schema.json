@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/seo/schemas/content_brief.schema.json",
+  "title": "Content Brief",
+  "description": "Instruction from SEO Agent to Content Agent. For Tier A shrine content, a visit_record_id is mandatory: AI may never originate first-hand experience (rules.md section 2).",
+  "type": "object",
+  "required": [
+    "id",
+    "opportunity_id",
+    "tier",
+    "content_path",
+    "keyword",
+    "search_intent",
+    "target_audience",
+    "article_type",
+    "working_title",
+    "outline",
+    "required_topics",
+    "serp_gap",
+    "internal_links",
+    "cta",
+    "compliance_requirements",
+    "priority"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^BRIEF-[0-9]{4}$" },
+    "opportunity_id": { "type": "string", "pattern": "^SEO-[0-9]{4}$" },
+    "tier": { "type": "string", "enum": ["A", "B", "C"] },
+    "content_path": {
+      "type": "string",
+      "enum": ["path_1_firsthand", "path_2_standard"],
+      "description": "path_1_firsthand requires a completed human visit. path_2_standard is for non-experience content."
+    },
+    "visit_record_id": {
+      "type": ["string", "null"],
+      "description": "REQUIRED when content_path is path_1_firsthand. References a completed visit with notes and photos already in the repository. A brief without this for shrine content is a rule violation."
+    },
+    "keyword": { "type": "string" },
+    "secondary_keywords": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "search_intent": {
+      "type": "string",
+      "enum": ["informational", "navigational", "commercial", "transactional", "local"]
+    },
+    "target_audience": {
+      "type": "string",
+      "description": "Who is searching this and what situation they are in"
+    },
+    "article_type": {
+      "type": "string",
+      "enum": ["shrine_visit_report", "annual_outlook", "forecast_review", "method_explainer", "situation_guide", "practitioner_profile", "service_page", "hub_page"]
+    },
+    "working_title": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Must pass compliance: no fear framing, no guaranteed outcome, no efficacy ranking. SEO Agent owns titles, so title compliance is SEO Agent's responsibility."
+    },
+    "meta_description": { "type": ["string", "null"], "maxLength": 140 },
+    "outline": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["heading_level", "heading", "purpose"],
+        "properties": {
+          "heading_level": { "type": "string", "enum": ["h2", "h3"] },
+          "heading": { "type": "string" },
+          "purpose": { "type": "string" },
+          "source_requirement": {
+            "type": "string",
+            "enum": ["visit_notes", "practitioner_judgment", "research", "ai_structurable"],
+            "description": "visit_notes and practitioner_judgment sections MUST derive from human input. Content Agent may structure and tighten them but may not originate them."
+          }
+        }
+      }
+    },
+    "required_topics": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "serp_gap": {
+      "type": "string",
+      "description": "What no top-ranking result currently provides. This is the reason to build the page."
+    },
+    "differentiation_basis": {
+      "type": "string",
+      "description": "Why a competitor with AI but no visits could not produce this page. Applies the one-line test from positioning.md section 9."
+    },
+    "internal_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["target_url", "anchor_text", "rationale"],
+        "properties": {
+          "target_url": { "type": "string" },
+          "anchor_text": { "type": "string" },
+          "rationale": { "type": "string" },
+          "direction": { "type": "string", "enum": ["outbound_from_this_page", "inbound_to_this_page"] }
+        }
+      },
+      "description": "Every Tier A and Tier B page must include an outbound link to the booking page."
+    },
+    "structured_data": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["Article", "Person", "Place", "Event", "FAQPage", "BreadcrumbList", "LocalBusiness"] },
+      "default": ["Article", "BreadcrumbList"]
+    },
+    "cta": {
+      "type": "object",
+      "required": ["type", "placement"],
+      "properties": {
+        "type": { "type": "string", "enum": ["booking", "list_signup", "related_content", "none"] },
+        "placement": { "type": "string" },
+        "copy_direction": { "type": "string" }
+      }
+    },
+    "compliance_requirements": {
+      "type": "object",
+      "required": ["disclaimer_required", "subjectivity_marking_required"],
+      "properties": {
+        "disclaimer_required": {
+          "type": "boolean",
+          "description": "true for all shrine and forecast pages (rules.md section 3.4)"
+        },
+        "subjectivity_marking_required": {
+          "type": "boolean",
+          "description": "Subjective claims must be marked as the author's view, never asserted as fact"
+        },
+        "divinatory_basis_required": {
+          "type": "boolean",
+          "default": false,
+          "description": "true for annual outlook content (rules.md section 3.2)"
+        },
+        "photo_permission_status": {
+          "type": "string",
+          "enum": ["confirmed", "pending", "not_applicable"],
+          "description": "Publication is blocked while 'pending'"
+        },
+        "forbidden_framings": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [
+            "fear framing (not visiting leads to misfortune)",
+            "guaranteed outcomes",
+            "efficacy ranking or comparison between shrines",
+            "medical, financial, or legal outcome claims"
+          ]
+        }
+      }
+    },
+    "target_length": { "type": ["integer", "null"], "description": "Guidance only. Never a quality criterion." },
+    "publish_by": { "type": ["string", "null"], "format": "date" },
+    "priority": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "content_path": { "const": "path_1_firsthand" } },
+        "required": ["content_path"]
+      },
+      "then": {
+        "required": ["visit_record_id"],
+        "properties": { "visit_record_id": { "type": "string" } }
+      }
+    },
+    {
+      "if": {
+        "properties": { "article_type": { "const": "annual_outlook" } },
+        "required": ["article_type"]
+      },
+      "then": {
+        "properties": {
+          "compliance_requirements": {
+            "properties": { "divinatory_basis_required": { "const": true } }
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

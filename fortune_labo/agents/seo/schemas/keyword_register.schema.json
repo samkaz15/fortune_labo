@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/seo/schemas/keyword_register.schema.json",
+  "title": "Keyword Register Entry",
+  "description": "SEO Agent's internal keyword state. Tier D entries are recorded once as excluded, never scored or targeted.",
+  "type": "object",
+  "required": ["keyword", "tier", "intent", "booking_potential", "moat_fit", "status"],
+  "properties": {
+    "keyword": { "type": "string" },
+    "tier": { "type": "string", "enum": ["A", "B", "C", "D"] },
+    "volume": { "type": ["integer", "null"] },
+    "volume_source": { "type": ["string", "null"], "description": "Never present an estimate as measured" },
+    "intent": { "type": "string", "enum": ["informational", "navigational", "commercial", "transactional", "local"] },
+    "difficulty": { "type": ["integer", "null"], "minimum": 0, "maximum": 100 },
+    "difficulty_reasoning": { "type": ["string", "null"] },
+    "booking_potential": {
+      "type": "integer", "minimum": 0, "maximum": 5,
+      "description": "Weighted 3x in prioritisation. Outranks volume by design."
+    },
+    "moat_fit": {
+      "type": "integer", "minimum": 0, "maximum": 5,
+      "description": "Does winning this require a physical visit or a named professional view? Weighted 3x."
+    },
+    "seasonal_window": { "type": ["string", "null"] },
+    "publish_by": { "type": ["string", "null"], "format": "date" },
+    "assigned_url": { "type": ["string", "null"], "description": "Exactly one canonical URL per cluster" },
+    "cannibalisation_risk": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "cluster": { "type": ["string", "null"] },
+    "winnable": { "type": ["boolean", "null"] },
+    "priority_score": { "type": ["number", "null"] },
+    "status": {
+      "type": "string",
+      "enum": ["discovered", "evaluated", "targeted", "published", "ranking", "won", "deprioritised", "excluded_tier_d", "not_winnable"]
+    },
+    "current_position": { "type": ["number", "null"] },
+    "source": {
+      "type": "string",
+      "enum": ["gsc", "research_agent", "serp_paa", "competitor_gap", "shrine_calendar", "client_question"],
+      "description": "client_question is the highest-value source: the literal language of people who already paid."
+    },
+    "last_reviewed": { "type": ["string", "null"], "format": "date" }
+  },
+  "additionalProperties": false
+}

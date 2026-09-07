@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/seo/schemas/internal_link_instruction.schema.json",
+  "title": "Internal Link Instruction",
+  "description": "Instruction from SEO Agent to Codex for internal link changes. SEO Agent decides the graph; Codex edits the pages.",
+  "type": "object",
+  "required": ["id", "opportunity_id", "issue_type", "links", "rationale", "priority"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^LINK-[0-9]{4}$" },
+    "opportunity_id": { "type": "string", "pattern": "^SEO-[0-9]{4}$" },
+    "issue_type": {
+      "type": "string",
+      "enum": ["orphan_page", "weak_inbound_high_value", "excessive_depth", "missing_hub", "anchor_over_optimisation", "booking_page_underlinked", "cluster_incomplete"]
+    },
+    "links": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["source_url", "target_url", "anchor_text", "action"],
+        "properties": {
+          "source_url": { "type": "string" },
+          "target_url": { "type": "string" },
+          "anchor_text": { "type": "string" },
+          "action": { "type": "string", "enum": ["add", "modify", "remove"] },
+          "placement": { "type": "string", "enum": ["body_contextual", "related_section", "navigation", "footer", "sidebar"] },
+          "current_anchor": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "rationale": { "type": "string" },
+    "graph_effect": {
+      "type": ["string", "null"],
+      "description": "Expected change to depth, authority flow, or cluster completeness"
+    },
+    "dry_run_required": { "type": "boolean", "default": true },
+    "priority": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+    "status": { "type": "string", "enum": ["proposed", "approved", "implemented", "verified", "rejected"], "default": "proposed" }
+  },
+  "additionalProperties": false
+}

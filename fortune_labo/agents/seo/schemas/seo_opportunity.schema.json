@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/seo/schemas/seo_opportunity.schema.json",
+  "title": "SEO Opportunity",
+  "description": "Universal unit of SEO Agent output. Every finding of any type is emitted in this form so downstream agents can consume it uniformly.",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "title",
+    "current_status",
+    "problem",
+    "evidence",
+    "evidence_confidence",
+    "hypothesis",
+    "recommended_action",
+    "moat_alignment",
+    "priority",
+    "priority_rationale",
+    "expected_impact",
+    "effort",
+    "assigned_agent",
+    "measurement_kpi",
+    "created_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^SEO-[0-9]{4}$",
+      "description": "Stable identifier, e.g. SEO-0042"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["keyword", "content", "technical", "internal_link", "serp", "competitor", "seasonal", "compliance"]
+    },
+    "tier": {
+      "type": ["string", "null"],
+      "enum": ["A", "B", "C", null],
+      "description": "Keyword tier per positioning.md section 5. Tier D is never emitted; it is excluded before scoring."
+    },
+    "title": { "type": "string", "maxLength": 120 },
+    "keyword": { "type": ["string", "null"] },
+    "search_intent": {
+      "type": ["string", "null"],
+      "enum": ["informational", "navigational", "commercial", "transactional", "local", null]
+    },
+    "target_url": { "type": ["string", "null"], "format": "uri-reference" },
+    "current_status": { "type": "string", "description": "Measured present state" },
+    "problem": { "type": "string" },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["statement", "source"],
+        "properties": {
+          "statement": { "type": "string" },
+          "source": {
+            "type": "string",
+            "enum": ["gsc", "ga4", "crawl", "serp_observation", "competitor_analysis", "research_agent", "human_input", "booking_system"]
+          },
+          "observed_at": { "type": "string", "format": "date" },
+          "value": { "type": ["number", "string", "null"] }
+        }
+      }
+    },
+    "evidence_confidence": {
+      "type": "string",
+      "enum": ["measured", "estimated", "hypothesis"],
+      "description": "measured = from an API or crawl. estimated = third-party or inferred. hypothesis = untested belief. Never present estimated data as measured (rules.md 5.5)."
+    },
+    "hypothesis": { "type": "string", "description": "Why this is happening" },
+    "recommended_action": { "type": "string" },
+    "moat_alignment": {
+      "type": "string",
+      "enum": ["required", "neutral", "conflicting"],
+      "description": "required = builds first-hand or named-authority assets. neutral = no effect. conflicting = would grow traffic at the expense of the moat. A value of 'conflicting' MUST be escalated to Strategy Agent and MUST NOT proceed to implementation (positioning.md section 4)."
+    },
+    "priority": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+    "priority_rationale": { "type": "string" },
+    "expected_impact": {
+      "type": "object",
+      "required": ["kpi", "direction"],
+      "properties": {
+        "kpi": {
+          "type": "string",
+          "description": "Must be a Tier 1 or Tier 2 KPI from kpi.md. Tier 3 metrics are not valid impact targets on their own."
+        },
+        "direction": { "type": "string", "enum": ["increase", "decrease", "protect"] },
+        "magnitude_estimate": { "type": ["string", "null"] },
+        "confidence": { "type": "string", "enum": ["high", "medium", "low"] }
+      }
+    },
+    "effort": { "type": "string", "enum": ["S", "M", "L", "XL"] },
+    "assigned_agent": {
+      "type": "string",
+      "enum": ["content", "codex", "cro", "research", "qa", "strategy", "human"]
+    },
+    "implementation_requirement": {
+      "type": ["string", "null"],
+      "description": "Specification detail for the assignee. Required when assigned_agent is 'codex' or 'content'."
+    },
+    "measurement_kpi": { "type": "string" },
+    "measurement_window": {
+      "type": ["string", "null"],
+      "description": "e.g. '28 days post-publish'"
+    },
+    "deadline": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Required when type is 'seasonal'."
+    },
+    "blocked_by": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^SEO-[0-9]{4}$" },
+      "default": []
+    },
+    "compliance_flags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["fear_framing", "guaranteed_outcome", "efficacy_ranking", "medical_financial_claim", "unverified_testimonial", "unverified_photo_permission", "missing_disclaimer", "unmarked_subjective_claim"]
+      },
+      "default": [],
+      "description": "Any non-empty value blocks implementation until resolved (rules.md section 4)."
+    },
+    "created_at": { "type": "string", "format": "date" },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "approved", "rejected", "deferred", "in_progress", "implemented", "measured", "escalated"],
+      "default": "proposed"
+    },
+    "outcome": {
+      "type": ["object", "null"],
+      "description": "Filled after measurement_window closes. Feeds the hypothesis ledger.",
+      "properties": {
+        "measured_at": { "type": "string", "format": "date" },
+        "result": { "type": "string", "enum": ["confirmed", "partial", "refuted", "inconclusive"] },
+        "notes": { "type": "string" },
+        "hypothesis_update": {
+          "type": "string",
+          "description": "Required when result is 'refuted'. Per /AGENTS.md, update the hypothesis rather than forcing the evidence to fit."
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "type": { "const": "seasonal" } }, "required": ["type"] },
+      "then": { "required": ["deadline"] }
+    },
+    {
+      "if": { "properties": { "assigned_agent": { "enum": ["codex", "content"] } }, "required": ["assigned_agent"] },
+      "then": { "required": ["implementation_requirement"] }
+    },
+    {
+      "if": { "properties": { "moat_alignment": { "const": "conflicting" } }, "required": ["moat_alignment"] },
+      "then": {
+        "properties": {
+          "assigned_agent": { "const": "strategy" },
+          "status": { "const": "escalated" }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/seo/schemas/technical_issue.schema.json",
+  "title": "Technical SEO Issue",
+  "description": "Diagnosis from SEO Agent, implementation specification for Codex. SEO Agent diagnoses; Codex implements. Never the reverse.",
+  "type": "object",
+  "required": [
+    "id",
+    "opportunity_id",
+    "category",
+    "problem",
+    "affected_urls",
+    "evidence",
+    "root_cause",
+    "severity",
+    "recommended_fix",
+    "codex_specification",
+    "acceptance_criteria",
+    "verification_method"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^TECH-[0-9]{4}$" },
+    "opportunity_id": { "type": "string", "pattern": "^SEO-[0-9]{4}$" },
+    "category": {
+      "type": "string",
+      "enum": [
+        "title", "meta_description", "canonical", "robots", "sitemap",
+        "url_structure", "heading_structure", "structured_data", "breadcrumb",
+        "open_graph", "image_optimization", "page_speed", "core_web_vitals",
+        "mobile_usability", "indexability", "crawlability", "not_found",
+        "redirect", "duplicate_content", "thin_content", "internal_link"
+      ]
+    },
+    "problem": { "type": "string" },
+    "affected_urls": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "description": "Use a pattern with an example set when the issue is site-wide"
+    },
+    "affected_count": { "type": ["integer", "null"] },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["statement", "source"],
+        "properties": {
+          "statement": { "type": "string" },
+          "source": { "type": "string", "enum": ["gsc", "crawl", "pagespeed_insights", "manual_inspection", "ga4"] },
+          "observed_at": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "root_cause": { "type": "string" },
+    "severity": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low"],
+      "description": "critical = blocks indexing or breaks the booking path"
+    },
+    "business_impact": {
+      "type": "string",
+      "description": "Stated in terms of a Tier 1 or Tier 2 KPI, not in terms of SEO score"
+    },
+    "recommended_fix": { "type": "string" },
+    "codex_specification": {
+      "type": "object",
+      "required": ["scope", "changes"],
+      "properties": {
+        "scope": { "type": "string", "enum": ["theme", "plugin_config", "content", "server_config", "database", "wordpress_settings"] },
+        "changes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["target", "action", "detail"],
+            "properties": {
+              "target": { "type": "string", "description": "File, template, setting, or URL pattern" },
+              "action": { "type": "string", "enum": ["add", "modify", "remove", "replace", "configure"] },
+              "detail": { "type": "string" },
+              "before": { "type": ["string", "null"] },
+              "after": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "dry_run_required": {
+          "type": "boolean",
+          "default": false,
+          "description": "MUST be true for bulk operations: mass metadata rewrites, redirect maps, internal-link injection. Per /AGENTS.md, production integrations need a dry-run or preview mode where practical."
+        },
+        "rollback_plan": { "type": ["string", "null"] },
+        "estimated_effort": { "type": "string", "enum": ["S", "M", "L", "XL"] }
+      }
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "description": "Specific enough for Codex to self-verify before opening a PR"
+    },
+    "verification_method": {
+      "type": "string",
+      "description": "How SEO Agent confirms the fix worked after deploy"
+    },
+    "verification_window": { "type": ["string", "null"], "description": "e.g. '14 days for reindexing'" },
+    "blocked_by": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "status": {
+      "type": "string",
+      "enum": ["diagnosed", "approved", "in_progress", "pr_open", "merged", "verified", "rejected"],
+      "default": "diagnosed"
+    },
+    "pr_reference": { "type": ["string", "null"] }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "affected_count": { "type": "integer", "minimum": 20 }
+        },
+        "required": ["affected_count"]
+      },
+      "then": {
+        "properties": {
+          "codex_specification": {
+            "properties": { "dry_run_required": { "const": true } }
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}
