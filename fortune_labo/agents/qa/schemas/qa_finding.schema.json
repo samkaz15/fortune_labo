@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/qa/schemas/qa_finding.schema.json",
+  "title": "QA Finding",
+  "description": "One defect found by QA Agent (A28), embedded in a QA Report. A finding that cannot be acted on is not a finding: every one carries evidence, a required fix, an owner, and a location. Severity is never downgraded to meet a deadline.",
+  "type": "object",
+  "required": [
+    "finding_id",
+    "layer",
+    "severity",
+    "surface",
+    "what_is_wrong",
+    "evidence",
+    "why_it_matters",
+    "required_fix",
+    "owner_agent"
+  ],
+  "properties": {
+    "finding_id": { "type": "string", "pattern": "^F-[0-9]{3}$" },
+    "layer": {
+      "type": "string",
+      "enum": ["compliance", "fact", "firsthand", "editorial", "seo", "technical", "sns"],
+      "description": "Layers run in this order. Compliance and firsthand rank above seo, inherited from agents/seo/outputs.md."
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["blocking", "major", "minor"],
+      "description": "blocking = legal exposure, fabricated/unverifiable claim, or the piece fails its own purpose. A pass verdict is impossible while one is open."
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "fear_framing", "guaranteed_outcome", "efficacy_ranking", "medical_claim",
+        "financial_claim", "legal_claim", "major_life_decision", "anxiety_framing",
+        "fabricated_social_proof", "unmarked_judgment", "missing_disclaimer",
+        "missing_divinatory_basis", "untrue_scarcity", "missing_disclosure",
+        "consent_missing",
+        "unsourced_claim", "source_mismatch", "number_error", "date_error",
+        "proper_noun_error", "stale_fact", "internal_contradiction",
+        "unverifiable_firsthand_claim", "anchor_not_found", "extrapolation",
+        "missing_visit_date", "photo_permission_unconfirmed", "generated_imagery",
+        "typo", "unnatural_japanese", "style_inconsistency", "logic_flow",
+        "redundancy", "readability", "information_insufficient", "padding",
+        "brand_voice",
+        "keyword_placement", "keyword_stuffing", "intent_mismatch", "title_issue",
+        "meta_issue", "heading_hierarchy", "missing_internal_link",
+        "missing_booking_link", "anchor_text", "cannibalisation", "canonical",
+        "structured_data_mismatch", "snippet_issue", "orphan_page",
+        "html_semantics", "schema_markup", "metadata", "broken_link",
+        "redirect_missing", "image_issue", "wordpress", "api_scope",
+        "over_character_limit", "over_duration", "format_mismatch",
+        "hashtag_issue", "cta_mismatch", "cross_post_duplicate",
+        "excerpt_not_whole", "line_review_missing",
+        "brief_unavailable", "brief_ambiguous", "brief_unachievable", "unverifiable"
+      ]
+    },
+    "surface": {
+      "type": "string",
+      "enum": [
+        "title", "h1", "heading", "lead", "body", "faq", "cta", "meta_description",
+        "disclaimer", "internal_link", "structured_data", "image", "url",
+        "hook", "caption", "on_screen_text", "slide_text", "thumbnail",
+        "video_title", "video_description", "hashtag", "brief", "whole_artifact"
+      ]
+    },
+    "location": {
+      "type": ["string", "null"],
+      "description": "Which heading, slide number, timecode, or hashtag. Vague location forces the receiving agent to hunt."
+    },
+    "what_is_wrong": { "type": "string" },
+    "evidence": {
+      "type": "string",
+      "description": "The actual text, the source line, or the measured value. 'Reads awkwardly' is not evidence."
+    },
+    "source_comparison": {
+      "type": ["object", "null"],
+      "description": "For firsthand and fact findings: what the source says vs what the draft says. This is how extrapolation is demonstrated rather than asserted.",
+      "properties": {
+        "source_says": { "type": "string" },
+        "draft_says": { "type": "string" },
+        "source_reference": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "why_it_matters": { "type": "string" },
+    "required_fix": {
+      "type": "string",
+      "description": "What specifically must change. A problem named without a fix forces the receiving agent to guess, costing an extra cycle."
+    },
+    "owner_agent": {
+      "type": "string",
+      "enum": ["content_production", "sns_content", "content_strategy", "seo", "compliance_risk", "codex", "human"],
+      "description": "A finding routed to nobody is incomplete."
+    },
+    "technical_issue_id": {
+      "type": ["string", "null"],
+      "description": "Set when the finding was emitted as a technical_issue for Codex, using agents/seo/schemas/technical_issue.schema.json."
+    },
+    "a30_originated": {
+      "type": "boolean",
+      "default": false,
+      "description": "True for findings adjudicated by A30 Compliance/Risk. A28 cannot overrule or downgrade these."
+    },
+    "resolution": {
+      "type": ["object", "null"],
+      "properties": {
+        "status": { "type": "string", "enum": ["open", "fixed", "contested", "accepted_contest", "verified", "reopened"] },
+        "contest_reasoning": { "type": ["string", "null"], "description": "The owning agent may contest with reasoning. It may never ignore." },
+        "resolved_at": { "type": ["string", "null"], "format": "date" },
+        "verified_against": { "type": ["string", "null"], "description": "For technical findings: the acceptance criterion checked. A self-reported fix is not a verified fix." }
+      },
+      "additionalProperties": false
+    },
+    "repeat_of": {
+      "type": ["string", "null"],
+      "description": "Prior finding_id this repeats. A third occurrence escalates as a process problem, not a content problem."
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "layer": { "const": "technical" } }, "required": ["layer"] },
+      "then": { "properties": { "owner_agent": { "const": "codex" } } }
+    },
+    {
+      "if": { "properties": { "a30_originated": { "const": true } }, "required": ["a30_originated"] },
+      "then": { "properties": { "layer": { "const": "compliance" } } }
+    },
+    {
+      "if": {
+        "properties": { "category": { "enum": ["extrapolation", "anchor_not_found", "unverifiable_firsthand_claim"] } },
+        "required": ["category"]
+      },
+      "then": {
+        "required": ["source_comparison", "severity"],
+        "properties": { "severity": { "const": "blocking" }, "source_comparison": { "type": "object" } }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/qa/schemas/qa_report.schema.json",
+  "title": "QA Report",
+  "description": "The release gate verdict from QA Agent (A28) for one artifact at one revision. Three verdicts and no fourth. A verdict of 'pass' means cleared FOR human approval, never approved: a human is always the last gate before anything customer-facing (/AGENTS.md). Layer 1 (compliance) is adjudicated by A30 Compliance/Risk and A28 cannot overrule or downgrade its blocking findings.",
+  "type": "object",
+  "required": [
+    "id",
+    "target_type",
+    "target_id",
+    "brief_id",
+    "revision",
+    "layer_results",
+    "findings",
+    "verdict",
+    "human_approval_required",
+    "approval_note",
+    "checked_at"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^QA-[0-9]{4}$" },
+    "target_type": { "type": "string", "enum": ["master_content", "channel_content", "channel_content_set"] },
+    "target_id": { "type": "string", "description": "MC-xxxx, CC-xxxx, or the RP-xxxx whose channel assets were checked." },
+    "brief_id": {
+      "type": ["string", "null"],
+      "pattern": "^CB-[0-9]{4}$",
+      "description": "The acceptance baseline. Null only on a brief_unavailable failure, which is itself a fail verdict."
+    },
+    "revision": { "type": "integer", "minimum": 1 },
+
+    "layer_results": {
+      "type": "array",
+      "minItems": 1,
+      "description": "One entry per layer, in gate order. A skipped layer is recorded with its reason and never silently omitted: a short report must not be readable as a clean one.",
+      "items": {
+        "type": "object",
+        "required": ["layer", "status"],
+        "properties": {
+          "layer": {
+            "type": "string",
+            "enum": ["compliance", "fact", "firsthand", "editorial", "seo", "technical", "sns"]
+          },
+          "status": { "type": "string", "enum": ["passed", "failed", "skipped", "not_applicable"] },
+          "skip_reason": {
+            "type": ["string", "null"],
+            "enum": ["earlier_layer_blocked", "not_applicable_to_target", "material_unavailable", null],
+            "description": "Required when status is skipped."
+          },
+          "finding_ids": { "type": "array", "items": { "type": "string" }, "default": [] },
+          "adjudicated_by": {
+            "type": ["string", "null"],
+            "enum": ["qa", "compliance_risk", null],
+            "description": "compliance layer is always adjudicated by compliance_risk (A30)."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "findings": {
+      "type": "array",
+      "default": [],
+      "items": { "$ref": "https://github.com/samkaz15/fortune_labo/agents/qa/schemas/qa_finding.schema.json" }
+    },
+    "blocking_count": { "type": "integer", "minimum": 0 },
+    "major_count": { "type": "integer", "minimum": 0 },
+    "minor_count": { "type": "integer", "minimum": 0 },
+
+    "verdict": {
+      "type": "string",
+      "enum": ["pass", "pass_with_conditions", "fail"],
+      "description": "pass = zero blocking findings and no open A30 blocking finding; proceeds to human approval. pass_with_conditions = named major fixes must be made and re-verified first. fail = returns to the owning agent. There is no partial pass."
+    },
+    "verdict_rationale": { "type": "string" },
+    "conditions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Required non-empty when verdict is pass_with_conditions: the specific fixes that must be made and re-verified."
+    },
+
+    "a30_verdict": {
+      "type": ["object", "null"],
+      "description": "The delegated compliance verdict. A28 enforces it verbatim and cannot overrule, downgrade, or pass around it.",
+      "properties": {
+        "risk_assessment_id": { "type": ["string", "null"], "pattern": "^RISK-[0-9]{4}$" },
+        "verdict": { "type": "string", "enum": ["clear", "clear_with_conditions", "block"] },
+        "blocking_open": { "type": "boolean", "default": false }
+      },
+      "additionalProperties": false
+    },
+
+    "routed_to": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["content_production", "sns_content", "content_strategy", "seo", "compliance_risk", "codex", "human"]
+      },
+      "default": []
+    },
+    "technical_issue_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Emitted using agents/seo/schemas/technical_issue.schema.json so Codex receives one format regardless of which agent found the problem. Each carries acceptance criteria and a verification method."
+    },
+
+    "human_approval_required": {
+      "const": true,
+      "description": "Always true. A28 never approves; it clears an artifact FOR human approval."
+    },
+    "approval_note": {
+      "type": "string",
+      "const": "QA has cleared this artifact for your consideration. It is NOT approved. Publication requires your explicit approval.",
+      "description": "Fixed text so the approval boundary cannot be lost when the report is read out of context."
+    },
+
+    "previous_report_id": { "type": ["string", "null"], "pattern": "^QA-[0-9]{4}$" },
+    "recheck_scope": {
+      "type": ["string", "null"],
+      "enum": ["full", "targeted", null],
+      "description": "A fixed blocking finding requires a full re-run: fixes in one layer routinely break another."
+    },
+    "repeat_findings": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Finding ids recurring across revisions. A third occurrence escalates as a process problem."
+    },
+    "escalations": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["trigger", "routed_to"],
+        "properties": {
+          "trigger": {
+            "type": "string",
+            "enum": [
+              "a30_blocking_finding",
+              "fabricated_firsthand_claim",
+              "published_compliance_risk",
+              "unverified_photo_permission",
+              "third_revision_failing",
+              "repeat_finding_third_occurrence",
+              "gate_bypass_requested",
+              "deadline_vs_blocking_finding"
+            ]
+          },
+          "routed_to": { "type": "string", "enum": ["strategy", "human", "content_strategy", "seo", "compliance_risk"] },
+          "detail": { "type": ["string", "null"] },
+          "immediate": {
+            "type": "boolean",
+            "default": false,
+            "description": "published_compliance_risk and unverified_photo_permission on a live page go to the human immediately, with a recommendation to unpublish."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "checked_at": { "type": "string", "format": "date" },
+    "checked_against_source_material": {
+      "type": "boolean",
+      "default": false,
+      "description": "True only when layer 3 could actually open every referenced source record. False with a firsthand layer status of passed is a contradiction and is itself a defect."
+    }
+  },
+
+  "allOf": [
+    {
+      "if": { "properties": { "verdict": { "const": "pass" } }, "required": ["verdict"] },
+      "then": {
+        "properties": {
+          "blocking_count": { "const": 0 },
+          "brief_id": { "type": "string" },
+          "a30_verdict": {
+            "type": "object",
+            "properties": { "blocking_open": { "const": false } }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "verdict": { "const": "pass_with_conditions" } }, "required": ["verdict"] },
+      "then": {
+        "required": ["conditions"],
+        "properties": { "blocking_count": { "const": 0 }, "conditions": { "type": "array", "minItems": 1 } }
+      }
+    },
+    {
+      "if": {
+        "properties": { "a30_verdict": { "type": "object", "properties": { "verdict": { "const": "block" } }, "required": ["verdict"] } },
+        "required": ["a30_verdict"]
+      },
+      "then": { "properties": { "verdict": { "const": "fail" } } }
+    }
+  ],
+  "additionalProperties": false
+}
