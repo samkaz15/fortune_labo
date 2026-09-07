@@ -1,0 +1,263 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/sns-content/schemas/channel_content.schema.json",
+  "title": "Channel Content",
+  "description": "One post, for one channel, adapted by SNS Content Agent (A10) from Master Content. One Master Content typically yields 2-5 of these, not nine. A10 never posts: every artifact requires individual human approval, and approving a Repurpose Plan is not approving its posts. Compliance applies to every surface here, including on-screen text, thumbnails, and hashtags.",
+  "type": "object",
+  "required": [
+    "id",
+    "master_content_id",
+    "channel",
+    "revision",
+    "format",
+    "target_persona",
+    "objective",
+    "hook",
+    "body",
+    "cta",
+    "hashtags",
+    "character_limit",
+    "compliance",
+    "approval",
+    "status",
+    "created_at"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^CC-[0-9]{4}$" },
+    "master_content_id": { "type": "string", "pattern": "^MC-[0-9]{4}$" },
+    "brief_id": { "type": ["string", "null"], "pattern": "^CB-[0-9]{4}$" },
+    "revision": { "type": "integer", "minimum": 1 },
+
+    "channel": {
+      "type": "string",
+      "enum": ["instagram", "tiktok", "x", "youtube", "threads", "facebook", "line", "ameba", "note"],
+      "description": "Pinterest and email newsletter are out of scope for this agent."
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "carousel", "single_image", "short_video", "long_video", "shorts",
+        "single_post", "thread", "long_post", "essay", "blog_post", "push_message"
+      ]
+    },
+
+    "target_persona": { "type": "string", "description": "Who on THIS channel this post is for. Differs by channel for the same piece." },
+    "objective": {
+      "type": "string",
+      "enum": ["reach", "saves", "engagement", "traffic", "trust", "booking", "retention"],
+      "description": "Exactly one. The post is measured against this objective, not against reach. Judging Instagram by reach or X by follower count produces the wrong content."
+    },
+
+    "hook": {
+      "type": "string",
+      "description": "The opening. Highest-risk element in the artifact: compression is where guarantees appear. A concrete first-hand observation is the strongest hook available to this account and the one no competitor can copy."
+    },
+    "body": { "type": "string", "description": "Channel-native. Must be whole on its own: a reader who never opens the article should still receive something complete." },
+    "cta": {
+      "type": "object",
+      "required": ["type", "text"],
+      "properties": {
+        "type": { "type": "string", "enum": ["profile_visit", "article_link", "booking", "line_signup", "save", "reply", "follow", "none"] },
+        "text": { "type": "string" },
+        "target_url": { "type": ["string", "null"], "format": "uri-reference" }
+      },
+      "additionalProperties": false
+    },
+    "hashtags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "In scope for compliance. #願いが叶う / #絶対当たる / #運気アップ確実 are blocking violations."
+    },
+
+    "character_limit": { "type": "integer", "minimum": 1, "description": "The channel/format budget this asset must fit." },
+    "character_count": { "type": ["integer", "null"], "minimum": 0 },
+    "duration_seconds": { "type": ["integer", "null"], "minimum": 0, "description": "Video formats only." },
+
+    "visual_direction": {
+      "type": ["object", "null"],
+      "description": "Instagram, Facebook, Ameba, note. References CLEARED inventory by id. Never describes an image to be generated: AI imagery depicting a real shrine is a fabrication of the same weight as an invented paragraph.",
+      "properties": {
+        "concept": { "type": "string" },
+        "slides": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["slide_number", "asset_reference", "on_image_text"],
+            "properties": {
+              "slide_number": { "type": "integer", "minimum": 1 },
+              "asset_reference": { "type": "string", "description": "Id from the cleared photo inventory. Never a generation prompt." },
+              "on_image_text": { "type": "string", "maxLength": 60, "description": "In scope for compliance. A slide reading 願いが叶う is a violation regardless of the caption." },
+              "purpose": { "type": ["string", "null"] }
+            },
+            "additionalProperties": false
+          }
+        },
+        "photo_permission_status": {
+          "type": "string",
+          "enum": ["confirmed", "pending", "not_applicable"],
+          "description": "'pending' blocks the entire visual channel for this piece, not just the affected slide."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "video_direction": {
+      "type": ["object", "null"],
+      "description": "TikTok, YouTube, Shorts. Every beat references real visit footage by id.",
+      "properties": {
+        "title": { "type": ["string", "null"], "maxLength": 60, "description": "In scope for compliance. No fear framing, no clickbait promise." },
+        "thumbnail_concept": { "type": ["string", "null"] },
+        "thumbnail_text": { "type": ["string", "null"], "maxLength": 20, "description": "In scope for compliance. A compliant video under a fear-framed thumbnail is a violation." },
+        "beats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["timecode", "footage_reference", "on_screen_text", "speech"],
+            "properties": {
+              "timecode": { "type": "string", "description": "e.g. 00:00-00:02" },
+              "footage_reference": { "type": "string", "description": "Id from cleared footage inventory. Never 'b-roll of a shrine'." },
+              "on_screen_text": { "type": "string", "maxLength": 20, "description": "In scope for compliance. If a judgment's attribution marker does not fit the frame, the judgment does not go in the frame." },
+              "speech": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "audio": { "type": ["string", "null"] },
+        "audio_licence_confirmed": { "type": ["boolean", "null"], "description": "Third-party music requires a confirmed licence." },
+        "chapters": { "type": "array", "items": { "type": "string" }, "default": [] }
+      },
+      "additionalProperties": false
+    },
+
+    "thread_posts": {
+      "type": "array",
+      "default": [],
+      "items": { "type": "string" },
+      "description": "X threads. Post 1 must stand alone; each subsequent post adds rather than continuing a sentence. Assume every post travels alone when quoted."
+    },
+
+    "firsthand_claims": {
+      "type": "array",
+      "default": [],
+      "description": "Every first-hand statement in this post, with the source it came from. A social post is a publication and carries the same evidentiary weight as an article.",
+      "items": {
+        "type": "object",
+        "required": ["claim", "source_reference"],
+        "properties": {
+          "claim": { "type": "string" },
+          "source_reference": { "type": "string", "description": "Must resolve to an entry in the Master Content source_map." }
+        },
+        "additionalProperties": false
+      }
+    },
+    "attribution_markers": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Markers used in this asset. Judgments carry their marker on every channel, including inside short frames."
+    },
+    "disclaimer": {
+      "type": ["string", "null"],
+      "description": "Required in the channel's native form on any post carrying a divinatory judgment. Never a licence for a stronger claim above it."
+    },
+
+    "compliance": {
+      "type": "object",
+      "required": [
+        "no_guaranteed_outcome",
+        "no_fear_framing",
+        "no_efficacy_ranking",
+        "no_medical_financial_legal_claim",
+        "no_fabricated_social_proof",
+        "hashtags_screened",
+        "all_surfaces_swept",
+        "no_generated_shrine_imagery"
+      ],
+      "properties": {
+        "no_guaranteed_outcome": { "const": true },
+        "no_fear_framing": { "const": true },
+        "no_efficacy_ranking": { "const": true },
+        "no_medical_financial_legal_claim": { "const": true },
+        "no_fabricated_social_proof": { "const": true },
+        "hashtags_screened": { "const": true },
+        "all_surfaces_swept": {
+          "const": true,
+          "description": "hook, body, CTA, hashtags, on-screen text, slide text, thumbnail, video title, description."
+        },
+        "no_generated_shrine_imagery": { "const": true },
+        "disclosure_required": {
+          "type": "boolean",
+          "default": false,
+          "description": "Sponsored or gifted content disclosure per 景品表示法 / ステマ規制, in the post itself."
+        },
+        "replacements_made": { "type": "array", "items": { "type": "string" }, "default": [] }
+      },
+      "additionalProperties": false
+    },
+    "requires_compliance_review": {
+      "type": "boolean",
+      "description": "Always true for LINE, without exception. Also true for any post carrying a judgment, entering a sensitive domain, or using a hook under ~3 seconds / ~20 characters."
+    },
+
+    "approval": {
+      "type": "object",
+      "required": ["human_approval_required", "approved"],
+      "properties": {
+        "human_approval_required": {
+          "const": true,
+          "description": "Always true. There is no design in which A10 posts autonomously."
+        },
+        "approved": { "type": "boolean", "default": false },
+        "approved_by": { "type": ["string", "null"] },
+        "approved_at": { "type": ["string", "null"], "format": "date" }
+      },
+      "additionalProperties": false
+    },
+
+    "proposed_post_at": { "type": ["string", "null"], "format": "date", "description": "A proposal. A10 never schedules." },
+    "sequence_position": { "type": ["integer", "null"], "minimum": 0 },
+
+    "status": {
+      "type": "string",
+      "enum": ["draft", "ready_for_qa", "in_qa", "in_compliance_review", "revising", "approved", "posted", "skipped", "withdrawn"],
+      "description": "A10 may set ready_for_qa. It may never set approved or posted."
+    },
+    "created_at": { "type": "string", "format": "date" }
+  },
+
+  "allOf": [
+    {
+      "if": { "properties": { "channel": { "const": "line" } }, "required": ["channel"] },
+      "then": { "properties": { "requires_compliance_review": { "const": true } } }
+    },
+    {
+      "if": { "properties": { "channel": { "enum": ["tiktok", "youtube"] } }, "required": ["channel"] },
+      "then": { "required": ["video_direction"], "properties": { "video_direction": { "type": "object" } } }
+    },
+    {
+      "if": { "properties": { "channel": { "const": "instagram" } }, "required": ["channel"] },
+      "then": {
+        "required": ["visual_direction"],
+        "properties": {
+          "visual_direction": {
+            "type": "object",
+            "required": ["photo_permission_status"],
+            "properties": { "photo_permission_status": { "enum": ["confirmed", "not_applicable"] } }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "status": { "enum": ["approved", "posted"] } }, "required": ["status"] },
+      "then": {
+        "properties": {
+          "approval": {
+            "required": ["approved", "approved_by", "approved_at"],
+            "properties": { "approved": { "const": true }, "approved_by": { "type": "string" } }
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

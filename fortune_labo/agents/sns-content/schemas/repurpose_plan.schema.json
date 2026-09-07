@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/sns-content/schemas/repurpose_plan.schema.json",
+  "title": "Repurpose Plan",
+  "description": "Per-piece social rollout proposal from SNS Content Agent (A10). Every one of the nine in-scope channels resolves to either an adapted Channel Content artifact or a recorded skip: no channel is silently omitted, because a silent omission is indistinguishable from an oversight. The plan is a proposal. Approving it approves nothing; each post requires individual human approval.",
+  "type": "object",
+  "required": ["id", "master_content_id", "channels", "skipped", "sequence", "approval_note", "generated_at"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^RP-[0-9]{4}$" },
+    "master_content_id": { "type": "string", "pattern": "^MC-[0-9]{4}$" },
+    "brief_id": { "type": ["string", "null"], "pattern": "^CB-[0-9]{4}$" },
+
+    "channels": {
+      "type": "array",
+      "description": "Channels adapted. Seven or more is a warning sign: nine posts from one article is not a target.",
+      "items": {
+        "type": "object",
+        "required": ["channel", "channel_content_id", "objective"],
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": ["instagram", "tiktok", "x", "youtube", "threads", "facebook", "line", "ameba", "note"]
+          },
+          "channel_content_id": { "type": "string", "pattern": "^CC-[0-9]{4}$" },
+          "objective": {
+            "type": "string",
+            "enum": ["reach", "saves", "engagement", "traffic", "trust", "booking", "retention"]
+          },
+          "proposed_post_at": { "type": ["string", "null"], "format": "date" },
+          "blocked_on": {
+            "type": ["string", "null"],
+            "enum": ["footage_editing", "photo_permission", "practitioner_availability", "compliance_review", null]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "skipped": {
+      "type": "array",
+      "description": "Skipping is a correct, complete output. Two strong posts beat nine weak ones.",
+      "items": {
+        "type": "object",
+        "required": ["channel", "reason", "explanation", "revisit_condition"],
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": ["instagram", "tiktok", "x", "youtube", "threads", "facebook", "line", "ameba", "note"]
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "no_cleared_visual",
+              "no_video_footage",
+              "insufficient_substance",
+              "no_genuine_question",
+              "compliance_risk",
+              "audience_mismatch",
+              "strategy_declined",
+              "capacity"
+            ]
+          },
+          "explanation": { "type": "string" },
+          "revisit_condition": { "type": "string", "description": "What would make this channel viable for this piece." },
+          "downgraded_from_strategy": {
+            "type": "boolean",
+            "default": false,
+            "description": "True when A07 marked this channel strong or possible and A10 downgraded it. A10 may downgrade; it may never upgrade an A07 skip."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "sequence": {
+      "type": "array",
+      "description": "Proposed rollout order. Seasonal deadlines always override the default order. 'It is next in the list' is not a rationale.",
+      "items": {
+        "type": "object",
+        "required": ["position", "channel", "day_offset", "rationale"],
+        "properties": {
+          "position": { "type": "integer", "minimum": 1 },
+          "channel": {
+            "type": "string",
+            "enum": ["instagram", "tiktok", "x", "youtube", "threads", "facebook", "line", "ameba", "note"]
+          },
+          "day_offset": { "type": "integer", "description": "Days after the article publishes." },
+          "rationale": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "seasonal_deadline": { "type": ["string", "null"], "format": "date" },
+    "volume_check": {
+      "type": ["object", "null"],
+      "properties": {
+        "channels_adapted": { "type": "integer", "minimum": 0 },
+        "flagged_high_volume": {
+          "type": "boolean",
+          "default": false,
+          "description": "Set when 7 or more channels were adapted from one piece. Re-examine which are actually strong."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "strategy_feedback": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Where a brief's sns_repurpose decision proved unworkable, so future briefs stop commissioning adaptations the material cannot support. Routed to A07."
+    },
+
+    "approval_note": {
+      "type": "string",
+      "const": "This plan is a proposal. Each post requires individual human approval before publication; approving this plan approves nothing. Proposed times are proposals only — a human schedules and posts. LINE drafts require A30 Compliance/Risk review before reaching human approval.",
+      "description": "Fixed text. Present so the approval boundary cannot be lost when the plan is read out of context."
+    },
+
+    "generated_at": { "type": "string", "format": "date" },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "in_review", "partially_approved", "in_rollout", "complete", "cancelled"],
+      "default": "proposed"
+    }
+  },
+  "additionalProperties": false
+}
