@@ -7,6 +7,20 @@ fortune_labo の SNS 投稿ドラフト置き場。すべて **draft（QA 未通
 
 ---
 
+## 0. X の投稿はエージェント仕様に従うこと
+
+**X（旧Twitter）向けの投稿は、[`../../agents/sns/x/`](../../agents/sns/x/) の
+X Content Agent（A10-X）仕様に従って制作する。** このディレクトリの
+`drafts/*/x.md` は、そのエージェントの出力先（人間レビュー用の表示面）であり、
+機械可読な正本は `x_post.schema.json` に準拠した JSON。
+
+このディレクトリの 2026-09 バッチの `x.md` は A10-X 実装より前に作られたもので、
+`basis` / `factual_claims` / `hook_candidates` を持たない。次回バッチから
+エージェント仕様に載せ替える。
+
+Instagram / Threads / Ameba にはまだチャネル・サブエージェントが存在しないため、
+以下の制約が引き続き適用される。
+
 ## 1. 制作時の拘束条件
 
 SNS 専用エージェント（A09 / A10）の仕様はまだ存在しないため、当面は

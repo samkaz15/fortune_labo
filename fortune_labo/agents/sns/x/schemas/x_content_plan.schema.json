@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/sns/x/schemas/x_content_plan.schema.json",
+  "title": "X Content Plan",
+  "description": "One theme expanded into the angles it genuinely supports. The planning unit of A10-X: a theme is never drafted directly into a single post. A theme whose available_basis is empty is not scheduled — it becomes a request to the practitioner or to Research Agent (responsibilities.md section A).",
+  "type": "object",
+  "required": [
+    "id",
+    "theme",
+    "category",
+    "theme_source",
+    "available_basis",
+    "target_reader",
+    "angles",
+    "verification_load",
+    "status",
+    "created_at"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^XPLAN-[0-9]{4}$" },
+    "theme": { "type": "string" },
+    "category": { "type": "string", "enum": ["A", "B", "C", "D"] },
+    "theme_source": {
+      "type": "string",
+      "enum": [
+        "client_question",
+        "seasonal_calendar",
+        "seo_agent_gap",
+        "content_strategy_cluster",
+        "existing_article",
+        "reply_or_quote",
+        "practitioner_proposal"
+      ],
+      "description": "Priority order in responsibilities.md section A. client_question outranks every keyword source — it is the literal language of people who already paid."
+    },
+    "source_detail": {
+      "type": ["string", "null"],
+      "description": "For client_question, the question in the client's own words."
+    },
+    "available_basis": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "enum": ["firsthand", "practitioner_view", "verified_fact", "mechanism"] },
+      "description": "What can actually be supplied TODAY, not what could be obtained in principle. An empty set means the theme is not schedulable."
+    },
+    "missing_basis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["basis", "who_can_supply"],
+        "properties": {
+          "basis": { "type": "string", "enum": ["firsthand", "practitioner_view", "verified_fact", "mechanism"] },
+          "who_can_supply": { "type": "string", "enum": ["practitioner", "research_agent", "fact_check_agent", "seo_agent", "human"] },
+          "blocks_tier": { "type": ["string", "null"], "enum": ["X-A", "X-B", "X-C", null] }
+        },
+        "additionalProperties": false
+      },
+      "default": []
+    },
+    "target_reader": {
+      "type": "string",
+      "description": "Who this theme is for and what situation they are in."
+    },
+    "angles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["angle", "entry_point", "x_tier"],
+        "properties": {
+          "angle": {
+            "type": "string",
+            "enum": ["education", "misconception", "practice", "fortune", "history", "problem_framing", "comparison", "seasonal", "failure", "question_answer"]
+          },
+          "entry_point": {
+            "type": "string",
+            "description": "The different door this angle opens. Two angles that would produce near-identical bodies mean one was not a real angle — drop it (responsibilities.md section B)."
+          },
+          "x_tier": { "type": "string", "enum": ["X-A", "X-B", "X-C"] },
+          "post_id": { "type": ["string", "null"], "pattern": "^X-[0-9]{4}$" },
+          "scheduled_batch": { "type": ["string", "null"], "pattern": "^[0-9]{4}-[0-9]{2}$" },
+          "dropped_reason": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      },
+      "description": "A theme supporting only one angle is a weak theme and is deprioritised."
+    },
+    "verification_load": {
+      "type": "string",
+      "enum": ["none", "light", "moderate", "heavy"],
+      "description": "positioning.md section 6: X-B and X-C throughput is bounded by fact-checking, not by writing. Batch planning is done against this, not against drafting speed."
+    },
+    "seasonal_window": {
+      "type": ["object", "null"],
+      "required": ["occasion", "post_by"],
+      "properties": {
+        "occasion": { "type": "string" },
+        "post_by": { "type": "string", "format": "date" },
+        "lead_time_days": { "type": "integer", "description": "Includes fact-check turnaround, which is the long pole for categories A and D." }
+      },
+      "additionalProperties": false,
+      "default": null
+    },
+    "repurpose_value": {
+      "type": "string",
+      "enum": ["none", "low", "medium", "high"],
+      "description": "Whether this theme can also feed an article or an Ameba post."
+    },
+    "related_article_url": { "type": ["string", "null"] },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "approved", "in_production", "completed", "parked", "rejected"],
+      "description": "'approved' normally comes from A07 Content Strategy Agent. Until A07 exists, a human approves it (workflow.md section Interim operation)."
+    },
+    "parked_reason": { "type": ["string", "null"] },
+    "created_at": { "type": "string", "format": "date" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "parked" } }, "required": ["status"] },
+      "then": { "required": ["parked_reason"], "properties": { "parked_reason": { "type": "string" } } }
+    },
+    {
+      "if": { "properties": { "category": { "const": "A" } }, "required": ["category"] },
+      "then": {
+        "properties": { "available_basis": { "contains": { "const": "verified_fact" } } },
+        "description": "A history theme with no verifiable-fact basis available is not schedulable."
+      }
+    }
+  ],
+  "additionalProperties": false
+}

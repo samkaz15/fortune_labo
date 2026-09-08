@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/sns/x/schemas/x_performance_record.schema.json",
+  "title": "X Performance Record",
+  "description": "Handoff between A18 Analytics Agent and A10-X. Metrics are grouped by the KPI tiers in kpi.md so that a report cannot open with reach. Tier 3 fields exist to explain Tier 1 and Tier 2 movement and are never reported as achievements on their own.",
+  "type": "object",
+  "required": ["id", "post_id", "measured_at", "window_days", "production_decisions", "tier_2", "tier_3"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^XPERF-[0-9]{4}$" },
+    "post_id": { "type": "string", "pattern": "^X-[0-9]{4}$" },
+    "measured_at": { "type": "string", "format": "date" },
+    "window_days": {
+      "type": "integer",
+      "enum": [1, 7, 28],
+      "description": "Bookmarks and profile clicks accumulate slowly. A 1-day read is a reach signal only; judge saveability at 7 and 28 days."
+    },
+    "production_decisions": {
+      "type": "object",
+      "description": "Copied from the post so performance is attributable to a decision, not only to a post (outputs.md handoff to Analytics).",
+      "required": ["category", "x_tier", "angle"],
+      "properties": {
+        "category": { "type": "string", "enum": ["A", "B", "C", "D"] },
+        "x_tier": { "type": "string", "enum": ["X-A", "X-B", "X-C"] },
+        "angle": { "type": "string" },
+        "hook_pattern": { "type": ["string", "null"] },
+        "cta_type": { "type": ["string", "null"] },
+        "basis": { "type": "array", "items": { "type": "string" } },
+        "is_thread": { "type": "boolean", "default": false },
+        "published_at": { "type": ["string", "null"], "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "tier_1": {
+      "type": ["object", "null"],
+      "description": "Business outcome. Phase 2 for sessions, Phase 3 for bookings. Null until measurable — and a report that omits Tier 1 must say why.",
+      "properties": {
+        "site_sessions": { "type": ["integer", "null"] },
+        "service_page_views": { "type": ["integer", "null"] },
+        "list_signups": { "type": ["integer", "null"] },
+        "bookings": { "type": ["integer", "null"] },
+        "revenue": { "type": ["number", "null"] },
+        "attribution_note": {
+          "type": ["string", "null"],
+          "description": "Until Phase 3, prioritisation is proxy-based and every report must say so."
+        }
+      },
+      "additionalProperties": false,
+      "default": null
+    },
+    "tier_2": {
+      "type": "object",
+      "description": "Authority and saveability. The tier this agent is steered by.",
+      "required": ["bookmarks", "profile_clicks"],
+      "properties": {
+        "bookmarks": { "type": "integer", "minimum": 0 },
+        "bookmark_rate": { "type": ["number", "null"], "description": "bookmarks / impressions. Primary quality metric." },
+        "profile_clicks": { "type": "integer", "minimum": 0 },
+        "profile_click_rate": { "type": ["number", "null"] },
+        "follows": { "type": ["integer", "null"] },
+        "link_clicks": { "type": ["integer", "null"] },
+        "link_click_rate": { "type": ["number", "null"] },
+        "bookmark_to_like_ratio": {
+          "type": ["number", "null"],
+          "description": "kpi.md: likes are reflexive, bookmarks are deliberate. When they diverge, follow bookmarks."
+        },
+        "measurement_method": {
+          "type": "string",
+          "enum": ["api", "manual_ui", "unavailable"],
+          "description": "Bookmark and profile-click data are not exposed at every X API tier. Manual entry is acceptable; substituting a proxy metric is not (integrations.md)."
+        }
+      },
+      "additionalProperties": false
+    },
+    "tier_3": {
+      "type": "object",
+      "description": "Reach and engagement. Diagnostics only.",
+      "required": ["impressions"],
+      "properties": {
+        "impressions": { "type": "integer", "minimum": 0 },
+        "engagement_rate": { "type": ["number", "null"] },
+        "likes": { "type": ["integer", "null"] },
+        "reposts": { "type": ["integer", "null"] },
+        "replies": { "type": ["integer", "null"] },
+        "quotes": { "type": ["integer", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "interpretation": {
+      "type": ["object", "null"],
+      "description": "Written by X Content Agent, not by Analytics. Analytics collects; this agent interprets.",
+      "properties": {
+        "diagnostic_pattern": {
+          "type": ["string", "null"],
+          "enum": [
+            "impressions_up_bookmarks_flat",
+            "bookmarks_up_profile_clicks_flat",
+            "profile_clicks_up_link_clicks_flat",
+            "link_clicks_up_sessions_flat",
+            "sessions_up_bookings_flat",
+            "impressions_up_tier_a_ratio_down",
+            "replies_up_personal_consultations",
+            "healthy",
+            "inconclusive",
+            null
+          ],
+          "description": "Maps to the diagnostic matrix in kpi.md, which names the owning agent for each pattern."
+        },
+        "owner_agent": { "type": ["string", "null"] },
+        "hypothesis_update": {
+          "type": ["string", "null"],
+          "description": "Mandatory in the monthly report. When evidence contradicts the prior hypothesis, the hypothesis is updated — never the evidence (/AGENTS.md)."
+        },
+        "next_batch_action": { "type": ["string", "null"] },
+        "sample_caveat": {
+          "type": ["string", "null"],
+          "description": "Single-post results are not channel performance (kpi.md forbidden framings). State the sample size where a conclusion is being drawn."
+        }
+      },
+      "additionalProperties": false,
+      "default": null
+    }
+  },
+  "additionalProperties": false
+}

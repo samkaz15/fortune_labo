@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/sns/x/schemas/x_fact_check_request.schema.json",
+  "title": "X Fact-Check Request",
+  "description": "Handoff from A10-X to A29 Fact-Check Agent via A28 QA. One request per post that carries any claim not already verified. X Content Agent never verifies its own history claims — it flags them (rules.md section 3.6). This is the structure the implementation brief asks for: 出典候補・追加調査が必要な情報・事実確認が必要な箇所をQAへ渡せる構造.",
+  "type": "object",
+  "required": ["id", "post_id", "category", "claims", "urgency", "created_at"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^XFC-[0-9]{4}$" },
+    "post_id": { "type": "string", "pattern": "^X-[0-9]{4}$" },
+    "category": { "type": "string", "enum": ["A", "B", "C", "D"] },
+    "post_context": {
+      "type": ["string", "null"],
+      "description": "What the post is trying to say, so the checker can judge whether a hedge would preserve the point or gut it."
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["claim_ref", "claim", "claim_type", "criticality"],
+        "properties": {
+          "claim_ref": {
+            "type": "string",
+            "description": "Stable reference within the post, e.g. 'hook' or 'body:2'."
+          },
+          "claim": { "type": "string", "description": "The claim as written, verbatim." },
+          "claim_type": {
+            "type": "string",
+            "enum": ["historical", "cultural", "calendrical", "shrine_origin", "food_tradition", "numeric", "attribution", "other"]
+          },
+          "criticality": {
+            "type": "string",
+            "enum": ["load_bearing", "supporting", "incidental"],
+            "description": "load_bearing = the post exists because of this claim. If it is refuted, the post is dropped, not edited."
+          },
+          "source_candidates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["source"],
+              "properties": {
+                "source": { "type": "string", "description": "e.g. 神社公式サイトの由緒, 自治体史, 国立国会図書館デジタルコレクション, 学術文献" },
+                "source_type": {
+                  "type": "string",
+                  "enum": ["shrine_official", "government_or_municipal", "academic", "reference_work", "museum_or_archive", "practitioner", "other"]
+                },
+                "url": { "type": ["string", "null"] },
+                "checked": { "type": "boolean", "default": false }
+              },
+              "additionalProperties": false
+            },
+            "default": [],
+            "description": "Where the claim could be checked. Required for anything the agent could not already verify."
+          },
+          "agent_confidence": {
+            "type": "string",
+            "enum": ["likely_true", "uncertain", "probably_contested"],
+            "description": "The agent's own read. Never a substitute for verification."
+          },
+          "proposed_hedge": {
+            "type": ["string", "null"],
+            "description": "How the claim would be written if verification comes back inconclusive — 〜と言われています / 諸説あります. If no acceptable hedge exists, say so."
+          },
+          "overgeneralisation_risk": {
+            "type": "boolean",
+            "default": false,
+            "description": "true where the claim risks 昔の日本人は全員○○していた. Over-generalisation is a factual error, not a style issue (rules.md section 3.3)."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "additional_research_needed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [],
+      "description": "Questions the agent could not resolve and that would change how the post is written."
+    },
+    "urgency": {
+      "type": "string",
+      "enum": ["standard", "seasonal_deadline", "correction"],
+      "description": "'seasonal_deadline' carries a hard date; 'correction' means an already-published post is suspected wrong and is P0 (rules.md section 6)."
+    },
+    "needed_by": { "type": ["string", "null"], "format": "date" },
+    "resolution": {
+      "type": ["object", "null"],
+      "required": ["resolved_at", "results"],
+      "properties": {
+        "resolved_at": { "type": "string", "format": "date" },
+        "resolved_by": { "type": "string" },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim_ref", "verdict"],
+            "properties": {
+              "claim_ref": { "type": "string" },
+              "verdict": { "type": "string", "enum": ["verified", "refuted", "unverifiable", "verified_with_hedge"] },
+              "source": { "type": ["string", "null"] },
+              "note": { "type": ["string", "null"] }
+            },
+            "additionalProperties": false
+          }
+        },
+        "post_action": {
+          "type": "string",
+          "enum": ["proceed", "proceed_with_hedge", "rewrite", "drop_post"],
+          "description": "A refuted load_bearing claim resolves to drop_post."
+        }
+      },
+      "additionalProperties": false,
+      "default": null
+    },
+    "created_at": { "type": "string", "format": "date" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "urgency": { "const": "seasonal_deadline" } }, "required": ["urgency"] },
+      "then": { "required": ["needed_by"], "properties": { "needed_by": { "type": "string" } } }
+    }
+  ],
+  "additionalProperties": false
+}
