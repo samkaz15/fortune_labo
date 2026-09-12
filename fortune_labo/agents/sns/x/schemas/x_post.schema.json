@@ -1,0 +1,398 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/sns/x/schemas/x_post.schema.json",
+  "title": "X Post",
+  "description": "A single post for X (旧Twitter) produced by A10-X X Content Agent. Contains the twelve fields specified in the implementation brief, plus the fields this repository requires to enforce agents/sns/x/rules.md at the data-structure level. A post with an empty basis array cannot be emitted (rules.md section 1.1).",
+  "type": "object",
+  "required": [
+    "id",
+    "status",
+    "category",
+    "x_tier",
+    "theme",
+    "target",
+    "angle",
+    "basis",
+    "hook",
+    "body",
+    "cta",
+    "cta_type",
+    "hashtags",
+    "source_required",
+    "fact_check_required",
+    "risk_level",
+    "repurpose_candidates",
+    "compliance",
+    "created_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^X-[0-9]{4}$",
+      "description": "Stable identifier, e.g. X-0042. Carried through QA, approval and analytics so performance is attributable to a production decision."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "fact_check_pending", "qa_pending", "approved", "published", "blocked", "rejected"],
+      "description": "blocked = missing basis, visit record, or business fact. rejected = failed a QA gate."
+    },
+    "blocked_reason": {
+      "type": ["string", "null"],
+      "description": "REQUIRED when status is 'blocked'. States exactly what input is missing and who can supply it."
+    },
+    "category": {
+      "type": "string",
+      "enum": ["A", "B", "C", "D"],
+      "description": "A = 歴史・日本文化, B = 開運アクションの具体的解説, C = 占い・開運, D = 食・生活と開運. See categories.md. Category is what the post is about; x_tier is how defensible it is."
+    },
+    "x_tier": {
+      "type": "string",
+      "enum": ["X-A", "X-B", "X-C"],
+      "description": "positioning.md section 5. X-A = moat (firsthand or practitioner judgment), X-B = authority (sourced history/culture/method), X-C = practice (explained action). X-D is forbidden and is never emitted."
+    },
+    "theme": {
+      "type": "string",
+      "description": "The subject the post belongs to. Multiple posts share one theme via different angles."
+    },
+    "target": {
+      "type": "string",
+      "description": "Who this post is for and what situation they are in. Not a demographic label."
+    },
+    "angle": {
+      "type": "string",
+      "enum": [
+        "education",
+        "misconception",
+        "practice",
+        "fortune",
+        "history",
+        "problem_framing",
+        "comparison",
+        "seasonal",
+        "failure",
+        "question_answer"
+      ],
+      "description": "writing.md section 3. 教養型 / 誤解型 / 実践型 / 開運型 / 歴史型 / 問題提起型 / 比較型 / 季節型 / 失敗型 / 質問回答型."
+    },
+    "basis": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": ["firsthand", "practitioner_view", "verified_fact", "mechanism"]
+      },
+      "description": "positioning.md section 3 — the central constraint. Every post must be traceable to at least one basis. 'mechanism' alone is never sufficient for a post about 運気 (rules.md section 1.2)."
+    },
+    "visit_record_id": {
+      "type": ["string", "null"],
+      "description": "REQUIRED when basis includes 'firsthand'. References a completed human visit already recorded in the repository. A firsthand post without this is a rule violation (agents/seo/rules.md section 2)."
+    },
+    "hook": {
+      "type": "string",
+      "description": "The first one or two lines. Must not use fear framing or promise something the body does not deliver (writing.md section 7). Hooks are in compliance scope."
+    },
+    "hook_pattern": {
+      "type": ["string", "null"],
+      "enum": [
+        "surprising_fact",
+        "premise_denial",
+        "order_reversal",
+        "historical_pull",
+        "question",
+        "concrete_date",
+        "shared_experience",
+        null
+      ],
+      "description": "Recorded so Analytics can segment performance by hook pattern."
+    },
+    "hook_candidates": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string" },
+          "pattern": { "type": ["string", "null"] },
+          "rejected_reason": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      },
+      "description": "writing.md section 7 requires at least three candidates and a recorded reason for the choice."
+    },
+    "hook_choice_rationale": {
+      "type": ["string", "null"],
+      "description": "Why the chosen hook was chosen over the candidates."
+    },
+    "body": {
+      "type": "string",
+      "description": "情報 → 理由 → 現代への置き換え (writing.md section 2). A body with no 理由 section is almost always a Tier X-D post in disguise."
+    },
+    "cta": {
+      "type": "string",
+      "description": "The CTA text as it appears in the post. Empty string when cta_type is 'none'."
+    },
+    "cta_type": {
+      "type": "string",
+      "enum": ["save", "try", "share", "question", "read_more", "booking", "none"],
+      "description": "writing.md section 8. No type more than twice per batch; 'booking' at most once; roughly half a batch is 'none'."
+    },
+    "cta_url": {
+      "type": ["string", "null"],
+      "description": "REQUIRED when cta_type is 'read_more'. Must be a live URL carrying a UTM tag with this post's id (integrations.md)."
+    },
+    "hashtags": {
+      "type": "array",
+      "maxItems": 2,
+      "items": { "type": "string" },
+      "description": "0–2 tags, default 0. Tier X-D tags (#今日の運勢 #無料占い #タロット #12星座) and outcome tags (#開運確定 #願いが叶う) are forbidden (writing.md section 6)."
+    },
+    "source_required": {
+      "type": "boolean",
+      "description": "true when the post makes any claim about history, culture, 暦, 由緒, or food tradition. Always true for category A."
+    },
+    "fact_check_required": {
+      "type": "boolean",
+      "description": "true when any factual_claim is not already 'verified'. Drives emission of x_fact_check_request."
+    },
+    "factual_claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim", "verification_status"],
+        "properties": {
+          "claim": { "type": "string" },
+          "claim_type": {
+            "type": "string",
+            "enum": ["historical", "cultural", "calendrical", "shrine_origin", "food_tradition", "numeric", "mechanism", "other"]
+          },
+          "verification_status": {
+            "type": "string",
+            "enum": ["verified", "needs_verification", "unverifiable", "refuted"],
+            "description": "A post may not ship with an unresolved 'needs_verification' claim (rules.md section 3.7). A 'refuted' claim usually removes the post, not just the sentence."
+          },
+          "source_candidates": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Where the claim could be checked. Required for anything not already verified."
+          },
+          "verified_source": { "type": ["string", "null"] },
+          "hedge_applied": {
+            "type": "boolean",
+            "default": false,
+            "description": "true when the claim is written as 〜と言われています / 諸説あります rather than asserted."
+          }
+        },
+        "additionalProperties": false
+      },
+      "default": []
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "low = no claim about outcomes, history or health. medium = historical/cultural claims, or 運気 framing needing care. high = touches 金運・健康・人生の判断, or names a specific shrine. 'high' requires an explicit disclaimer decision."
+    },
+    "compliance": {
+      "type": "object",
+      "description": "Self-check against rules.md section 2, performed by X Content Agent before QA sees the post. QA is the second gate, not the first.",
+      "required": [
+        "no_guaranteed_outcome",
+        "no_fear_framing",
+        "no_efficacy_ranking",
+        "no_medical_financial_legal_claim",
+        "no_fabricated_testimonial",
+        "subjectivity_marked",
+        "hook_checked"
+      ],
+      "properties": {
+        "no_guaranteed_outcome": { "type": "boolean" },
+        "no_fear_framing": { "type": "boolean" },
+        "no_efficacy_ranking": { "type": "boolean" },
+        "no_medical_financial_legal_claim": { "type": "boolean" },
+        "no_fabricated_testimonial": { "type": "boolean" },
+        "no_overgeneralised_past": { "type": "boolean", "default": true },
+        "subjectivity_marked": {
+          "type": "boolean",
+          "description": "Subjective claims carry 私の見立てでは / 感じています / 考えています (agents/seo/rules.md section 3.1)."
+        },
+        "hook_checked": {
+          "type": "boolean",
+          "description": "The hook itself was checked against the above. A compliant body under a fear-framed hook is still a violation."
+        },
+        "disclaimer_required": { "type": "boolean", "default": false },
+        "disclaimer_placement": {
+          "type": ["string", "null"],
+          "enum": ["in_post", "thread_tail", "pinned_post_link", "profile_link", null]
+        },
+        "notes": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "placeholders": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^\\{\\{[a-z_]+\\}\\}$" },
+      "default": [],
+      "description": "Unfilled business facts. The agent never guesses these (rules.md section 5.4). Publication is gated on this array being empty."
+    },
+    "thread": {
+      "type": ["array", "null"],
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["position", "text"],
+        "properties": {
+          "position": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "text": { "type": "string" },
+          "char_count": { "type": ["integer", "null"] }
+        },
+        "additionalProperties": false
+      },
+      "default": null,
+      "description": "writing.md section 5. Maximum 5 posts. The first post must work alone — most readers never open the thread."
+    },
+    "char_count": {
+      "type": ["integer", "null"],
+      "description": "X-weighted count (全角 = 2, URL = 23), measured AFTER placeholder substitution. Budget is 280 weighted, roughly 140 全角文字."
+    },
+    "seasonal_window": {
+      "type": ["object", "null"],
+      "properties": {
+        "occasion": { "type": "string" },
+        "post_by": { "type": "string", "format": "date" },
+        "lead_time_days": { "type": "integer" }
+      },
+      "required": ["occasion", "post_by"],
+      "additionalProperties": false,
+      "default": null,
+      "description": "workflow.md section Seasonal backward planning. Fact-check turnaround is the binding constraint, not writing."
+    },
+    "repurpose_candidates": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["article", "ameba", "instagram", "threads", "thread_expansion", "faq", "profile_page", "none"]
+      },
+      "default": [],
+      "description": "Where this content should go next if it performs. Handed to A08 Content Production Agent (outputs.md)."
+    },
+    "related_posts": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^X-[0-9]{4}$" },
+      "default": [],
+      "description": "Other posts from the same theme. Recorded so the batch scheduler can spread them apart; posts must still stand alone."
+    },
+    "plan_id": {
+      "type": ["string", "null"],
+      "pattern": "^XPLAN-[0-9]{4}$",
+      "description": "The content plan this post was expanded from."
+    },
+    "batch": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9]{4}-[0-9]{2}$",
+      "description": "Batch the post belongs to, matching content/sns/drafts/<YYYY-MM>/."
+    },
+    "created_at": { "type": "string", "format": "date" },
+    "approved_by": { "type": ["string", "null"], "description": "Human approver. Never an agent." },
+    "published_at": { "type": ["string", "null"], "format": "date-time" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "blocked" } }, "required": ["status"] },
+      "then": { "required": ["blocked_reason"], "properties": { "blocked_reason": { "type": "string" } } }
+    },
+    {
+      "if": {
+        "allOf": [
+          { "properties": { "basis": { "contains": { "const": "firsthand" } } }, "required": ["basis"] },
+          { "not": { "properties": { "status": { "const": "blocked" } }, "required": ["status"] } }
+        ]
+      },
+      "then": {
+        "required": ["visit_record_id"],
+        "properties": { "visit_record_id": { "type": "string" } },
+        "description": "A firsthand post requires a completed visit record (agents/seo/rules.md section 2). Exempt only while status is 'blocked' — a blocked post exists precisely to record that the visit record is what is missing."
+      }
+    },
+    {
+      "if": { "properties": { "category": { "const": "A" } }, "required": ["category"] },
+      "then": {
+        "properties": {
+          "basis": { "contains": { "const": "verified_fact" } },
+          "source_required": { "const": true }
+        },
+        "description": "Category A (歴史・日本文化) cannot rest on mechanism or practitioner_view alone (categories.md)."
+      }
+    },
+    {
+      "if": { "properties": { "category": { "const": "B" } }, "required": ["category"] },
+      "then": {
+        "properties": { "basis": { "minItems": 2, "contains": { "const": "mechanism" } } },
+        "description": "Category B requires mechanism PLUS at least one of verified_fact or practitioner_view (categories.md)."
+      }
+    },
+    {
+      "if": { "properties": { "category": { "const": "D" } }, "required": ["category"] },
+      "then": {
+        "properties": { "basis": { "minItems": 2, "contains": { "const": "verified_fact" } } },
+        "description": "Category D pairs the cultural/seasonal fact with a mechanism or the practitioner's view (categories.md)."
+      }
+    },
+    {
+      "if": { "properties": { "x_tier": { "const": "X-A" } }, "required": ["x_tier"] },
+      "then": {
+        "anyOf": [
+          { "properties": { "basis": { "contains": { "const": "firsthand" } } } },
+          { "properties": { "basis": { "contains": { "const": "practitioner_view" } } } }
+        ],
+        "description": "Tier X-A requires firsthand experience or the practitioner's own judgment (positioning.md section 5)."
+      }
+    },
+    {
+      "if": { "properties": { "fact_check_required": { "const": true } }, "required": ["fact_check_required"] },
+      "then": {
+        "properties": { "factual_claims": { "minItems": 1 } },
+        "description": "If a fact check is required, the claims requiring it must be enumerated."
+      }
+    },
+    {
+      "if": { "properties": { "cta_type": { "const": "read_more" } }, "required": ["cta_type"] },
+      "then": { "required": ["cta_url"], "properties": { "cta_url": { "type": "string" } } }
+    },
+    {
+      "if": { "properties": { "risk_level": { "const": "high" } }, "required": ["risk_level"] },
+      "then": {
+        "properties": {
+          "compliance": { "required": ["disclaimer_required", "disclaimer_placement"] }
+        },
+        "description": "A high-risk post requires an explicit disclaimer decision, not a default."
+      }
+    },
+    {
+      "if": {
+        "properties": { "status": { "enum": ["approved", "published"] } },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "placeholders": { "maxItems": 0 },
+          "factual_claims": {
+            "items": { "properties": { "verification_status": { "const": "verified" } } }
+          },
+          "compliance": {
+            "properties": {
+              "no_guaranteed_outcome": { "const": true },
+              "no_fear_framing": { "const": true },
+              "no_efficacy_ranking": { "const": true },
+              "no_medical_financial_legal_claim": { "const": true },
+              "no_fabricated_testimonial": { "const": true },
+              "hook_checked": { "const": true }
+            }
+          }
+        },
+        "description": "Approval gate, enforced structurally: no unfilled placeholders, no unresolved claims, every compliance check passed."
+      }
+    }
+  ],
+  "additionalProperties": false
+}
