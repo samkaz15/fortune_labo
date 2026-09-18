@@ -8,6 +8,11 @@ specification would be too vague to constrain anything.
 
 ## Sub-agents
 
+サブエージェントには2種類あります。**チャネル別**（1つのプラットフォーム向け）
+と、**フォーマット別**（複数チャネルにまたがる1つの表現形式）です。
+
+### チャネル別
+
 | ID | Channel | Directory | Status |
 | --- | --- | --- | --- |
 | **A10-X** | X (旧Twitter) | [`x/`](./x/) | **implemented** |
@@ -15,7 +20,18 @@ specification would be too vague to constrain anything.
 | A10-TH | Threads | `threads/` | not implemented |
 | A10-AB | Ameba ブログ | `ameba/` | not implemented |
 | A10-FB | Facebook | `facebook/` | not implemented |
-| A10-TT | TikTok | `tiktok/` | not implemented |
+
+### フォーマット別
+
+| ID | Format | Directory | Status |
+| --- | --- | --- | --- |
+| **A10-SC** | 動画台本（TikTok / Reels / Shorts / YouTube） | [`script/`](./script/) | **implemented** |
+
+TikTok に単独のチャネルサブエージェントを置いていないのは意図的です。
+動画は同じ素材が複数の尺・複数のプラットフォームへ展開されるため、
+チャネルごとに同じ仕様を持つより、**1つの台本エージェントが各尺へ
+展開する**ほうが整合します。TikTok 固有の作法は
+[`script/formats.md`](./script/formats.md) の章別作法にあります。
 
 Until a channel sub-agent exists, drafts for that channel are produced ad hoc
 and live in [`../../content/sns/`](../../content/sns/) under the constraints

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/sns/script/schemas/video_performance.schema.json",
+  "title": "Video Performance Record",
+  "description": "A18 Analytics と A10-SC の受け渡し。kpi.md の3層に沿って区切ってあるため、レポートがリーチから始まる形にならない。Tier 3 は Tier 1・2 を説明するためだけに存在する。",
+  "type": "object",
+  "required": ["id", "script_id", "measured_at", "window_days", "production_decisions", "tier_2", "tier_3"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^VPERF-[0-9]{4}$" },
+    "script_id": { "type": "string", "pattern": "^VS-[0-9]{4}$" },
+    "measured_at": { "type": "string", "format": "date" },
+    "window_days": { "type": "integer", "enum": [1, 7, 28], "description": "短尺は初速が支配的だが、保存とプロフィール遷移は遅れて伸びる。判断は7日以降で" },
+    "production_decisions": {
+      "type": "object",
+      "description": "台本から複写する。性能を「動画」ではなく「制作判断」の単位で分解するため",
+      "required": ["format", "tier", "hook_pattern"],
+      "properties": {
+        "format": { "type": "string", "enum": ["tiktok", "reels", "shorts", "youtube_long"] },
+        "tier": { "type": "string", "enum": ["V-A", "V-B", "V-C"] },
+        "hook_pattern": { "type": ["string", "null"] },
+        "cta_type": { "type": ["string", "null"] },
+        "basis": { "type": "array", "items": { "type": "string" } },
+        "ai_generated_ratio": { "type": ["number", "null"] },
+        "estimated_sec": { "type": ["number", "null"] },
+        "actual_sec": { "type": ["number", "null"] },
+        "published_at": { "type": ["string", "null"], "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "tier_1": {
+      "type": ["object", "null"],
+      "description": "事業成果。Phase 2 で登録、Phase 3 で予約。測れないうちは null とし、レポートにその旨を書く",
+      "properties": {
+        "list_signups": { "type": ["integer", "null"] },
+        "site_sessions": { "type": ["integer", "null"] },
+        "bookings": { "type": ["integer", "null"] },
+        "product_revenue": { "type": ["number", "null"] },
+        "attribution_note": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "tier_2": {
+      "type": "object",
+      "description": "発見と信頼。このエージェントが実際に steer される層",
+      "required": ["hook_retention_3s", "profile_visits"],
+      "properties": {
+        "hook_retention_3s": { "type": ["number", "null"], "description": "3秒時点の維持率。台本の冒頭設計が直接効く唯一の指標" },
+        "avg_view_duration_rate": { "type": ["number", "null"] },
+        "profile_visits": { "type": "integer", "minimum": 0 },
+        "profile_visit_rate": { "type": ["number", "null"] },
+        "saves": { "type": ["integer", "null"] },
+        "save_rate": { "type": ["number", "null"] },
+        "shares": { "type": ["integer", "null"] },
+        "follows": { "type": ["integer", "null"] },
+        "link_clicks": { "type": ["integer", "null"] },
+        "measurement_method": { "type": "string", "enum": ["api", "manual_ui", "unavailable"] }
+      },
+      "additionalProperties": false
+    },
+    "tier_3": {
+      "type": "object",
+      "description": "リーチ。診断のみ。単独で成果として報告しない",
+      "required": ["views"],
+      "properties": {
+        "views": { "type": "integer", "minimum": 0 },
+        "likes": { "type": ["integer", "null"] },
+        "comments": { "type": ["integer", "null"] },
+        "impressions": { "type": ["integer", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "interpretation": {
+      "type": ["object", "null"],
+      "description": "A18 は集める。解釈するのは Script Agent",
+      "properties": {
+        "diagnostic_pattern": {
+          "type": ["string", "null"],
+          "enum": [
+            "hook_retention_low",
+            "hook_high_body_low",
+            "retention_high_profile_low",
+            "profile_high_signup_low",
+            "signup_high_booking_low",
+            "views_up_tier_a_down",
+            "healthy",
+            "inconclusive",
+            null
+          ],
+          "description": "kpi.md の診断マトリクスに対応。各パターンに担当エージェントが定義されている"
+        },
+        "owner_agent": { "type": ["string", "null"] },
+        "hypothesis_update": { "type": ["string", "null"], "description": "月次レポートで必須。証拠が仮説と矛盾したら仮説を更新する" },
+        "next_batch_action": { "type": ["string", "null"] },
+        "sample_caveat": { "type": ["string", "null"], "description": "1本の結果はチャネルの成果ではない。判断の根拠にした本数を書く" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

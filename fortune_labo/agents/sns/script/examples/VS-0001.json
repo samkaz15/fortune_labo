@@ -1,0 +1,78 @@
+{
+  "id": "VS-0001",
+  "status": "fact_check_pending",
+  "format": "tiktok",
+  "tier": "V-B",
+  "theme": "重陽の節句",
+  "target": "季節の行事は気になるが、9月9日が何の日かは知らない人",
+  "basis": ["verified_fact", "practitioner_view"],
+  "hook": {
+    "visual": "菊の花を一輪、手に持って画面に入れる",
+    "audio": "9月9日、何の日か知ってますか。",
+    "caption": "9月9日は何の日？",
+    "pattern": "concrete_date",
+    "silent_viable": true
+  },
+  "hook_candidates": [
+    { "visual": "菊の花を一輪、手に持って画面に入れる", "audio": "9月9日、何の日か知ってますか。", "caption": "9月9日は何の日？", "pattern": "concrete_date", "rejected_reason": null },
+    { "visual": "カレンダーの9月9日を指でなぞる", "audio": "五節句、5つ全部言えますか。", "caption": "五節句、全部言える？", "pattern": "question", "rejected_reason": "本編で5つ全部を扱う尺がない。回収できないフックになる" },
+    { "visual": "無音で菊を花瓶に挿す", "audio": "", "caption": "忘れられた節句の話", "pattern": "silent_action", "rejected_reason": "TikTokは冒頭無音だと離脱率が上がる（formats.md）" }
+  ],
+  "hook_choice_rationale": "concrete_date はフック自体が情報を運ぶ。question 型は好奇心のみで、本編の尺を奪う。",
+  "script_body": "9月9日、何の日か知ってますか。\n（1秒・菊を見る）\n重陽（ちょうよう）の節句。五節句の最後の日です。\n\n1月7日、3月3日、5月5日、7月7日、そして9月9日。\n奇数が重なる日が節句になっています。\n\n菊を用いる行事なので、菊の節句とも呼ばれてきました。\n\nただ、今の9月9日に菊はあまり咲いていません。\nもともと旧暦の行事なので、今の暦では10月ごろ。そこがずれたままなんです。\n\n私の見立てでは、この日の意味は季節の変わり目に区切りを置くこと。\n秋のものを食べる日、くらいに使うのがちょうどいいと思っています。",
+  "shot_list": [
+    { "from_sec": 0, "to_sec": 3, "visual": "菊を一輪持って画面に入れる", "audio": "9月9日、何の日か知ってますか。", "caption": "9月9日は何の日？", "source": "本人収録", "note": null },
+    { "from_sec": 3, "to_sec": 9, "visual": "本人の胸から上", "audio": "重陽の節句。五節句の最後の日です。", "caption": "重陽の節句／五節句の最後", "source": "本人収録", "note": "ルビ: 重陽（ちょうよう）" },
+    { "from_sec": 9, "to_sec": 20, "visual": "五節句を並べた図解アニメーション", "audio": "1月7日、3月3日、5月5日、7月7日、そして9月9日。奇数が重なる日が節句になっています。", "caption": "1/7・3/3・5/5・7/7・9/9", "source": "図解", "note": null },
+    { "from_sec": 20, "to_sec": 27, "visual": "菊のクローズアップ", "audio": "菊を用いる行事なので、菊の節句とも呼ばれてきました。", "caption": "別名・菊の節句", "source": "本人収録", "note": null },
+    { "from_sec": 27, "to_sec": 42, "visual": "旧暦と新暦のずれを示す図解", "audio": "ただ、今の9月9日に菊はあまり咲いていません。もともと旧暦の行事なので、今の暦では10月ごろ。そこがずれたままなんです。", "caption": "旧暦9/9 ≒ 今の10月ごろ", "source": "図解", "note": null },
+    { "from_sec": 42, "to_sec": 55, "visual": "本人の胸から上", "audio": "私の見立てでは、この日の意味は季節の変わり目に区切りを置くこと。秋のものを食べる日、くらいに使うのがちょうどいいと思っています。", "caption": "季節の変わり目に区切りを置く日", "source": "本人収録", "note": null }
+  ],
+  "duration": {
+    "narration_chars": 268,
+    "estimated_sec": 49.5,
+    "format_limit_sec": 60,
+    "actual_sec": null
+  },
+  "filming": {
+    "requires_location_shoot": false,
+    "visit_record_id": null,
+    "shrine_name": null,
+    "permission_status": "not_applicable",
+    "tripod_allowed": null,
+    "bystander_risk": null,
+    "audio_source": "narration_only",
+    "constraints": ["本人収録のみ。屋内で完結する"]
+  },
+  "ai_generated_ratio": 0.47,
+  "factual_claims": [
+    { "claim": "五節句は1月7日・3月3日・5月5日・7月7日・9月9日である", "claim_type": "cultural", "verification_status": "needs_verification", "in_caption": true, "source_candidates": ["年中行事辞典", "国史大辞典"], "verified_source": null, "hedge_applied": false },
+    { "claim": "重陽の節句は菊を用いる行事で、菊の節句とも呼ばれる", "claim_type": "cultural", "verification_status": "needs_verification", "in_caption": true, "source_candidates": ["年中行事辞典"], "verified_source": null, "hedge_applied": false },
+    { "claim": "旧暦9月9日は新暦では10月ごろにあたる", "claim_type": "calendrical", "verification_status": "needs_verification", "in_caption": true, "source_candidates": ["国立天文台 暦計算室", "暦要項"], "verified_source": null, "hedge_applied": false }
+  ],
+  "fact_check_required": true,
+  "compliance": {
+    "no_guaranteed_outcome": true,
+    "no_fear_framing": true,
+    "no_efficacy_ranking": true,
+    "no_medical_financial_legal_claim": true,
+    "no_fabricated_testimonial": true,
+    "no_overgeneralised_past": true,
+    "subjectivity_marked": true,
+    "hook_checked": true,
+    "hook_payoff_in_body": true,
+    "ai_disclosure_needed": false,
+    "disclaimer_required": false,
+    "notes": "図解は暦の可視化であり一次体験の生成ではない（positioning.md §4）。運気の効果には触れていない。"
+  },
+  "cta_type": "save",
+  "cta_text": "来年の9月9日に見返してください。",
+  "title": null,
+  "placeholders": [],
+  "derived_from": null,
+  "seasonal_window": { "occasion": "重陽の節句", "publish_by": "2026-09-09", "lead_time_days": 28 },
+  "batch": "2026-09",
+  "created_at": "2026-09-18",
+  "approved_by": null,
+  "published_at": null
+}

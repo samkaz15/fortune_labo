@@ -1,0 +1,154 @@
+{
+  "id": "VS-0002",
+  "status": "blocked",
+  "blocked_reason": "参拝記録が0件で、寒川神社の動画・商用の撮影許諾も未取得。現地撮影を含む台本は書けても撮影に進めない（rules.md §4.1）。必要なもの: ①参拝と visit_record_id の登録（人間）②神社への動画・商用撮影の許諾申請（人間）。①②が揃うまで status は blocked のまま。",
+  "format": "reels",
+  "tier": "V-A",
+  "theme": "寒川神社の立地と歴史",
+  "target": "相模国一之宮として名前は知っているが、由緒までは知らない人",
+  "basis": [
+    "firsthand",
+    "verified_fact"
+  ],
+  "hook": {
+    "visual": "鳥居をくぐる主観映像",
+    "audio": "ここ、昔は海のすぐそばでした。",
+    "caption": "ここ、昔は海のそばだった",
+    "pattern": "surprising_fact",
+    "silent_viable": true
+  },
+  "hook_candidates": [
+    {
+      "visual": "鳥居をくぐる主観映像",
+      "audio": "ここ、昔は海のすぐそばでした。",
+      "caption": "ここ、昔は海のそばだった",
+      "pattern": "surprising_fact",
+      "rejected_reason": null
+    },
+    {
+      "visual": "拝殿の引き",
+      "audio": "相模国一之宮、知ってますか。",
+      "caption": "相模国一之宮",
+      "pattern": "question",
+      "rejected_reason": "知名度前提のフックは初見が止まらない"
+    },
+    {
+      "visual": "古地図を映す",
+      "audio": "この地図、今とだいぶ違います。",
+      "caption": "今とだいぶ違う地図",
+      "pattern": "premise_denial",
+      "rejected_reason": "由緒の裏取りが済むまで地図の解釈を断定できない"
+    }
+  ],
+  "hook_choice_rationale": "未確定。参拝と由緒の確認が揃うまで本文は書かない。",
+  "script_body": "（参拝記録と由緒の検証が済むまで執筆しない。AIが参拝の体感を書くことは rules.md §4.4 で禁止）",
+  "shot_list": [
+    {
+      "from_sec": 0,
+      "to_sec": 3,
+      "visual": "鳥居をくぐる主観映像",
+      "audio": "ここ、昔は海のすぐそばでした。",
+      "caption": "ここ、昔は海のそばだった",
+      "source": "現地撮影",
+      "note": "要・動画商用許諾"
+    },
+    {
+      "from_sec": 3,
+      "to_sec": 10,
+      "visual": "参道を歩く主観映像",
+      "audio": null,
+      "caption": null,
+      "source": "現地撮影",
+      "note": "寄りで撮り、映り込みを避ける"
+    },
+    {
+      "from_sec": 10,
+      "to_sec": 16,
+      "visual": "拝殿",
+      "audio": null,
+      "caption": null,
+      "source": "現地撮影",
+      "note": "引きは人が入るため時間帯を選ぶ"
+    },
+    {
+      "from_sec": 16,
+      "to_sec": 21,
+      "visual": "周辺地形の図解",
+      "audio": null,
+      "caption": null,
+      "source": "図解",
+      "note": "由緒の検証後に作成"
+    },
+    {
+      "from_sec": 21,
+      "to_sec": 25,
+      "visual": "本人が拝殿前で話す",
+      "audio": null,
+      "caption": null,
+      "source": "本人収録",
+      "note": "見解は参拝後に本人が決める"
+    }
+  ],
+  "duration": {
+    "narration_chars": 0,
+    "estimated_sec": 25,
+    "format_limit_sec": 90,
+    "actual_sec": null
+  },
+  "filming": {
+    "requires_location_shoot": true,
+    "visit_record_id": null,
+    "shrine_name": "{{shrine_name}}",
+    "permission_status": "pending",
+    "tripod_allowed": null,
+    "bystander_risk": "high",
+    "audio_source": "platform_library",
+    "constraints": [
+      "参道は人通りが多く引きの画で映り込みが起きやすい",
+      "商用撮影の可否を要確認"
+    ]
+  },
+  "ai_generated_ratio": 0.2,
+  "factual_claims": [
+    {
+      "claim": "寒川神社周辺は歴史的に海に近い地形だった",
+      "claim_type": "historical",
+      "verification_status": "needs_verification",
+      "in_caption": true,
+      "source_candidates": [
+        "神奈川県史",
+        "寒川町史",
+        "自治体の地形資料"
+      ],
+      "verified_source": null,
+      "hedge_applied": false
+    }
+  ],
+  "fact_check_required": true,
+  "compliance": {
+    "no_guaranteed_outcome": true,
+    "no_fear_framing": true,
+    "no_efficacy_ranking": true,
+    "no_medical_financial_legal_claim": true,
+    "no_fabricated_testimonial": true,
+    "no_overgeneralised_past": true,
+    "subjectivity_marked": false,
+    "hook_checked": true,
+    "hook_payoff_in_body": true,
+    "ai_disclosure_needed": false,
+    "disclaimer_required": false,
+    "notes": "神社を名指しするため、効果の比較・順位づけを絶対に入れないこと（rules.md §2.3）。"
+  },
+  "cta_type": "none",
+  "cta_text": null,
+  "title": null,
+  "placeholders": [
+    "{{shrine_name}}"
+  ],
+  "derived_from": null,
+  "seasonal_window": null,
+  "batch": "2026-09",
+  "created_at": "2026-09-18",
+  "approved_by": null,
+  "published_at": null
+}

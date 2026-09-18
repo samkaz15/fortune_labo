@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/sns/script/schemas/video_script.schema.json",
+  "title": "Video Script",
+  "description": "A10-SC Script Agent が出力する動画台本。agents/sns/x/schemas/x_post.schema.json の basis / factual_claims / compliance を継承し、動画固有の shot_list / filming / duration / hook3層 を加える。basis が空の台本、撮影許諾が未確認のまま撮影へ進む台本は構造として出力できない。",
+  "type": "object",
+  "required": [
+    "id", "status", "format", "tier", "theme", "target",
+    "basis", "hook", "script_body", "shot_list", "duration",
+    "cta_type", "compliance", "filming", "created_at"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^VS-[0-9]{4}$" },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "fact_check_pending", "qa_pending", "approved_script", "shot", "published", "blocked", "rejected"],
+      "description": "approved_script = 台本が人間承認された段階。撮影はこの後。published までに完成尺の承認がもう一度入る。"
+    },
+    "blocked_reason": { "type": ["string", "null"], "description": "status が blocked のとき必須。何が欠けていて誰が供給できるかを書く。" },
+    "format": {
+      "type": "string",
+      "enum": ["tiktok", "reels", "shorts", "youtube_long"],
+      "description": "formats.md の4種。尺の上限と文字数の検査に使う。"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["V-A", "V-B", "V-C"],
+      "description": "positioning.md §5。V-D は出力されない。"
+    },
+    "theme": { "type": "string" },
+    "target": { "type": "string", "description": "誰に向けた動画か。属性ラベルではなく、その人が置かれている状況で書く。" },
+    "basis": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "enum": ["firsthand", "practitioner_view", "verified_fact", "mechanism"] },
+      "description": "rules.md §1.1。mechanism 単独は運気を主題とする台本には不足。"
+    },
+    "hook": {
+      "type": "object",
+      "description": "冒頭3秒。writing.md §2 の3層すべてを構造として要求する。",
+      "required": ["visual", "audio", "caption"],
+      "properties": {
+        "visual": { "type": "string", "description": "何が映っているか" },
+        "audio": { "type": "string", "description": "何と言うか。空文字は無音スタート（意図的なら可）" },
+        "caption": { "type": "string", "description": "テロップ。音声の書き起こしではなく要約", "minLength": 1 },
+        "pattern": {
+          "type": ["string", "null"],
+          "enum": ["surprising_fact", "premise_denial", "order_reversal", "concrete_date", "silent_action", "question", null]
+        },
+        "silent_viable": {
+          "type": "boolean",
+          "description": "音を消しても意味が通るか。false の台本は positioning.md §8 の追認テストに落ちている"
+        }
+      },
+      "additionalProperties": false
+    },
+    "hook_candidates": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["visual", "audio", "caption"],
+        "properties": {
+          "visual": { "type": "string" },
+          "audio": { "type": "string" },
+          "caption": { "type": "string" },
+          "pattern": { "type": ["string", "null"] },
+          "rejected_reason": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      },
+      "description": "responsibilities.md §B。3案以上と選定理由を記録する。"
+    },
+    "hook_choice_rationale": { "type": ["string", "null"] },
+    "script_body": {
+      "type": "string",
+      "description": "話し言葉の台本本文。ルビと間の指示を含む。writing.md §1・§5。"
+    },
+    "shot_list": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["from_sec", "to_sec", "visual", "source"],
+        "properties": {
+          "from_sec": { "type": "number", "minimum": 0 },
+          "to_sec": { "type": "number", "minimum": 0 },
+          "visual": { "type": "string", "description": "何を撮るか。どう撮るか（構図・光）は A11 の領域" },
+          "audio": { "type": ["string", "null"] },
+          "caption": { "type": ["string", "null"] },
+          "source": {
+            "type": "string",
+            "enum": ["現地撮影", "本人収録", "図解", "イメージ"],
+            "description": "現地撮影 は参拝記録IDと撮影許諾が必要。図解・イメージ は AI 生成可（positioning.md §4）"
+          },
+          "note": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "duration": {
+      "type": "object",
+      "required": ["narration_chars", "estimated_sec", "format_limit_sec"],
+      "properties": {
+        "narration_chars": { "type": "integer", "minimum": 0, "description": "音声として読む全角文字数" },
+        "estimated_sec": { "type": "number", "description": "narration_chars ÷ 325字/分 で算出（writing.md §8）" },
+        "format_limit_sec": { "type": "number", "description": "そのフォーマットの上限" },
+        "actual_sec": { "type": ["number", "null"], "description": "収録後に記入。想定との乖離を次バッチの係数へ反映する" }
+      },
+      "additionalProperties": false
+    },
+    "filming": {
+      "type": "object",
+      "description": "撮影前チェック（responsibilities.md §G）。現地撮影を含む台本はここが揃うまで撮影に進まない。",
+      "required": ["requires_location_shoot", "permission_status"],
+      "properties": {
+        "requires_location_shoot": { "type": "boolean", "description": "shot_list に 現地撮影 が含まれるか" },
+        "visit_record_id": { "type": ["string", "null"], "description": "現地撮影がある場合に必須" },
+        "shrine_name": { "type": ["string", "null"] },
+        "permission_status": {
+          "type": "string",
+          "enum": ["confirmed_video_commercial", "confirmed_photo_only", "pending", "denied", "not_applicable"],
+          "description": "写真の許諾は動画の許諾ではない（rules.md §4.1）。confirmed_photo_only では現地撮影に進めない"
+        },
+        "tripod_allowed": { "type": ["boolean", "null"] },
+        "bystander_risk": { "type": ["string", "null"], "enum": ["low", "medium", "high", null], "description": "他の参拝者の映り込み（rules.md §4.2）" },
+        "audio_source": { "type": ["string", "null"], "enum": ["platform_library", "none", "narration_only", null], "description": "市販楽曲は使わない（rules.md §4.3）" },
+        "constraints": { "type": "array", "items": { "type": "string" }, "default": [] }
+      },
+      "additionalProperties": false
+    },
+    "ai_generated_ratio": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "shot_list のうち 図解＋イメージ の秒数比。0.5 を超える台本は一次情報が薄い（kpi.md では 0.3 以下を目標）"
+    },
+    "factual_claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim", "verification_status"],
+        "properties": {
+          "claim": { "type": "string" },
+          "claim_type": { "type": "string", "enum": ["historical", "cultural", "calendrical", "shrine_origin", "food_tradition", "numeric", "mechanism", "other"] },
+          "verification_status": { "type": "string", "enum": ["verified", "needs_verification", "unverifiable", "refuted"] },
+          "in_caption": { "type": "boolean", "default": false, "description": "テロップに出すか。出す事実は criticality を1段上げて A29 へ渡す（outputs.md）" },
+          "source_candidates": { "type": "array", "items": { "type": "string" }, "default": [] },
+          "verified_source": { "type": ["string", "null"] },
+          "hedge_applied": { "type": "boolean", "default": false }
+        },
+        "additionalProperties": false
+      },
+      "default": []
+    },
+    "fact_check_required": { "type": "boolean", "default": false },
+    "compliance": {
+      "type": "object",
+      "description": "rules.md §2 の自己点検。QA は二番目のゲート。hook_checked はフック・テロップ・タイトルを含む。",
+      "required": ["no_guaranteed_outcome", "no_fear_framing", "no_efficacy_ranking", "no_medical_financial_legal_claim", "no_fabricated_testimonial", "subjectivity_marked", "hook_checked"],
+      "properties": {
+        "no_guaranteed_outcome": { "type": "boolean" },
+        "no_fear_framing": { "type": "boolean" },
+        "no_efficacy_ranking": { "type": "boolean" },
+        "no_medical_financial_legal_claim": { "type": "boolean" },
+        "no_fabricated_testimonial": { "type": "boolean" },
+        "no_overgeneralised_past": { "type": "boolean", "default": true },
+        "subjectivity_marked": { "type": "boolean" },
+        "hook_checked": { "type": "boolean", "description": "フック・テロップ・タイトル・サムネイル案を点検したか" },
+        "hook_payoff_in_body": { "type": "boolean", "default": true, "description": "フックが本編で回収されるか。false は rules.md §2 違反" },
+        "ai_disclosure_needed": { "type": "boolean", "default": false },
+        "disclaimer_required": { "type": "boolean", "default": false },
+        "notes": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "cta_type": { "type": "string", "enum": ["follow", "profile", "save", "comment", "watch_long", "none"] },
+    "cta_text": { "type": ["string", "null"] },
+    "title": { "type": ["string", "null"], "description": "YouTube 用。煽りタイトルは rules.md §2 で禁止" },
+    "placeholders": { "type": "array", "items": { "type": "string", "pattern": "^\\{\\{[a-z_]+\\}\\}$" }, "default": [] },
+    "derived_from": { "type": ["string", "null"], "pattern": "^VS-[0-9]{4}$", "description": "多尺展開の親。長尺を原本として短尺を抜く（formats.md）" },
+    "seasonal_window": {
+      "type": ["object", "null"],
+      "required": ["occasion", "publish_by"],
+      "properties": {
+        "occasion": { "type": "string" },
+        "publish_by": { "type": "string", "format": "date" },
+        "lead_time_days": { "type": "integer", "description": "許諾取得と事実確認を含む。動画はテキストより1〜2週長い（workflow.md）" }
+      },
+      "additionalProperties": false
+    },
+    "batch": { "type": ["string", "null"], "pattern": "^[0-9]{4}-[0-9]{2}$" },
+    "created_at": { "type": "string", "format": "date" },
+    "approved_by": { "type": ["string", "null"] },
+    "published_at": { "type": ["string", "null"], "format": "date-time" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "blocked" } }, "required": ["status"] },
+      "then": { "required": ["blocked_reason"], "properties": { "blocked_reason": { "type": "string" } } }
+    },
+    {
+      "if": {
+        "allOf": [
+          { "properties": { "filming": { "properties": { "requires_location_shoot": { "const": true } }, "required": ["requires_location_shoot"] } }, "required": ["filming"] },
+          { "not": { "properties": { "status": { "const": "blocked" } }, "required": ["status"] } }
+        ]
+      },
+      "then": {
+        "properties": {
+          "filming": {
+            "required": ["visit_record_id", "permission_status"],
+            "properties": {
+              "visit_record_id": { "type": "string" },
+              "permission_status": { "const": "confirmed_video_commercial" }
+            }
+          }
+        },
+        "description": "現地撮影を含む台本は、参拝記録IDと『動画・商用』の許諾が揃っていなければならない。写真のみの許諾では不可（rules.md §4.1）。blocked のときだけ免除され、それは欠落を記録するための状態。"
+      }
+    },
+    {
+      "if": { "properties": { "tier": { "const": "V-A" } }, "required": ["tier"] },
+      "then": {
+        "anyOf": [
+          { "properties": { "basis": { "contains": { "const": "firsthand" } } } },
+          { "properties": { "basis": { "contains": { "const": "practitioner_view" } } } }
+        ]
+      }
+    },
+    {
+      "if": { "properties": { "fact_check_required": { "const": true } }, "required": ["fact_check_required"] },
+      "then": { "properties": { "factual_claims": { "minItems": 1 } } }
+    },
+    {
+      "if": { "properties": { "status": { "enum": ["approved_script", "shot", "published"] } }, "required": ["status"] },
+      "then": {
+        "properties": {
+          "placeholders": { "maxItems": 0 },
+          "factual_claims": { "items": { "properties": { "verification_status": { "const": "verified" } } } },
+          "compliance": {
+            "properties": {
+              "no_guaranteed_outcome": { "const": true },
+              "no_fear_framing": { "const": true },
+              "no_efficacy_ranking": { "const": true },
+              "no_medical_financial_legal_claim": { "const": true },
+              "no_fabricated_testimonial": { "const": true },
+              "hook_checked": { "const": true },
+              "hook_payoff_in_body": { "const": true }
+            }
+          }
+        },
+        "description": "台本承認のゲート。未解決のプレースホルダ・未検証クレーム・未点検のコンプラがあれば承認段階へ進めない。"
+      }
+    }
+  ],
+  "additionalProperties": false
+}
