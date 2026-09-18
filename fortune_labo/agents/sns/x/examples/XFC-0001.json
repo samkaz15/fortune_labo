@@ -1,0 +1,55 @@
+{
+  "id": "XFC-0001",
+  "post_id": "X-0001",
+  "category": "D",
+  "post_context": "重陽の節句が9月9日であること、菊と結びついていること、旧暦と新暦のずれで菊の時期と合わなくなっていることを説明する投稿。3つ目のクレームが落ちると投稿の主旨が成立しない。",
+  "claims": [
+    {
+      "claim_ref": "body:1",
+      "claim": "五節句は1月7日・3月3日・5月5日・7月7日・9月9日である",
+      "claim_type": "cultural",
+      "criticality": "supporting",
+      "source_candidates": [
+        { "source": "年中行事辞典", "source_type": "reference_work", "url": null, "checked": false },
+        { "source": "国史大辞典", "source_type": "reference_work", "url": null, "checked": false }
+      ],
+      "agent_confidence": "likely_true",
+      "proposed_hedge": "五節句のひとつに数えられています",
+      "overgeneralisation_risk": false
+    },
+    {
+      "claim_ref": "body:2",
+      "claim": "重陽の節句は菊を用いる行事で、菊の節句とも呼ばれる",
+      "claim_type": "cultural",
+      "criticality": "supporting",
+      "source_candidates": [
+        { "source": "年中行事辞典", "source_type": "reference_work", "url": null, "checked": false },
+        { "source": "国立国会図書館デジタルコレクション", "source_type": "museum_or_archive", "url": null, "checked": false }
+      ],
+      "agent_confidence": "likely_true",
+      "proposed_hedge": "菊の節句とも呼ばれてきたと言われています",
+      "overgeneralisation_risk": false
+    },
+    {
+      "claim_ref": "body:3",
+      "claim": "旧暦9月9日は新暦では10月ごろにあたり、菊の開花期と重なる",
+      "claim_type": "calendrical",
+      "criticality": "load_bearing",
+      "source_candidates": [
+        { "source": "国立天文台 暦計算室", "source_type": "academic", "url": null, "checked": false },
+        { "source": "暦要項", "source_type": "government_or_municipal", "url": null, "checked": false }
+      ],
+      "agent_confidence": "uncertain",
+      "proposed_hedge": "年によって幅があるため「10月ごろ」と幅を持たせる。年を特定して断定しない",
+      "overgeneralisation_risk": false
+    }
+  ],
+  "additional_research_needed": [
+    "旧暦9月9日が新暦のいつにあたるかは年によって変動する。「10月ごろ」という幅の書き方が妥当か、それとも特定年を示すべきか",
+    "菊の開花期と重陽を結びつける記述に、一次資料の裏づけがあるか"
+  ],
+  "urgency": "seasonal_deadline",
+  "needed_by": "2026-09-06",
+  "resolution": null,
+  "created_at": "2026-09-08"
+}

@@ -1,0 +1,62 @@
+{
+  "id": "X-0002",
+  "status": "blocked",
+  "blocked_reason": "参拝記録が存在しない。寒川神社を「訪れた場所」として書くには visit_record_id が必要（agents/seo/rules.md §2）。由緒のみを扱う X-B 版に書き換えるか、参拝計画を A06 SEO Agent に依頼すること。",
+  "category": "A",
+  "x_tier": "X-A",
+  "theme": "寒川神社",
+  "target": "相模国一之宮として名前は知っているが、由緒を知らない人",
+  "angle": "history",
+  "basis": ["firsthand", "verified_fact"],
+  "visit_record_id": null,
+  "hook": "実は、寒川神社には知っておいた方がいい歴史があります。",
+  "hook_pattern": "surprising_fact",
+  "hook_candidates": [
+    { "text": "実は、寒川神社には知っておいた方がいい歴史があります。", "pattern": "surprising_fact", "rejected_reason": null },
+    { "text": "相模国一之宮が、なぜこの場所にあるのか。", "pattern": "question", "rejected_reason": "由緒の確認が取れるまで問いを立てられない" },
+    { "text": "先日、寒川神社に参拝してきました。", "pattern": "shared_experience", "rejected_reason": "参拝記録がない状態では書けない。これ自体が rules.md §3.8 違反" }
+  ],
+  "hook_choice_rationale": "未確定。参拝記録と由緒の確認が揃うまで本文を書かない。",
+  "body": "",
+  "cta": "",
+  "cta_type": "none",
+  "cta_url": null,
+  "hashtags": [],
+  "source_required": true,
+  "fact_check_required": true,
+  "factual_claims": [
+    {
+      "claim": "寒川神社の由緒（創建・祭神・沿革）",
+      "claim_type": "shrine_origin",
+      "verification_status": "needs_verification",
+      "source_candidates": ["寒川神社公式サイトの由緒", "神奈川県史", "寒川町史"],
+      "verified_source": null,
+      "hedge_applied": false
+    }
+  ],
+  "risk_level": "high",
+  "compliance": {
+    "no_guaranteed_outcome": true,
+    "no_fear_framing": true,
+    "no_efficacy_ranking": true,
+    "no_medical_financial_legal_claim": true,
+    "no_fabricated_testimonial": true,
+    "no_overgeneralised_past": true,
+    "subjectivity_marked": false,
+    "hook_checked": true,
+    "disclaimer_required": true,
+    "disclaimer_placement": "profile_link",
+    "notes": "特定神社を名指しするため risk_level: high。効果の比較・順位づけは絶対に書かない（rules.md §2.3）。"
+  },
+  "placeholders": [],
+  "thread": null,
+  "char_count": null,
+  "seasonal_window": null,
+  "repurpose_candidates": ["article", "instagram"],
+  "related_posts": [],
+  "plan_id": "XPLAN-0002",
+  "batch": "2026-09",
+  "created_at": "2026-09-08",
+  "approved_by": null,
+  "published_at": null
+}

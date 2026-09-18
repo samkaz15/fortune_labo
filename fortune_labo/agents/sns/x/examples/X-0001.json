@@ -1,0 +1,93 @@
+{
+  "id": "X-0001",
+  "status": "fact_check_pending",
+  "category": "D",
+  "x_tier": "X-B",
+  "theme": "重陽の節句",
+  "target": "季節の行事は知っているが、9月9日に何をする日なのかは知らない人",
+  "angle": "seasonal",
+  "basis": ["verified_fact", "mechanism"],
+  "visit_record_id": null,
+  "hook": "9月9日は、五節句の最後にあたる日です。",
+  "hook_pattern": "concrete_date",
+  "hook_candidates": [
+    {
+      "text": "9月9日は、五節句の最後にあたる日です。",
+      "pattern": "concrete_date",
+      "rejected_reason": null
+    },
+    {
+      "text": "3月3日と5月5日は知られているのに、9月9日はほとんど知られていません。",
+      "pattern": "surprising_fact",
+      "rejected_reason": "「知られていない」の程度を裏づける出典がない。rules.md §3.2 に触れる"
+    },
+    {
+      "text": "なぜ節句は奇数の月と日が重なる日なのか、考えたことはありますか。",
+      "pattern": "question",
+      "rejected_reason": "回収に必要な説明が長く、本文の理由セクションが入らない"
+    }
+  ],
+  "hook_choice_rationale": "concrete_date は冒頭で情報そのものを渡せる。question 型は好奇心のみで、字数を理由セクションから奪う。",
+  "body": "五節句は、1月7日・3月3日・5月5日・7月7日・9月9日。\n最後の9月9日が重陽の節句です。\n\n菊を用いる行事として知られていて、菊の節句とも呼ばれます。\n\nもともとは旧暦の行事なので、今の暦では10月ごろ。\n菊が咲く時期に重なります。今の9月9日に菊が手に入りにくいのは、暦がずれたためです。\n\n季節の変わり目に、体を整える区切りを置く。\n私の見立てでは、節句の実用的な意味はそこにあります。",
+  "cta": "秋の入り口に、季節のものを食べる日として使ってみてください。",
+  "cta_type": "try",
+  "cta_url": null,
+  "hashtags": ["重陽の節句"],
+  "source_required": true,
+  "fact_check_required": true,
+  "factual_claims": [
+    {
+      "claim": "五節句は1月7日・3月3日・5月5日・7月7日・9月9日である",
+      "claim_type": "cultural",
+      "verification_status": "needs_verification",
+      "source_candidates": ["年中行事辞典", "国史大辞典"],
+      "verified_source": null,
+      "hedge_applied": false
+    },
+    {
+      "claim": "重陽の節句は菊を用いる行事で、菊の節句とも呼ばれる",
+      "claim_type": "cultural",
+      "verification_status": "needs_verification",
+      "source_candidates": ["年中行事辞典", "国立国会図書館デジタルコレクション"],
+      "verified_source": null,
+      "hedge_applied": false
+    },
+    {
+      "claim": "旧暦9月9日は新暦では10月ごろにあたる",
+      "claim_type": "calendrical",
+      "verification_status": "needs_verification",
+      "source_candidates": ["国立天文台 暦計算室", "暦要項"],
+      "verified_source": null,
+      "hedge_applied": false
+    }
+  ],
+  "risk_level": "low",
+  "compliance": {
+    "no_guaranteed_outcome": true,
+    "no_fear_framing": true,
+    "no_efficacy_ranking": true,
+    "no_medical_financial_legal_claim": true,
+    "no_fabricated_testimonial": true,
+    "no_overgeneralised_past": true,
+    "subjectivity_marked": true,
+    "hook_checked": true,
+    "disclaimer_required": false,
+    "disclaimer_placement": null,
+    "notes": "「体を整える区切り」は健康効果の主張ではなく、行事の意味づけとして書いている。効能に踏み込まないこと。"
+  },
+  "placeholders": [],
+  "thread": null,
+  "char_count": 198,
+  "seasonal_window": {
+    "occasion": "重陽の節句",
+    "post_by": "2026-09-09",
+    "lead_time_days": 21
+  },
+  "repurpose_candidates": ["ameba", "article"],
+  "related_posts": [],
+  "plan_id": "XPLAN-0001",
+  "batch": "2026-09",
+  "created_at": "2026-09-08",
+  "approved_by": null,
+  "published_at": null
+}

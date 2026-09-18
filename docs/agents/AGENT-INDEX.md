@@ -21,6 +21,8 @@
 | A08 | Content Production Agent | Create articles, pages, scripts and derivative content | Draft articles, LP copy, scripts | P0 |
 | A09 | SNS Strategy Agent | Design channel-specific acquisition strategy | Channel strategy, calendars, campaign plans | P0 |
 | A10 | SNS Content Agent | Adapt core content to each social platform | X, Instagram, Threads, Facebook, TikTok, Ameba drafts | P0 |
+| **A10-X** | **X Content Agent** | Plan and write posts for X on 歴史・日本文化 × 開運アクション × 占い × 日常生活 | X post drafts, content plans, fact-check requests, performance interpretation | **P0 — implemented** |
+| **A10-SC** | **Script Agent** | 動画台本の企画・執筆（TikTok / Reels / Shorts / YouTube） | 動画台本、ショットリスト、事実確認依頼、パフォーマンス解釈 | **P0 — implemented** |
 | A11 | Creative Agent | Develop visual/video creative concepts | Hooks, creative briefs, storyboards, image/video prompts | P1 |
 | A12 | Influencer/PR Agent | Identify partnerships, PR angles and collaboration opportunities | Prospect lists, outreach concepts, PR angles | P2 |
 
@@ -83,6 +85,50 @@
 | A40 | Marketing Director Agent | Coordinate acquisition, brand, content and campaigns | Marketing plan, campaign priorities | P1 |
 | A41 | Product Manager Agent | Coordinate website/service/product development | Product roadmap, requirements, priorities | P1 |
 | A42 | Chief of Staff Agent | Coordinate decisions, meetings, tasks and follow-ups | Decision summaries, action lists, escalation | P2 |
+
+---
+
+# Implementation status
+
+Which agents exist as specifications in this repository, as opposed to being
+listed as intended above.
+
+| ID | Agent | Directory | Status |
+| --- | --- | --- | --- |
+| A06 | SEO Agent | `fortune_labo/agents/seo/` | Implemented |
+| A10 | SNS Content Agent | `fortune_labo/agents/sns/` | Parent scope only — channel boundaries defined, no channel logic |
+| **A10-X** | **X Content Agent** | `fortune_labo/agents/sns/x/` | **Implemented** — spec, prompts, 4 schemas, validator, examples |
+| **A10-SC** | **Script Agent** | `fortune_labo/agents/sns/script/` | **Implemented** — spec, prompts, 3 schemas, validator, examples |
+
+Everything else in the tables above is defined but not implemented. Where an
+implemented agent depends on an unimplemented one, the dependency is recorded
+in that agent's own directory rather than worked around silently — see
+`fortune_labo/agents/sns/x/workflow.md` (Interim operation) for the current
+example.
+
+## Channel sub-agents
+
+A10 is implemented as a parent scope with channel sub-agents rather than a single
+multi-platform agent, because the channels differ enough that one shared
+specification would be too vague to constrain anything. Sub-agents take the form
+`A10-<channel>`.
+
+サブエージェントには2種類あります。**チャネル別**と**フォーマット別**です。
+
+| ID | 種別 | 対象 | Status |
+| --- | --- | --- | --- |
+| A10-X | チャネル | X (旧Twitter) | Implemented |
+| **A10-SC** | **フォーマット** | **動画台本（TikTok / Reels / Shorts / YouTube）** | **Implemented** |
+| A10-IG | チャネル | Instagram | Not implemented |
+| A10-TH | チャネル | Threads | Not implemented |
+| A10-AB | チャネル | Ameba ブログ | Not implemented |
+| A10-FB | チャネル | Facebook | Not implemented |
+
+TikTok に単独のチャネルサブエージェントを置いていないのは意図的です。動画は
+同じ素材が複数の尺へ展開されるため、A10-SC が各フォーマットを担当します。
+
+Ad-hoc drafts for channels without a sub-agent live in
+`fortune_labo/content/sns/` under that directory's stated constraints.
 
 ---
 

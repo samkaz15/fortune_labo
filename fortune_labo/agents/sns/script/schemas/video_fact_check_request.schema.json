@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/samkaz15/fortune_labo/agents/sns/script/schemas/video_fact_check_request.schema.json",
+  "title": "Video Fact-Check Request",
+  "description": "A10-SC から A29 Fact-Check への受け渡し（A28 QA 経由）。x_fact_check_request と同型だが、テロップに焼き付く事実は criticality を1段上げて渡す。動画は撮影コストが高く、事実が崩れると台本ごと捨てることになるため、依頼は執筆前に出す。",
+  "type": "object",
+  "required": ["id", "script_id", "claims", "urgency", "created_at"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^VFC-[0-9]{4}$" },
+    "script_id": { "type": "string", "pattern": "^VS-[0-9]{4}$" },
+    "format": { "type": ["string", "null"], "enum": ["tiktok", "reels", "shorts", "youtube_long", null] },
+    "script_context": { "type": ["string", "null"], "description": "台本が何を言おうとしているか。ぼかしても主旨が残るかを検証者が判断できるように" },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["claim_ref", "claim", "claim_type", "criticality"],
+        "properties": {
+          "claim_ref": { "type": "string", "description": "台本内の位置。hook / body:3 / caption:2 など" },
+          "claim": { "type": "string" },
+          "claim_type": { "type": "string", "enum": ["historical", "cultural", "calendrical", "shrine_origin", "food_tradition", "numeric", "attribution", "other"] },
+          "criticality": {
+            "type": "string",
+            "enum": ["load_bearing", "supporting", "incidental"],
+            "description": "load_bearing は反証されたら台本ごと破棄。テロップに出す事実は1段上げる"
+          },
+          "in_caption": { "type": "boolean", "default": false, "description": "テロップに出るか。画面に焼き付く情報は取り消しが効かない" },
+          "in_hook": { "type": "boolean", "default": false, "description": "冒頭3秒に含まれるか。最も多く見られる箇所" },
+          "source_candidates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["source"],
+              "properties": {
+                "source": { "type": "string" },
+                "source_type": { "type": "string", "enum": ["shrine_official", "government_or_municipal", "academic", "reference_work", "museum_or_archive", "practitioner", "other"] },
+                "url": { "type": ["string", "null"] },
+                "checked": { "type": "boolean", "default": false }
+              },
+              "additionalProperties": false
+            },
+            "default": []
+          },
+          "agent_confidence": { "type": "string", "enum": ["likely_true", "uncertain", "probably_contested"] },
+          "proposed_hedge": { "type": ["string", "null"], "description": "不確かなまま使う場合の言い回し。ぼかすと主旨が消えるなら、その旨を書く" },
+          "overgeneralisation_risk": { "type": "boolean", "default": false }
+        },
+        "additionalProperties": false
+      }
+    },
+    "additional_research_needed": { "type": "array", "items": { "type": "string" }, "default": [] },
+    "urgency": { "type": "string", "enum": ["standard", "seasonal_deadline", "correction"], "description": "correction は公開済み動画の誤りが疑われる状態。P0（rules.md §7）" },
+    "needed_by": { "type": ["string", "null"], "format": "date", "description": "撮影日から逆算する。編集・承認の日数を含めること" },
+    "resolution": {
+      "type": ["object", "null"],
+      "required": ["resolved_at", "results"],
+      "properties": {
+        "resolved_at": { "type": "string", "format": "date" },
+        "resolved_by": { "type": "string" },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim_ref", "verdict"],
+            "properties": {
+              "claim_ref": { "type": "string" },
+              "verdict": { "type": "string", "enum": ["verified", "refuted", "unverifiable", "verified_with_hedge"] },
+              "source": { "type": ["string", "null"] },
+              "note": { "type": ["string", "null"] }
+            },
+            "additionalProperties": false
+          }
+        },
+        "script_action": { "type": "string", "enum": ["proceed", "proceed_with_hedge", "rewrite", "drop_script"] }
+      },
+      "additionalProperties": false
+    },
+    "created_at": { "type": "string", "format": "date" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "urgency": { "const": "seasonal_deadline" } }, "required": ["urgency"] },
+      "then": { "required": ["needed_by"], "properties": { "needed_by": { "type": "string" } } }
+    }
+  ],
+  "additionalProperties": false
+}

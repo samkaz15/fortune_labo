@@ -1,0 +1,63 @@
+{
+  "id": "XPLAN-0001",
+  "theme": "重陽の節句",
+  "category": "D",
+  "theme_source": "seasonal_calendar",
+  "source_detail": "五節句の最後。9月9日。2026年は post_by が直近のため、次年度は8月上旬から着手する。",
+  "available_basis": ["verified_fact", "mechanism", "practitioner_view"],
+  "missing_basis": [],
+  "target_reader": "季節の行事に関心はあるが、9月9日が何の日かは知らない人。および秋の入り口に生活を整えたい人。",
+  "angles": [
+    {
+      "angle": "seasonal",
+      "entry_point": "9月9日という日付そのものから入る。五節句の位置づけを知らない読者向け",
+      "x_tier": "X-B",
+      "post_id": "X-0001",
+      "scheduled_batch": "2026-09",
+      "dropped_reason": null
+    },
+    {
+      "angle": "history",
+      "entry_point": "旧暦と新暦のずれ。なぜ今の9月9日に菊が咲いていないのか",
+      "x_tier": "X-B",
+      "post_id": null,
+      "scheduled_batch": "2026-09",
+      "dropped_reason": null
+    },
+    {
+      "angle": "practice",
+      "entry_point": "秋の入り口に何を食べるか。季節の食材として具体的に",
+      "x_tier": "X-C",
+      "post_id": null,
+      "scheduled_batch": "2026-09",
+      "dropped_reason": null
+    },
+    {
+      "angle": "fortune",
+      "entry_point": "季節の変わり目を区切りとして使う、という占術上の考え方",
+      "x_tier": "X-A",
+      "post_id": null,
+      "scheduled_batch": "2026-10",
+      "dropped_reason": null
+    },
+    {
+      "angle": "education",
+      "entry_point": "五節句とは何か、を一から",
+      "x_tier": "X-B",
+      "post_id": null,
+      "scheduled_batch": null,
+      "dropped_reason": "seasonal 角度の本文と情報・理由がほぼ重複する。重複テストで落とした（responsibilities.md §B）"
+    }
+  ],
+  "verification_load": "moderate",
+  "seasonal_window": {
+    "occasion": "重陽の節句",
+    "post_by": "2026-09-09",
+    "lead_time_days": 21
+  },
+  "repurpose_value": "high",
+  "related_article_url": null,
+  "status": "in_production",
+  "parked_reason": null,
+  "created_at": "2026-09-08"
+}
