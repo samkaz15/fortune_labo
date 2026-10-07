@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0.0",
+  "content_id": "FL-TEST-A",
+  "site_id": null,
+  "mode": "dry_run",
+  "state": "preview_blocked",
+  "payload_ready": false,
+  "network_ready": false,
+  "publication_allowed": false,
+  "human_approval_required_before_publish": true,
+  "proposed_payload": {
+    "status": "draft",
+    "title": "転職したいのに動けないとき、最初に確かめる三つのこと",
+    "content": "<p>求人を開いては閉じてしまい、応募するところまで進めない。そんなときは、転職するかどうかの結論より先に、変えたい条件、残したい条件、まだ確認していないことを書き分けてみてください。今日の作業は、そのうち一つを確かめるところまでです。</p>\n\n<p>「仕事を変えたい」という気持ちがあっても、応募先を選ぶ材料がそろっているとは限りません。ここでは、気持ちを無理に強くする方法ではなく、何が分かれば次を考えられるのかを整理します。紙一枚か、後から書き足せるメモを用意してください。</p>\n\n<h2>困った場面から、変えたい条件を取り出す</h2>\n\n<!-- A25 pending image: FL-TEST-A-section-01 -->\n\n<p>最初に書くのは、理想の会社名ではなく、最近の仕事で変えたいと感じた一場面です。「今の仕事が合わない」だけで止まったら、いつ、何をしていたときにそう思ったのかを付け加えます。その場面から変えたい部分と、続けてもよい部分を別々に取り出してみましょう。</p>\n\n<p>たとえば、説明用の架空の場面として「資料を作る仕事は続けたいが、夕方に翌朝までの修正を頼まれると予定を組めない」と書いたとします。この場合、確かめたいのは資料作成の仕事があるかだけではありません。依頼の締切を誰が決めるか、急な対応がどの程度あるかも、候補を見るときの問いになります。実在する人の経験や、転職で解決した事例を示すものではありません。</p>\n\n<p>メモには「変えたい：急な依頼への対応」「残したい：資料を組み立てる仕事」と置きます。同じ職種を続ける案も、今の職場で依頼の受け方を相談する案も、ここでは候補に残せます。一つの不満から、仕事全体をやめる結論まで一気に進めなくて構いません。</p>\n\n<h2>分からないことを一つだけ確かめる</h2>\n\n<p>次に、候補の募集内容を一件だけ読み、メモに書いた条件が分かるかを見ます。「働きやすい環境」のような説明だけでは判断できなければ、未確認と書いてください。自分に都合のよい意味を補う代わりに、確認したい問いへ変えるのがこの作業です。</p>\n\n<p>先ほどの仮例なら、「急な依頼はどの部署から来るのか」「締切の相談はできるのか」という問いが考えられます。募集内容で答えが見つからなければ、問い合わせや面談を検討する段階で聞く候補として残します。今日すぐに連絡を取る必要はありません。まずは、掲載済みの情報と、相手に確認しないと分からない情報の境目を見つけてください。</p>\n\n<p>求人そのものを選べない場合は、最近担当した仕事を一つ書くところに戻れます。「何を頼まれたか」「自分はどの部分を進めたか」「次も担当したい部分は何か」が書ければ、その言葉を手がかりに募集内容を読めます。うまく言葉にできない欄は、調べる課題として空けておきましょう。</p>\n\n<h2>次の判断をするためのメモを残す</h2>\n\n<p>作業の終わりには、「確認したこと」「残った問い」「次に見るもの」を一行ずつ残します。たとえば「担当業務は分かった／依頼の締切は未確認／別の募集も一件見る」という形です。応募するか、今の職場で相談するかは、このメモを増やしてから考えられます。</p>\n\n<p>読み返す時期は、自分が時間を取れる日に置いてください。日付を決める目的は決断を急がせることではなく、途中まで考えた内容を再開できるようにすることです。予定が変わったら、メモを残したまま見直す日を動かして構いません。</p>\n\n<p>ここまでで次に確かめることが決まったなら、無料の整理はそこで完了です。数週間にわたって試したことや候補の比較も記録したい場合には、関連ワーク「転職を考える人の90日ワーク――条件、試行、見直しを一冊に残す」を検討できます。そちらは継続して記入するための別の道具で、この一歩を始めるための必須条件ではありません。</p>",
+    "excerpt": "変えたい条件、残したい条件、未確認のことを書き分け、次に確かめる一つを選ぶための整理ガイド。",
+    "slug": "career-first-step-checklist",
+    "categories": null,
+    "tags": null,
+    "featured_media": null,
+    "meta": {}
+  },
+  "request_payload": null,
+  "media_upload_plan": [
+    {
+      "dedup_key": "593c8118f48016ea3bbe74c76f3776f617b722c33c63981635c06a4ea52606e9",
+      "content_id": "FL-TEST-A",
+      "asset_ids": [
+        "FL-TEST-A-featured-asset-01"
+      ],
+      "image_sha256": "a912014f28e8af518f317f609be5d60116785f85deaee31f46b125c545d30058",
+      "relative_path": "images/featured-v1.png",
+      "mime_type": "image/png",
+      "metadata": {
+        "title": "FL-TEST-A-featured",
+        "alt_text": "自然光の入る机に開いた白紙のノート、三枚のカード、鉛筆を置いたAI生成イメージ",
+        "caption": "AI生成のイメージ画像です。実在する場所や体験の写真ではありません。"
+      },
+      "action": "upload",
+      "attachment_id": null,
+      "response_reference": null,
+      "association": {
+        "post": null,
+        "state": "after_draft_creation"
+      }
+    },
+    {
+      "dedup_key": "588c6a04721990c6e720dcbdede7485c06aae01296802ca16a33ae3dec3c543b",
+      "content_id": "FL-TEST-A",
+      "asset_ids": [
+        "FL-TEST-A-section-01-asset-01"
+      ],
+      "image_sha256": "14f1d8c0e9dcf1a963d13711b3da231931e2ae9b4f2c34be78926f815b103517",
+      "relative_path": "images/section-01.png",
+      "mime_type": "image/png",
+      "metadata": {
+        "title": "FL-TEST-A-section-01",
+        "alt_text": "仕事の条件を、変えたいこと・残したいこと・未確認のことに分ける整理図",
+        "caption": "本文の整理手順を示す説明図です。記入例は架空の例です。"
+      },
+      "action": "upload",
+      "attachment_id": null,
+      "response_reference": null,
+      "association": {
+        "post": null,
+        "state": "after_draft_creation"
+      }
+    }
+  ],
+  "inline_media": [
+    {
+      "image_id": "FL-TEST-A-section-01",
+      "attachment_id": null,
+      "section_heading": "困った場面から、変えたい条件を取り出す",
+      "placement": "after_h2",
+      "alt_text": "仕事の条件を、変えたいこと・残したいこと・未確認のことに分ける整理図",
+      "caption": "本文の整理手順を示す説明図です。記入例は架空の例です。"
+    }
+  ],
+  "editorial_metadata": {
+    "content_id": "FL-TEST-A",
+    "access_type": "FREE",
+    "seo_policy_version": "seo-policy-0.1.0-draft",
+    "article_version": "article-1.0.0",
+    "visual_style_version": "visual-style-0.1.0",
+    "draft_sha256": "adcb4e41b30cb9fcacf63666e957443e32656c27ff5fcdb96ec7b863450c15be",
+    "image_plan_sha256": "ea17d5b0632436aeee662b23e82d8ee3a7668ba92ec300740b89219f10113f12",
+    "fact_check_status": "passed",
+    "qa_status": "passed",
+    "internal_links": [
+      {
+        "target_content_id": "FL-TEST-C",
+        "target_url": null,
+        "anchor_text": "転職を考える人の90日ワーク――条件、試行、見直しを一冊に残す",
+        "rationale": "基本整理と継続ワークを必要に応じて行き来する",
+        "direction": "outbound_from_this_page",
+        "status": "candidate"
+      }
+    ],
+    "cta": {
+      "type": "related_content",
+      "destination": null,
+      "placement": "本文で回答した後の末尾",
+      "copy_direction": "任意の次の行動。未確認のサービスや公開URLを実在と断定しない。",
+      "status": "candidate"
+    }
+  },
+  "seo_metadata": {
+    "primary_keyword": "転職したい 動けない",
+    "secondary_keywords": [],
+    "search_intent": "informational",
+    "meta_description": "変えたい条件、残したい条件、未確認のことを書き分け、次に確かめる一つを選ぶための整理ガイド。",
+    "canonical_url": null,
+    "keyword_status": "offline_candidate_not_measured"
+  },
+  "qa_reference": "59a8303b5ce0a71042c3a8f5bae5986cdf0fb08c9e880ab8b26bdbe24b3ce75a",
+  "blockers": [
+    "media_upload_required:FL-TEST-A-featured",
+    "media_upload_required:FL-TEST-A-section-01"
+  ],
+  "source_article_sha256": "adcb4e41b30cb9fcacf63666e957443e32656c27ff5fcdb96ec7b863450c15be",
+  "rendered_content_sha256": "57838f78614d95edfe393665ad20966c99293a4e2a8b9ba8d7f27c56e2bae484",
+  "connection_status": "not_connected",
+  "wordpress_post_id": null,
+  "package_sha256": "e1688afcaaf7d89fa6c1ddeed68fb9cec877289e2d565f9b16f2bfe61937b829"
+}

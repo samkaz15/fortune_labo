@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "content_id": "FL-TEST-A",
+  "draft_sha256": "adcb4e41b30cb9fcacf63666e957443e32656c27ff5fcdb96ec7b863450c15be",
+  "image_plan_sha256": "ea17d5b0632436aeee662b23e82d8ee3a7668ba92ec300740b89219f10113f12",
+  "scope": "offline_fixture",
+  "blockers": [],
+  "gates": {
+    "A29": {
+      "status": "passed",
+      "evidence_ref": "docs/editorial/CREATIVE_PIPELINE_QA.md#fl-test-a",
+      "reviewer_kind": "model_review"
+    },
+    "A32": {
+      "status": "passed",
+      "evidence_ref": "docs/editorial/CREATIVE_PIPELINE_QA.md#fl-test-a",
+      "reviewer_kind": "model_review"
+    },
+    "A28": {
+      "status": "passed",
+      "evidence_ref": "docs/editorial/CREATIVE_PIPELINE_QA.md#fl-test-a",
+      "reviewer_kind": "model_review"
+    }
+  },
+  "human_approval": null,
+  "publication_allowed": false,
+  "publish_blockers": [
+    "正式SEO方針・A06の本番採用・著者等の確認",
+    "CTA・内部リンク・商品仕様の確認",
+    "WordPress接続・Media登録・メタデータ登録",
+    "対象記事の人間公開承認"
+  ]
+}

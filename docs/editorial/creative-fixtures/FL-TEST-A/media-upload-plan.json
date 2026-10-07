@@ -1,0 +1,51 @@
+{
+  "content_id": "FL-TEST-A",
+  "site_id": null,
+  "uploads": [
+    {
+      "dedup_key": "593c8118f48016ea3bbe74c76f3776f617b722c33c63981635c06a4ea52606e9",
+      "content_id": "FL-TEST-A",
+      "asset_ids": [
+        "FL-TEST-A-featured-asset-01"
+      ],
+      "image_sha256": "a912014f28e8af518f317f609be5d60116785f85deaee31f46b125c545d30058",
+      "relative_path": "images/featured-v1.png",
+      "mime_type": "image/png",
+      "metadata": {
+        "title": "FL-TEST-A-featured",
+        "alt_text": "自然光の入る机に開いた白紙のノート、三枚のカード、鉛筆を置いたAI生成イメージ",
+        "caption": "AI生成のイメージ画像です。実在する場所や体験の写真ではありません。"
+      },
+      "action": "upload",
+      "attachment_id": null,
+      "response_reference": null,
+      "association": {
+        "post": null,
+        "state": "after_draft_creation"
+      }
+    },
+    {
+      "dedup_key": "588c6a04721990c6e720dcbdede7485c06aae01296802ca16a33ae3dec3c543b",
+      "content_id": "FL-TEST-A",
+      "asset_ids": [
+        "FL-TEST-A-section-01-asset-01"
+      ],
+      "image_sha256": "14f1d8c0e9dcf1a963d13711b3da231931e2ae9b4f2c34be78926f815b103517",
+      "relative_path": "images/section-01.png",
+      "mime_type": "image/png",
+      "metadata": {
+        "title": "FL-TEST-A-section-01",
+        "alt_text": "仕事の条件を、変えたいこと・残したいこと・未確認のことに分ける整理図",
+        "caption": "本文の整理手順を示す説明図です。記入例は架空の例です。"
+      },
+      "action": "upload",
+      "attachment_id": null,
+      "response_reference": null,
+      "association": {
+        "post": null,
+        "state": "after_draft_creation"
+      }
+    }
+  ],
+  "executed": false
+}

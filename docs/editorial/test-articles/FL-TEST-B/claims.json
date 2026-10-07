@@ -1,0 +1,332 @@
+{
+  "method": "sentence_candidates_not_verified_claims",
+  "requires_full_draft_review": true,
+  "claims": [
+    {
+      "claim_id": "CLAIM-001",
+      "line": 3,
+      "text": "返信が来ないとき、追加で何か送ったほうがよいのか、それとも待ったほうがよいのか迷うことがあります。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-002",
+      "line": 3,
+      "text": "まず確認するのは、返事が必要な用件、これまでのやり取り、相手が伝えている希望です。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-003",
+      "line": 3,
+      "text": "返信の遅さだけで気持ちを決めつけず、連絡の判断と自分の予定を分けて考えてみてください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-004",
+      "line": 5,
+      "text": "このガイドでは、相手の本心を当てる方法や、返信を得られる決まり文句は扱いません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-005",
+      "line": 5,
+      "text": "自分が確認できている情報から、送る目的と今日の過ごし方を整理するための手順を示します。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-006",
+      "line": 9,
+      "text": "「昨夜、近況を送った。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-007",
+      "line": 9,
+      "text": "今は返事がない」という架空の場面で考えてみましょう。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-008",
+      "line": 9,
+      "text": "ここで分かっている出来事と、「嫌われたのかもしれない」という考えは、別の欄に書きます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-009",
+      "line": 9,
+      "text": "後者を無理に消す必要はありませんが、相手が実際に伝えた言葉として扱わないようにします。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-010",
+      "line": 11,
+      "text": "メモの一方には送った用件と日時、もう一方には気になっていることを置きます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-011",
+      "line": 11,
+      "text": "「予定を確定できない」と「自分への気持ちが知りたい」が両方出てきたら、まずどちらへの返事を求めているのかを選んでください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-012",
+      "line": 11,
+      "text": "同じメッセージに全部を載せる前に、今確認する必要のあることを絞るためです。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-013",
+      "line": 13,
+      "text": "忙しいのか、どう返そうか迷っているのか、そもそも読んでいないのか。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-014",
+      "line": 13,
+      "text": "可能性を並べても、この場面でどれが当てはまるかは未確認です。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-015",
+      "line": 13,
+      "text": "占いの解釈を使う場合も、その解釈によって相手の事情が確認できたことにはしないでください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-016",
+      "line": 17,
+      "text": "相手から連絡を控えてほしいと言われているなら、その希望を尊重することを、このガイドでは先に置きます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-017",
+      "line": 17,
+      "text": "返事を得るために別のアカウントを探したり、知人から返事を促してもらったりする案は取りません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-018",
+      "line": 17,
+      "text": "すでに送った内容と、相手の言葉を読み返してから次を考えてください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-019",
+      "line": 19,
+      "text": "予定の相談が続いていて、こちらも日時を決める必要がある場合は、その用件に絞った文面を考えられます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-020",
+      "line": 19,
+      "text": "説明用の仮例なら、「日曜の予定は、土曜の昼にこちらの予定を決めようと思っています。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-021",
+      "line": 19,
+      "text": "都合が合いそうなら、それまでに教えてもらえるとうれしいです。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-022",
+      "line": 19,
+      "text": "難しければ今回は見送りましょう」という書き方です。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-023",
+      "line": 19,
+      "text": "すでに一緒の予定を相談している場面の例であり、返信や同意を保証する文章ではありません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": true
+    },
+    {
+      "claim_id": "CLAIM-024",
+      "line": 21,
+      "text": "確認する用件がなく、不安を落ち着けるためだけに送りたくなったなら、文章を下書きに置く選び方もあります。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-025",
+      "line": 21,
+      "text": "読み返すときには「この返事があれば、自分は何を決められるのか」と考えてみてください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-026",
+      "line": 21,
+      "text": "答えがまだ出なければ、その日は送らずに自分の予定を決めても構いません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-027",
+      "line": 25,
+      "text": "返事が来るかもしれないと思うと、ほかの予定を入れにくいこともあるでしょう。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-028",
+      "line": 25,
+      "text": "ただ、返信を待つことと、今日の時間をすべて空けておくことは分けて考えられます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-029",
+      "line": 25,
+      "text": "買い物を済ませる、夕食を作る、気になっていた本を読むなど、連絡と切り離して選べる用事を一つ置いてみてください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-030",
+      "line": 25,
+      "text": "気分が変わるという効果の約束ではなく、時間の使い方を自分で選ぶための提案です。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-031",
+      "line": 27,
+      "text": "落ち着いて見返せるときには、自分が望むやり取りも言葉にしておきましょう。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-032",
+      "line": 27,
+      "text": "「予定の確認には返事がほしい」「毎日の近況は急がなくてよい」のように場面を分けると、相手と話せる機会に伝えたい内容を考えられます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-033",
+      "line": 27,
+      "text": "今すぐその希望への回答を求める必要はありません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-034",
+      "line": 29,
+      "text": "この記事でできるのは、事実と想像を分け、連絡の目的を確かめ、自分の予定を選ぶところまでです。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-035",
+      "line": 29,
+      "text": "さらに自分の傾向を振り返りたいとき、無料診断を選ぶ場合にも、相手の気持ちを確認する手段ではなく、自分が大切にしたい関係を考える材料として使ってください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-036",
+      "line": 29,
+      "text": "診断を使わず、ここで書いたメモを読み返すだけでも、この整理は完結します。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    }
+  ],
+  "content_id": "FL-TEST-B",
+  "review_note": "抽出は全て候補。本文全体をモデルで確認し、架空例・編集上の提案・成果非保証を照合した。外部の統計や成功実績は主張していない。候補の最終分類と公開判断はA29契約と人間レビューへ渡す。"
+}

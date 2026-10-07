@@ -1,0 +1,324 @@
+{
+  "schema_version": "2.0.0",
+  "updated_at": "2026-10-07",
+  "items": [
+    {
+      "content_id": "FL-TEST-A",
+      "title": "転職したいのに動けないとき、最初に確かめる三つのこと",
+      "genre": "career",
+      "primary_keyword": "転職したい 動けない",
+      "secondary_keywords": [],
+      "search_intent": "informational",
+      "explicit_need": "仕事選びの条件を明確にする",
+      "latent_need": "自分の選択を説明できるようにする",
+      "persona": "転職に関心があるが応募前の整理で止まっている人",
+      "reader_stage": "understanding",
+      "access_type": "FREE",
+      "content_depth": "standard",
+      "article_type": "situation_guide",
+      "internal_links": [
+        {
+          "target_content_id": "FL-TEST-C",
+          "target_url": null,
+          "anchor_text": "転職を考える人の90日ワーク――条件、試行、見直しを一冊に残す",
+          "rationale": "基本整理と継続ワークを必要に応じて行き来する",
+          "direction": "outbound_from_this_page",
+          "status": "candidate"
+        }
+      ],
+      "cta_type": "related_content",
+      "cta_destination": null,
+      "seo_policy_version": "seo-policy-0.1.0-draft",
+      "record_type": "test_fixture",
+      "wordpress_post_id": null,
+      "slug": null,
+      "url": null,
+      "status": "test_draft",
+      "publish_date": null,
+      "modified_date": null,
+      "category": null,
+      "tags": null,
+      "subgenre": null,
+      "topic_cluster": null,
+      "featured_image": null,
+      "word_count": 1381,
+      "word_count_method": "cjk_character_plus_latin_number_token_v1",
+      "featured_image_type": "none",
+      "fact_check_status": "reviewed_with_gaps",
+      "editorial_status": "reviewed",
+      "qa_status": "passed_with_blockers",
+      "source_refs": [
+        "GR001",
+        "GR002",
+        "docs/editorial/FREE_PREMIUM_RULES.md"
+      ],
+      "human_approval": null,
+      "release_gate": "blocked",
+      "tbd": [
+        "正式SEO policyとA06の通常採用",
+        "CTAと内部リンクの公開URL",
+        "商品仕様と人間の公開承認",
+        "検索需要の実測とkeyword採用"
+      ],
+      "artifacts": {
+        "brief": "docs/editorial/test-articles/FL-TEST-A/brief.json",
+        "blueprint": "docs/editorial/test-articles/FL-TEST-A/blueprint.json",
+        "draft": "docs/editorial/test-articles/FL-TEST-A/article.md",
+        "fact_claims": "docs/editorial/test-articles/FL-TEST-A/claims.json",
+        "editorial_review": "docs/editorial/test-articles/FL-TEST-A/self-review.json",
+        "qa_report": "docs/editorial/test-articles/FL-TEST-A/qa.json"
+      },
+      "performance": {
+        "seo": {
+          "impressions": null,
+          "clicks": null,
+          "ctr": null,
+          "average_position": null
+        },
+        "engagement": {
+          "users": null,
+          "sessions": null,
+          "engaged_sessions": null,
+          "engagement_rate": null,
+          "average_engagement_time": null,
+          "scroll_depth": null
+        },
+        "conversion": {
+          "fortune_cta_clicks": null,
+          "fortune_start": null,
+          "fortune_complete": null,
+          "member_registration": null,
+          "premium_conversion": null
+        },
+        "retention": {
+          "returning_users": null,
+          "repeat_article_views": null
+        },
+        "measurement": {
+          "window_start": null,
+          "window_end": null,
+          "collected_at": null,
+          "source": {
+            "seo": null,
+            "engagement": null,
+            "conversion": null,
+            "retention": null
+          },
+          "definition_version": null,
+          "notes": [
+            "未公開・未計測。0は観測値としてのみ使用。今後はraw observation契約へ保存。"
+          ]
+        }
+      }
+    },
+    {
+      "content_id": "FL-TEST-B",
+      "title": "返信が来ないときの連絡と待ち方――分かることから決める",
+      "genre": "love",
+      "primary_keyword": "返信が来ない どうする",
+      "secondary_keywords": [],
+      "search_intent": "informational",
+      "explicit_need": "連絡の仕方を整理する",
+      "latent_need": "不安を言葉にする",
+      "persona": "返事を待ち、追加の連絡をするか迷う人",
+      "reader_stage": "consideration",
+      "access_type": "FREE",
+      "content_depth": "standard",
+      "article_type": "situation_guide",
+      "internal_links": [],
+      "cta_type": "free_fortune",
+      "cta_destination": null,
+      "seo_policy_version": "seo-policy-0.1.0-draft",
+      "record_type": "test_fixture",
+      "wordpress_post_id": null,
+      "slug": null,
+      "url": null,
+      "status": "test_draft",
+      "publish_date": null,
+      "modified_date": null,
+      "category": null,
+      "tags": null,
+      "subgenre": null,
+      "topic_cluster": null,
+      "featured_image": null,
+      "word_count": 1445,
+      "word_count_method": "cjk_character_plus_latin_number_token_v1",
+      "featured_image_type": "none",
+      "fact_check_status": "reviewed_with_gaps",
+      "editorial_status": "reviewed",
+      "qa_status": "passed_with_blockers",
+      "source_refs": [
+        "GR001",
+        "GR002",
+        "docs/editorial/FREE_PREMIUM_RULES.md"
+      ],
+      "human_approval": null,
+      "release_gate": "blocked",
+      "tbd": [
+        "正式SEO policyとA06の通常採用",
+        "CTAと内部リンクの公開URL",
+        "商品仕様と人間の公開承認",
+        "検索需要の実測とkeyword採用"
+      ],
+      "artifacts": {
+        "brief": "docs/editorial/test-articles/FL-TEST-B/brief.json",
+        "blueprint": "docs/editorial/test-articles/FL-TEST-B/blueprint.json",
+        "draft": "docs/editorial/test-articles/FL-TEST-B/article.md",
+        "fact_claims": "docs/editorial/test-articles/FL-TEST-B/claims.json",
+        "editorial_review": "docs/editorial/test-articles/FL-TEST-B/self-review.json",
+        "qa_report": "docs/editorial/test-articles/FL-TEST-B/qa.json"
+      },
+      "performance": {
+        "seo": {
+          "impressions": null,
+          "clicks": null,
+          "ctr": null,
+          "average_position": null
+        },
+        "engagement": {
+          "users": null,
+          "sessions": null,
+          "engaged_sessions": null,
+          "engagement_rate": null,
+          "average_engagement_time": null,
+          "scroll_depth": null
+        },
+        "conversion": {
+          "fortune_cta_clicks": null,
+          "fortune_start": null,
+          "fortune_complete": null,
+          "member_registration": null,
+          "premium_conversion": null
+        },
+        "retention": {
+          "returning_users": null,
+          "repeat_article_views": null
+        },
+        "measurement": {
+          "window_start": null,
+          "window_end": null,
+          "collected_at": null,
+          "source": {
+            "seo": null,
+            "engagement": null,
+            "conversion": null,
+            "retention": null
+          },
+          "definition_version": null,
+          "notes": [
+            "未公開・未計測。0は観測値としてのみ使用。今後はraw observation契約へ保存。"
+          ]
+        }
+      }
+    },
+    {
+      "content_id": "FL-TEST-C",
+      "title": "転職を考える人の90日ワーク――条件、試行、見直しを一冊に残す",
+      "genre": "career",
+      "primary_keyword": "転職 準備 行動計画",
+      "secondary_keywords": [],
+      "search_intent": "informational",
+      "explicit_need": "現実的な準備を進める",
+      "latent_need": "別の選択肢を検討する",
+      "persona": "条件の整理を終え、実行と比較を継続したい人",
+      "reader_stage": "action",
+      "access_type": "PREMIUM",
+      "content_depth": "deep",
+      "article_type": "situation_guide",
+      "internal_links": [
+        {
+          "target_content_id": "FL-TEST-A",
+          "target_url": null,
+          "anchor_text": "転職したいのに動けないとき、最初に確かめる三つのこと",
+          "rationale": "基本整理と継続ワークを必要に応じて行き来する",
+          "direction": "outbound_from_this_page",
+          "status": "candidate"
+        }
+      ],
+      "cta_type": "related_content",
+      "cta_destination": null,
+      "seo_policy_version": "seo-policy-0.1.0-draft",
+      "record_type": "test_fixture",
+      "wordpress_post_id": null,
+      "slug": null,
+      "url": null,
+      "status": "test_draft",
+      "publish_date": null,
+      "modified_date": null,
+      "category": null,
+      "tags": null,
+      "subgenre": null,
+      "topic_cluster": null,
+      "featured_image": null,
+      "word_count": 2447,
+      "word_count_method": "cjk_character_plus_latin_number_token_v1",
+      "featured_image_type": "none",
+      "fact_check_status": "reviewed_with_gaps",
+      "editorial_status": "reviewed",
+      "qa_status": "passed_with_blockers",
+      "source_refs": [
+        "GR001",
+        "GR002",
+        "docs/editorial/FREE_PREMIUM_RULES.md"
+      ],
+      "human_approval": null,
+      "release_gate": "blocked",
+      "tbd": [
+        "正式SEO policyとA06の通常採用",
+        "CTAと内部リンクの公開URL",
+        "商品仕様と人間の公開承認",
+        "検索需要の実測とkeyword採用"
+      ],
+      "artifacts": {
+        "brief": "docs/editorial/test-articles/FL-TEST-C/brief.json",
+        "blueprint": "docs/editorial/test-articles/FL-TEST-C/blueprint.json",
+        "draft": "docs/editorial/test-articles/FL-TEST-C/article.md",
+        "fact_claims": "docs/editorial/test-articles/FL-TEST-C/claims.json",
+        "editorial_review": "docs/editorial/test-articles/FL-TEST-C/self-review.json",
+        "qa_report": "docs/editorial/test-articles/FL-TEST-C/qa.json"
+      },
+      "performance": {
+        "seo": {
+          "impressions": null,
+          "clicks": null,
+          "ctr": null,
+          "average_position": null
+        },
+        "engagement": {
+          "users": null,
+          "sessions": null,
+          "engaged_sessions": null,
+          "engagement_rate": null,
+          "average_engagement_time": null,
+          "scroll_depth": null
+        },
+        "conversion": {
+          "fortune_cta_clicks": null,
+          "fortune_start": null,
+          "fortune_complete": null,
+          "member_registration": null,
+          "premium_conversion": null
+        },
+        "retention": {
+          "returning_users": null,
+          "repeat_article_views": null
+        },
+        "measurement": {
+          "window_start": null,
+          "window_end": null,
+          "collected_at": null,
+          "source": {
+            "seo": null,
+            "engagement": null,
+            "conversion": null,
+            "retention": null
+          },
+          "definition_version": null,
+          "notes": [
+            "未公開・未計測。0は観測値としてのみ使用。今後はraw observation契約へ保存。"
+          ]
+        }
+      }
+    }
+  ]
+}

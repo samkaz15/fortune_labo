@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" role="img" aria-labelledby="title desc">
+  <title id="title">返信待ちの場面で確認済みと未確認を分ける図</title>
+  <desc id="desc">送った用件や日時は確認できる。相手の事情や気持ちは返信の遅さだけでは確認できない。</desc>
+  <rect width="1200" height="460" fill="#f7f5ef"/>
+  <rect x="55" y="70" width="515" height="250" rx="18" fill="#e7ede6"/>
+  <rect x="630" y="70" width="515" height="250" rx="18" fill="#e6eaeb"/>
+  <g fill="#303c37" text-anchor="middle" font-family="Hiragino Sans, Noto Sans CJK JP, sans-serif">
+    <text x="312" y="145" font-size="29" font-weight="600">確認できていること</text>
+    <text x="888" y="145" font-size="29" font-weight="600">まだ分からないこと</text>
+    <text x="312" y="224" font-size="25">送った用件・日時</text>
+    <text x="888" y="224" font-size="25">相手の事情・気持ち</text>
+    <text x="600" y="398" font-size="26">出来事と想像を、別の欄に置く</text>
+  </g>
+</svg>

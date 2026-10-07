@@ -1,0 +1,1629 @@
+{
+  "version": "0.2.0",
+  "status": "foundation_direction_approved_production_pending",
+  "source_reference": "sources/provenance.json",
+  "interpretation_rules": [
+    "公開用要約を編集判断の入力にする。原資料の本文は保存しない。",
+    "未確認項目はnull、未分類はunclassifiedとする。",
+    "ジャンルのBOTHは記事単位のFREE/PREMIUM決定を代替しない。",
+    "業績・需要量・順位を推測しない。",
+    "Direction approvalはSEO policy・商品・記事公開の承認を兼ねない。"
+  ],
+  "genres": [
+    {
+      "genre_id": "general_fortune",
+      "genre_name": "総合運・月運",
+      "reader_insight": "時期に応じて行動の優先順位を整理したい。",
+      "main_questions": [
+        "今の状況で何から始めるか。"
+      ],
+      "explicit_needs": [
+        "時期の読み方を理解する",
+        "自分の予定を組み立てる"
+      ],
+      "latent_needs": null,
+      "seo_role": "読者の問いに答え、適切な次の行動につなぐ。",
+      "engagement_role": "内容を自分の状況に照らして考えられる説明を提供する。",
+      "conversion_role": "一般的な回答の後に残る個別課題を示す。",
+      "retention_role": "計画の振り返り",
+      "free_content_role": "時期を考える基礎と小さな実践",
+      "premium_content_role": "個人条件を踏まえた計画と見直し",
+      "recommended_cta": [
+        "planning_support"
+      ],
+      "recommended_access_type": "BOTH",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ],
+      "source_status": "public_paraphrase_not_independently_verified",
+      "strategy_status": "foundation_direction_approved_production_pending",
+      "field_provenance": {
+        "reader_insight": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "main_questions": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR003"
+            }
+          ]
+        },
+        "explicit_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "latent_needs": {
+          "source_status": "unknown",
+          "evidence_source": []
+        },
+        "seo_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "engagement_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR004"
+            }
+          ]
+        },
+        "conversion_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "retention_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "free_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "premium_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_cta": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_access_type": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        }
+      },
+      "normalization_note": "公開可能な編集上の要約。原文・実測・商品仕様ではない。",
+      "a06_constraints": [
+        "既存A06のtier、独自性、実体験、予約導線の要件を別途満たす。",
+        "商品の存在とCTA遷移先が未確認の場合はnullとする。"
+      ],
+      "topic_candidates": [
+        {
+          "topic": "今月の行動を考えるための予定の整理",
+          "keyword": null,
+          "search_intent": "informational",
+          "reader_need": "今の状況で何から始めるか。",
+          "free_premium_candidate": "FREE",
+          "evidence_refs": [
+            "docs/editorial/content-intelligence.json#/genres/0/main_questions",
+            "docs/editorial/content-intelligence.json#/genres/0/free_content_role",
+            "docs/editorial/FREE_PREMIUM_RULES.md"
+          ],
+          "priority_candidate": "review",
+          "status": "editorial_candidate_not_validated_search_demand"
+        }
+      ]
+    },
+    {
+      "genre_id": "love",
+      "genre_name": "恋愛",
+      "reader_insight": "恋愛の不確かさを受け止めながら行動を選びたい。",
+      "main_questions": [
+        "相手への働きかけをどう考えるか。"
+      ],
+      "explicit_needs": [
+        "連絡の仕方を整理する",
+        "関係に合う行動を検討する"
+      ],
+      "latent_needs": [
+        "不安を言葉にする"
+      ],
+      "seo_role": "読者の問いに答え、適切な次の行動につなぐ。",
+      "engagement_role": "内容を自分の状況に照らして考えられる説明を提供する。",
+      "conversion_role": "一般的な回答の後に残る個別課題を示す。",
+      "retention_role": "関係の変化に応じた見直し",
+      "free_content_role": "恋愛の悩みを整理する手がかり",
+      "premium_content_role": "関係固有の条件を整理した行動案",
+      "recommended_cta": [
+        "relationship_support"
+      ],
+      "recommended_access_type": "BOTH",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ],
+      "source_status": "public_paraphrase_not_independently_verified",
+      "strategy_status": "foundation_direction_approved_production_pending",
+      "field_provenance": {
+        "reader_insight": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR002"
+            }
+          ]
+        },
+        "main_questions": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR003"
+            }
+          ]
+        },
+        "explicit_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "latent_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR002"
+            }
+          ]
+        },
+        "seo_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "engagement_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "conversion_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "retention_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR002"
+            }
+          ]
+        },
+        "free_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "premium_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_cta": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_access_type": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        }
+      },
+      "normalization_note": "公開可能な編集上の要約。原文・実測・商品仕様ではない。",
+      "a06_constraints": [
+        "既存A06のtier、独自性、実体験、予約導線の要件を別途満たす。",
+        "商品の存在とCTA遷移先が未確認の場合はnullとする。",
+        "相手の心理や将来の結果を事実として断定しない。"
+      ],
+      "topic_candidates": [
+        {
+          "topic": "連絡の迷いを整理するための確認事項",
+          "keyword": null,
+          "search_intent": "informational",
+          "reader_need": "相手への働きかけをどう考えるか。",
+          "free_premium_candidate": "FREE",
+          "evidence_refs": [
+            "docs/editorial/content-intelligence.json#/genres/1/main_questions",
+            "docs/editorial/content-intelligence.json#/genres/1/free_content_role",
+            "docs/editorial/FREE_PREMIUM_RULES.md"
+          ],
+          "priority_candidate": "review",
+          "status": "editorial_candidate_not_validated_search_demand"
+        }
+      ]
+    },
+    {
+      "genre_id": "marriage",
+      "genre_name": "結婚",
+      "reader_insight": "結婚を考えるうえで確認すべき条件を知りたい。",
+      "main_questions": [
+        "将来の生活に向けて何を話し合うか。"
+      ],
+      "explicit_needs": [
+        "生活上の価値観を確認する",
+        "長期的な関係を考える"
+      ],
+      "latent_needs": [
+        "決断への迷いを整理する"
+      ],
+      "seo_role": "読者の問いに答え、適切な次の行動につなぐ。",
+      "engagement_role": "内容を自分の状況に照らして考えられる説明を提供する。",
+      "conversion_role": "一般的な回答の後に残る個別課題を示す。",
+      "retention_role": null,
+      "free_content_role": "生活や価値観について話し合う観点",
+      "premium_content_role": "二人の条件に応じた検討フレーム",
+      "recommended_cta": [
+        "relationship_support"
+      ],
+      "recommended_access_type": "BOTH",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ],
+      "source_status": "public_paraphrase_not_independently_verified",
+      "strategy_status": "foundation_direction_approved_production_pending",
+      "field_provenance": {
+        "reader_insight": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR002"
+            }
+          ]
+        },
+        "main_questions": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR003"
+            }
+          ]
+        },
+        "explicit_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "latent_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR002"
+            }
+          ]
+        },
+        "seo_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "engagement_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "conversion_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "retention_role": {
+          "source_status": "unknown",
+          "evidence_source": []
+        },
+        "free_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "premium_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_cta": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_access_type": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        }
+      },
+      "normalization_note": "公開可能な編集上の要約。原文・実測・商品仕様ではない。",
+      "a06_constraints": [
+        "既存A06のtier、独自性、実体験、予約導線の要件を別途満たす。",
+        "商品の存在とCTA遷移先が未確認の場合はnullとする。",
+        "相手の心理や将来の結果を事実として断定しない。"
+      ],
+      "topic_candidates": [
+        {
+          "topic": "結婚前に生活の価値観を話し合うための準備",
+          "keyword": null,
+          "search_intent": "informational",
+          "reader_need": "将来の生活に向けて何を話し合うか。",
+          "free_premium_candidate": "FREE",
+          "evidence_refs": [
+            "docs/editorial/content-intelligence.json#/genres/2/main_questions",
+            "docs/editorial/content-intelligence.json#/genres/2/free_content_role",
+            "docs/editorial/FREE_PREMIUM_RULES.md"
+          ],
+          "priority_candidate": "review",
+          "status": "editorial_candidate_not_validated_search_demand"
+        }
+      ]
+    },
+    {
+      "genre_id": "career",
+      "genre_name": "仕事・キャリア",
+      "reader_insight": "現在の仕事と次の選択肢を比較したい。",
+      "main_questions": [
+        "働き方を変える前に何を整理するか。"
+      ],
+      "explicit_needs": [
+        "仕事選びの条件を明確にする",
+        "現実的な準備を進める"
+      ],
+      "latent_needs": [
+        "自分の選択を説明できるようにする",
+        "別の選択肢を検討する"
+      ],
+      "seo_role": "読者の問いに答え、適切な次の行動につなぐ。",
+      "engagement_role": "内容を自分の状況に照らして考えられる説明を提供する。",
+      "conversion_role": "一般的な回答の後に残る個別課題を示す。",
+      "retention_role": "計画の進捗を継続して見直す",
+      "free_content_role": "仕事の悩みと準備の基本整理",
+      "premium_content_role": "条件別の選択肢と実践計画",
+      "recommended_cta": [
+        "career_planning"
+      ],
+      "recommended_access_type": "BOTH",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ],
+      "source_status": "public_paraphrase_not_independently_verified",
+      "strategy_status": "foundation_direction_approved_production_pending",
+      "field_provenance": {
+        "reader_insight": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR002"
+            }
+          ]
+        },
+        "main_questions": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "explicit_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "latent_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR002"
+            }
+          ]
+        },
+        "seo_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "engagement_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR003"
+            }
+          ]
+        },
+        "conversion_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "retention_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "free_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "premium_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_cta": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_access_type": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        }
+      },
+      "normalization_note": "公開可能な編集上の要約。原文・実測・商品仕様ではない。",
+      "a06_constraints": [
+        "既存A06のtier、独自性、実体験、予約導線の要件を別途満たす。",
+        "商品の存在とCTA遷移先が未確認の場合はnullとする。"
+      ],
+      "topic_candidates": [
+        {
+          "topic": "働き方を変える前に自分の条件を整理する",
+          "keyword": null,
+          "search_intent": "informational",
+          "reader_need": "働き方を変える前に何を整理するか。",
+          "free_premium_candidate": "FREE",
+          "evidence_refs": [
+            "docs/editorial/content-intelligence.json#/genres/3/main_questions",
+            "docs/editorial/content-intelligence.json#/genres/3/free_content_role",
+            "docs/editorial/FREE_PREMIUM_RULES.md"
+          ],
+          "priority_candidate": "review",
+          "status": "editorial_candidate_not_validated_search_demand"
+        }
+      ]
+    },
+    {
+      "genre_id": "money",
+      "genre_name": "金運",
+      "reader_insight": "お金の使い方と日常習慣を見直したい。",
+      "main_questions": [
+        "支出や貯蓄の何を確認するか。"
+      ],
+      "explicit_needs": [
+        "家計の現状を整理する",
+        "継続できる習慣を選ぶ"
+      ],
+      "latent_needs": [
+        "金銭面の不安を整理する"
+      ],
+      "seo_role": "読者の問いに答え、適切な次の行動につなぐ。",
+      "engagement_role": "内容を自分の状況に照らして考えられる説明を提供する。",
+      "conversion_role": "一般的な回答の後に残る個別課題を示す。",
+      "retention_role": "習慣と実行状況の振り返り",
+      "free_content_role": "支出や習慣を把握する基礎",
+      "premium_content_role": "個人の制約に合わせた習慣計画",
+      "recommended_cta": [
+        "habit_planning"
+      ],
+      "recommended_access_type": "BOTH",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ],
+      "source_status": "public_paraphrase_not_independently_verified",
+      "strategy_status": "foundation_direction_approved_production_pending",
+      "field_provenance": {
+        "reader_insight": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR002"
+            }
+          ]
+        },
+        "main_questions": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR003"
+            }
+          ]
+        },
+        "explicit_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "latent_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR002"
+            }
+          ]
+        },
+        "seo_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "engagement_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR003"
+            }
+          ]
+        },
+        "conversion_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "retention_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR003"
+            }
+          ]
+        },
+        "free_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "premium_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_cta": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_access_type": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        }
+      },
+      "normalization_note": "公開可能な編集上の要約。原文・実測・商品仕様ではない。",
+      "a06_constraints": [
+        "既存A06のtier、独自性、実体験、予約導線の要件を別途満たす。",
+        "商品の存在とCTA遷移先が未確認の場合はnullとする。",
+        "占いを専門的判断の代用にせず、医療や利益の結果を保証しない。"
+      ],
+      "topic_candidates": [
+        {
+          "topic": "お金の使い方を見直すための記録の始め方",
+          "keyword": null,
+          "search_intent": "informational",
+          "reader_need": "支出や貯蓄の何を確認するか。",
+          "free_premium_candidate": "FREE",
+          "evidence_refs": [
+            "docs/editorial/content-intelligence.json#/genres/4/main_questions",
+            "docs/editorial/content-intelligence.json#/genres/4/free_content_role",
+            "docs/editorial/FREE_PREMIUM_RULES.md"
+          ],
+          "priority_candidate": "review",
+          "status": "editorial_candidate_not_validated_search_demand"
+        }
+      ]
+    },
+    {
+      "genre_id": "health_lifestyle",
+      "genre_name": "健康・生活習慣",
+      "reader_insight": "無理のない日常の整え方を考えたい。",
+      "main_questions": [
+        "生活のどこから見直すか。"
+      ],
+      "explicit_needs": [
+        "休息や生活のリズムを確認する",
+        "続けられる行動を選ぶ"
+      ],
+      "latent_needs": null,
+      "seo_role": "読者の問いに答え、適切な次の行動につなぐ。",
+      "engagement_role": "内容を自分の状況に照らして考えられる説明を提供する。",
+      "conversion_role": "一般的な回答の後に残る個別課題を示す。",
+      "retention_role": "習慣の振り返り",
+      "free_content_role": "生活を振り返る一般的な観点",
+      "premium_content_role": "個人の生活条件に応じた習慣計画",
+      "recommended_cta": [
+        "self_care"
+      ],
+      "recommended_access_type": "BOTH",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ],
+      "source_status": "public_paraphrase_not_independently_verified",
+      "strategy_status": "foundation_direction_approved_production_pending",
+      "field_provenance": {
+        "reader_insight": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "main_questions": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR003"
+            }
+          ]
+        },
+        "explicit_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "latent_needs": {
+          "source_status": "unknown",
+          "evidence_source": []
+        },
+        "seo_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "engagement_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR003"
+            }
+          ]
+        },
+        "conversion_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "retention_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "free_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "premium_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_cta": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR003"
+            }
+          ]
+        },
+        "recommended_access_type": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        }
+      },
+      "normalization_note": "公開可能な編集上の要約。原文・実測・商品仕様ではない。",
+      "a06_constraints": [
+        "既存A06のtier、独自性、実体験、予約導線の要件を別途満たす。",
+        "商品の存在とCTA遷移先が未確認の場合はnullとする。",
+        "占いを専門的判断の代用にせず、医療や利益の結果を保証しない。"
+      ],
+      "topic_candidates": [
+        {
+          "topic": "生活のリズムを振り返るための記録",
+          "keyword": null,
+          "search_intent": "informational",
+          "reader_need": "生活のどこから見直すか。",
+          "free_premium_candidate": "FREE",
+          "evidence_refs": [
+            "docs/editorial/content-intelligence.json#/genres/5/main_questions",
+            "docs/editorial/content-intelligence.json#/genres/5/free_content_role",
+            "docs/editorial/FREE_PREMIUM_RULES.md"
+          ],
+          "priority_candidate": "review",
+          "status": "editorial_candidate_not_validated_search_demand"
+        }
+      ]
+    },
+    {
+      "genre_id": "self_understanding",
+      "genre_name": "自己理解・才能",
+      "reader_insight": "自分に合う環境や得意なことを考えたい。",
+      "main_questions": [
+        "強みを日常でどう使うか。"
+      ],
+      "explicit_needs": [
+        "傾向を理解する",
+        "得意さを活かす場面を考える"
+      ],
+      "latent_needs": [
+        "自己理解を今後の成長につなげる"
+      ],
+      "seo_role": "読者の問いに答え、適切な次の行動につなぐ。",
+      "engagement_role": "内容を自分の状況に照らして考えられる説明を提供する。",
+      "conversion_role": "一般的な回答の後に残る個別課題を示す。",
+      "retention_role": null,
+      "free_content_role": "性格や得意さを考える入口",
+      "premium_content_role": "複数の個人条件を整理した解釈",
+      "recommended_cta": [
+        "self_understanding"
+      ],
+      "recommended_access_type": "BOTH",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ],
+      "source_status": "public_paraphrase_not_independently_verified",
+      "strategy_status": "foundation_direction_approved_production_pending",
+      "field_provenance": {
+        "reader_insight": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "main_questions": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR003"
+            }
+          ]
+        },
+        "explicit_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "latent_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR002"
+            }
+          ]
+        },
+        "seo_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "engagement_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "conversion_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "retention_role": {
+          "source_status": "unknown",
+          "evidence_source": []
+        },
+        "free_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "premium_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_cta": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_access_type": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        }
+      },
+      "normalization_note": "公開可能な編集上の要約。原文・実測・商品仕様ではない。",
+      "a06_constraints": [
+        "既存A06のtier、独自性、実体験、予約導線の要件を別途満たす。",
+        "商品の存在とCTA遷移先が未確認の場合はnullとする。"
+      ],
+      "topic_candidates": [
+        {
+          "topic": "得意なことを日常の行動から考える",
+          "keyword": null,
+          "search_intent": "informational",
+          "reader_need": "強みを日常でどう使うか。",
+          "free_premium_candidate": "FREE",
+          "evidence_refs": [
+            "docs/editorial/content-intelligence.json#/genres/6/main_questions",
+            "docs/editorial/content-intelligence.json#/genres/6/free_content_role",
+            "docs/editorial/FREE_PREMIUM_RULES.md"
+          ],
+          "priority_candidate": "review",
+          "status": "editorial_candidate_not_validated_search_demand"
+        }
+      ]
+    },
+    {
+      "genre_id": "shrine_visits",
+      "genre_name": "神社・参拝",
+      "reader_insight": "参拝の情報を知り、自分の目的を整理したい。",
+      "main_questions": [
+        "どのように参拝を計画するか。"
+      ],
+      "explicit_needs": [
+        "参拝先と作法を確認する",
+        "参拝の目的を考える"
+      ],
+      "latent_needs": null,
+      "seo_role": "読者の問いに答え、適切な次の行動につなぐ。",
+      "engagement_role": "内容を自分の状況に照らして考えられる説明を提供する。",
+      "conversion_role": "一般的な回答の後に残る個別課題を示す。",
+      "retention_role": null,
+      "free_content_role": "確認済みの参拝情報と訪問の手がかり",
+      "premium_content_role": "個人の目的と条件に沿った計画",
+      "recommended_cta": [
+        "visit_planning"
+      ],
+      "recommended_access_type": "BOTH",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ],
+      "source_status": "public_paraphrase_not_independently_verified",
+      "strategy_status": "foundation_direction_approved_production_pending",
+      "field_provenance": {
+        "reader_insight": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "main_questions": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "explicit_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "latent_needs": {
+          "source_status": "unknown",
+          "evidence_source": []
+        },
+        "seo_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "engagement_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "conversion_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "retention_role": {
+          "source_status": "unknown",
+          "evidence_source": []
+        },
+        "free_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "premium_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_cta": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_access_type": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        }
+      },
+      "normalization_note": "公開可能な編集上の要約。原文・実測・商品仕様ではない。",
+      "a06_constraints": [
+        "既存A06のtier、独自性、実体験、予約導線の要件を別途満たす。",
+        "商品の存在とCTA遷移先が未確認の場合はnullとする。",
+        "実訪問の記録・日付・写真許可なしに実訪問記事を作成しない。"
+      ],
+      "topic_candidates": [
+        {
+          "topic": "参拝前に目的と必要な情報を整理する",
+          "keyword": null,
+          "search_intent": "informational",
+          "reader_need": "どのように参拝を計画するか。",
+          "free_premium_candidate": "FREE",
+          "evidence_refs": [
+            "docs/editorial/content-intelligence.json#/genres/7/main_questions",
+            "docs/editorial/content-intelligence.json#/genres/7/free_content_role",
+            "docs/editorial/FREE_PREMIUM_RULES.md"
+          ],
+          "priority_candidate": "review",
+          "status": "editorial_candidate_not_validated_search_demand"
+        }
+      ]
+    },
+    {
+      "genre_id": "direction_travel_moving",
+      "genre_name": "方位・旅行・引越し",
+      "reader_insight": "移動の予定を条件と照らして考えたい。",
+      "main_questions": [
+        "日程と行き先をどう検討するか。"
+      ],
+      "explicit_needs": [
+        "方位の考え方を理解する",
+        "日程と移動先を検討する"
+      ],
+      "latent_needs": null,
+      "seo_role": "読者の問いに答え、適切な次の行動につなぐ。",
+      "engagement_role": "内容を自分の状況に照らして考えられる説明を提供する。",
+      "conversion_role": "一般的な回答の後に残る個別課題を示す。",
+      "retention_role": null,
+      "free_content_role": "移動や方位についての基礎説明",
+      "premium_content_role": "個別条件に基づく日程と移動の検討",
+      "recommended_cta": null,
+      "recommended_access_type": "BOTH",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ],
+      "source_status": "public_paraphrase_not_independently_verified",
+      "strategy_status": "foundation_direction_approved_production_pending",
+      "field_provenance": {
+        "reader_insight": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "main_questions": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "explicit_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "latent_needs": {
+          "source_status": "unknown",
+          "evidence_source": []
+        },
+        "seo_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "engagement_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR004"
+            }
+          ]
+        },
+        "conversion_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "retention_role": {
+          "source_status": "unknown",
+          "evidence_source": []
+        },
+        "free_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "premium_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_cta": {
+          "source_status": "unknown",
+          "evidence_source": []
+        },
+        "recommended_access_type": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        }
+      },
+      "normalization_note": "公開可能な編集上の要約。原文・実測・商品仕様ではない。",
+      "a06_constraints": [
+        "既存A06のtier、独自性、実体験、予約導線の要件を別途満たす。",
+        "商品の存在とCTA遷移先が未確認の場合はnullとする。"
+      ],
+      "topic_candidates": [
+        {
+          "topic": "移動の予定を考えるための条件整理",
+          "keyword": null,
+          "search_intent": "informational",
+          "reader_need": "日程と行き先をどう検討するか。",
+          "free_premium_candidate": "FREE",
+          "evidence_refs": [
+            "docs/editorial/content-intelligence.json#/genres/8/main_questions",
+            "docs/editorial/content-intelligence.json#/genres/8/free_content_role",
+            "docs/editorial/FREE_PREMIUM_RULES.md"
+          ],
+          "priority_candidate": "review",
+          "status": "editorial_candidate_not_validated_search_demand"
+        }
+      ]
+    },
+    {
+      "genre_id": "compatibility",
+      "genre_name": "相性",
+      "reader_insight": "二人の違いを理解して関係を考えたい。",
+      "main_questions": [
+        "すれ違いを減らすために何を確認するか。"
+      ],
+      "explicit_needs": [
+        "相性の読み方を理解する",
+        "関係に合う接し方を考える"
+      ],
+      "latent_needs": null,
+      "seo_role": "読者の問いに答え、適切な次の行動につなぐ。",
+      "engagement_role": "内容を自分の状況に照らして考えられる説明を提供する。",
+      "conversion_role": "一般的な回答の後に残る個別課題を示す。",
+      "retention_role": null,
+      "free_content_role": "相性を解釈する基本的な視点",
+      "premium_content_role": "二人の条件に沿った会話と関係の検討",
+      "recommended_cta": null,
+      "recommended_access_type": "BOTH",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ],
+      "source_status": "public_paraphrase_not_independently_verified",
+      "strategy_status": "foundation_direction_approved_production_pending",
+      "field_provenance": {
+        "reader_insight": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "main_questions": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "explicit_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "latent_needs": {
+          "source_status": "unknown",
+          "evidence_source": []
+        },
+        "seo_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "engagement_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "conversion_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "retention_role": {
+          "source_status": "unknown",
+          "evidence_source": []
+        },
+        "free_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "premium_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_cta": {
+          "source_status": "unknown",
+          "evidence_source": []
+        },
+        "recommended_access_type": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        }
+      },
+      "normalization_note": "公開可能な編集上の要約。原文・実測・商品仕様ではない。",
+      "a06_constraints": [
+        "既存A06のtier、独自性、実体験、予約導線の要件を別途満たす。",
+        "商品の存在とCTA遷移先が未確認の場合はnullとする。",
+        "相手の心理や将来の結果を事実として断定しない。"
+      ],
+      "topic_candidates": [
+        {
+          "topic": "二人の違いを話し合うための確認事項",
+          "keyword": null,
+          "search_intent": "informational",
+          "reader_need": "すれ違いを減らすために何を確認するか。",
+          "free_premium_candidate": "FREE",
+          "evidence_refs": [
+            "docs/editorial/content-intelligence.json#/genres/9/main_questions",
+            "docs/editorial/content-intelligence.json#/genres/9/free_content_role",
+            "docs/editorial/FREE_PREMIUM_RULES.md"
+          ],
+          "priority_candidate": "review",
+          "status": "editorial_candidate_not_validated_search_demand"
+        }
+      ]
+    },
+    {
+      "genre_id": "spiritual_consultation",
+      "genre_name": "霊視・個別相談",
+      "reader_insight": "個別の事情を相談できる形に整理したい。",
+      "main_questions": [
+        "相談の前に何を伝えるか。"
+      ],
+      "explicit_needs": [
+        "相談事項をまとめる",
+        "個別の助言を検討する"
+      ],
+      "latent_needs": [
+        "人に相談して状況を整理する"
+      ],
+      "seo_role": "読者の問いに答え、適切な次の行動につなぐ。",
+      "engagement_role": "内容を自分の状況に照らして考えられる説明を提供する。",
+      "conversion_role": "一般的な回答の後に残る個別課題を示す。",
+      "retention_role": "必要性を確認したうえでの継続相談",
+      "free_content_role": "相談の準備と利用方法の説明",
+      "premium_content_role": "確認された提供者による個別相談",
+      "recommended_cta": null,
+      "recommended_access_type": "BOTH",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ],
+      "source_status": "public_paraphrase_not_independently_verified",
+      "strategy_status": "foundation_direction_approved_production_pending",
+      "field_provenance": {
+        "reader_insight": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "main_questions": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "explicit_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "latent_needs": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR002"
+            }
+          ]
+        },
+        "seo_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "engagement_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "conversion_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "retention_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "free_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "premium_content_role": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        },
+        "recommended_cta": {
+          "source_status": "unknown",
+          "evidence_source": []
+        },
+        "recommended_access_type": {
+          "source_status": "public_paraphrase",
+          "evidence_source": [
+            {
+              "source_id": "GR001"
+            }
+          ]
+        }
+      },
+      "normalization_note": "公開可能な編集上の要約。原文・実測・商品仕様ではない。",
+      "a06_constraints": [
+        "既存A06のtier、独自性、実体験、予約導線の要件を別途満たす。",
+        "商品の存在とCTA遷移先が未確認の場合はnullとする。",
+        "相手の心理や将来の結果を事実として断定しない。"
+      ],
+      "topic_candidates": [
+        {
+          "topic": "個別相談の前に相談事項をまとめる",
+          "keyword": null,
+          "search_intent": "informational",
+          "reader_need": "相談の前に何を伝えるか。",
+          "free_premium_candidate": "FREE",
+          "evidence_refs": [
+            "docs/editorial/content-intelligence.json#/genres/10/main_questions",
+            "docs/editorial/content-intelligence.json#/genres/10/free_content_role",
+            "docs/editorial/FREE_PREMIUM_RULES.md"
+          ],
+          "priority_candidate": "review",
+          "status": "editorial_candidate_not_validated_search_demand"
+        }
+      ]
+    }
+  ],
+  "shared_guidance_evidence": [
+    {
+      "source_id": "GR001"
+    },
+    {
+      "source_id": "GR004"
+    }
+  ],
+  "open_questions": [
+    "正式なsubgenreとtopic_cluster。",
+    "A06が承認した検索機会と独自素材。",
+    "提供商品の範囲とCTAの実在。",
+    "計測接続とデータ定義。"
+  ]
+}

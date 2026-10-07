@@ -1,0 +1,485 @@
+{
+  "method": "sentence_candidates_not_verified_claims",
+  "requires_full_draft_review": true,
+  "claims": [
+    {
+      "claim_id": "CLAIM-001",
+      "line": 3,
+      "text": "仕事を変えたい理由は書けたけれど、その後の準備がつながらない。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-002",
+      "line": 3,
+      "text": "このワークでは、条件を記入し、調べた情報と試した結果を残し、次に何を確かめるかを決めていきます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-003",
+      "line": 3,
+      "text": "最後に作るのは、応募した件数の一覧ではなく、自分の条件と未確認事項を添えた判断メモです。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-004",
+      "line": 5,
+      "text": "無料の整理記事は、変えたいこと、残したいこと、次に確かめることを見つけるために使えます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-005",
+      "line": 5,
+      "text": "ここではその先を、条件シート、試行メモ、比較表として繰り返し使える形にします。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-006",
+      "line": 5,
+      "text": "自分で事情を書き込むワークであり、個別鑑定、適職の判定、転職の成功を約束するサービスではありません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-007",
+      "line": 5,
+      "text": "90日は作業を整理するために置いた期間で、効果が実証された日数や退職の期限ではありません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": true
+    },
+    {
+      "claim_id": "CLAIM-008",
+      "line": 9,
+      "text": "始める前に、今の生活でこの準備に使える時間を確認します。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-009",
+      "line": 9,
+      "text": "毎晩取り組む予定が合わなければ、休日の一度だけでも構いません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-010",
+      "line": 9,
+      "text": "作業時間だけでなく、今は進めないことも書いてください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-011",
+      "line": 9,
+      "text": "「今月は応募せず、条件を調べるところまで」と決めるなら、それが今回の計画の範囲です。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-012",
+      "line": 11,
+      "text": "次のシートは、説明用の架空の記入例です。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-013",
+      "line": 11,
+      "text": "実際の相談者や成功例を紹介するものではありません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-014",
+      "line": 11,
+      "text": "自分の欄を埋めるときは、完成した言い方に整えるより、気になっている場面を残すことを優先してください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-015",
+      "line": 20,
+      "text": "「残したい仕事」が書けなければ、無理に長所へ言い換えなくて構いません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-016",
+      "line": 20,
+      "text": "「次もやってよい仕事」として一つ挙げる方法もあります。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-017",
+      "line": 20,
+      "text": "空欄は不足の印ではなく、これから確かめる問いとして扱います。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-018",
+      "line": 24,
+      "text": "最初の期間は、一つの仕事を取り上げて、依頼されたこと、自分が進めた部分、次も続けたい部分を記録します。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-019",
+      "line": 24,
+      "text": "たとえば架空の記入例では、「資料を作った」から一段具体的にして、「複数の説明資料から必要な情報を拾い、読む順番を並べ直した」と置けます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-020",
+      "line": 24,
+      "text": "仕事の名前だけで比較しないための作業です。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-021",
+      "line": 26,
+      "text": "続けたい部分が見えたら、働き方への希望とは別の行に書きます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-022",
+      "line": 26,
+      "text": "「情報を整理する作業」と「依頼の予定が早めに分かること」は、候補を見る際にそれぞれ確かめる項目です。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-023",
+      "line": 26,
+      "text": "片方が合いそうだからといって、もう片方も合うと埋めないでください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-024",
+      "line": 28,
+      "text": "ここまで書けたら、募集内容を一件選んで読み、条件の横に「記載あり」「未記載」「確認が必要」を残します。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-025",
+      "line": 28,
+      "text": "情報を読むだけで分かる範囲と、問い合わせ等が必要な範囲が分かれたところで一度区切ります。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-026",
+      "line": 28,
+      "text": "候補が見つからなければ、自分の経験の記録をもう一つ増やすところに戻れます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-027",
+      "line": 30,
+      "text": "この期間の終わりに見直すのは、予定した作業量よりも、問いが具体的になったかです。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-028",
+      "line": 30,
+      "text": "「自分に合う会社を探す」から「依頼の締切は誰と調整できるのかを確かめる」に変わっていれば、その問いを次の期間へ持っていきます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-029",
+      "line": 30,
+      "text": "まだ言葉にならない部分は、判断を保留する理由として残しましょう。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-030",
+      "line": 34,
+      "text": "次は、残った問いの中から一つを選び、情報を増やす行動を決めます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-031",
+      "line": 34,
+      "text": "職務経歴の一項目を書く、募集の説明会を調べる、現職で相談できる範囲を整理するなど、今の条件で実行できるものにしてください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-032",
+      "line": 34,
+      "text": "面談や応募そのものを必須にはしません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-033",
+      "line": 36,
+      "text": "試す前に「今回何が分かればよいか」を書くのが、このワークの記録上のルールです。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-034",
+      "line": 36,
+      "text": "仮に、自分が担当した作業を説明できるか確かめたいなら、文章を一項目作り、担当範囲が読み取れるかを見直すところまでを一回の作業にします。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-035",
+      "line": 36,
+      "text": "結果を見てから目的を増やすと比較しにくいため、追加で気になった点は次回の問いに分けます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-036",
+      "line": 46,
+      "text": "文章を見てもらう場合は、相手と確認できる範囲を選び、公開できない業務情報や他人の個人情報を持ち出さないようにします。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-037",
+      "line": 46,
+      "text": "見てもらう機会がなければ、自分で読み返して未確認のまま残して構いません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-038",
+      "line": 46,
+      "text": "他人に確認していない内容を「評価された」と書き替えないでください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-039",
+      "line": 48,
+      "text": "取り組めなかった週には、遅れを埋める作業を増やす前に、時間がなかったのか、作業の意味が曖昧だったのかを一行残します。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-040",
+      "line": 48,
+      "text": "再開時にはその一行と前回の問いを読み、同じ作業を続けるか、範囲を小さくするかを選べます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-041",
+      "line": 48,
+      "text": "中断しても使える記録を作ることが、継続ワークの用途の一つです。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-042",
+      "line": 52,
+      "text": "最後の期間では、最初の条件シートと、その後に確かめた情報を並べます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-043",
+      "line": 52,
+      "text": "新しい候補を増やすだけでなく、現職で調整を考える案も比較に置けます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-044",
+      "line": 52,
+      "text": "まだ候補がない場合は、「何が分かれば比較できるか」を書く表として使ってください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-045",
+      "line": 60,
+      "text": "表に空欄が残ったら、ほかの欄のよさで埋めず、「未確認」と書きます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-046",
+      "line": 60,
+      "text": "たとえば仕事内容に関心が持てても、予定の調整方法が分からなければ、その条件の判断は保留です。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-047",
+      "line": 60,
+      "text": "この表では合計点を作らず、守りたい条件と未確認の点を見落とさないために比較します。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-048",
+      "line": 62,
+      "text": "終わりの判断メモには、「今選ぶこと」「その根拠」「残っている問い」「次に見直すきっかけ」を書いてください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-049",
+      "line": 62,
+      "text": "応募を検討する、現職で相談を続ける、もう一度条件を整理するという結論を置けます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-050",
+      "line": 62,
+      "text": "90日目が来たことだけを、転職や退職の理由にする必要はありません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": true
+    },
+    {
+      "claim_id": "CLAIM-051",
+      "line": 64,
+      "text": "使い始める際は、条件シートの一行だけ記入して、次に開く日を決めてみてください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-052",
+      "line": 64,
+      "text": "基本の条件整理に戻りたいときは、関連する無料記事「転職したいのに動けないとき、最初に確かめる三つのこと」も使えます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-053",
+      "line": 64,
+      "text": "記録を増やすことより、自分が次に何を確かめるのか分かる状態を、その都度作り直していきましょう。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    }
+  ],
+  "content_id": "FL-TEST-C",
+  "review_note": "抽出は全て候補。本文全体をモデルで確認し、架空例・編集上の提案・成果非保証を照合した。外部の統計や成功実績は主張していない。候補の最終分類と公開判断はA29契約と人間レビューへ渡す。"
+}

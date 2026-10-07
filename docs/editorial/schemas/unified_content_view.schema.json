@@ -1,0 +1,397 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Unified Content Metadata View",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "existing": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "test_fixtures": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "total_records": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "existing",
+        "test_fixtures",
+        "total_records"
+      ]
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "record_type": {
+            "enum": [
+              "existing_wordpress",
+              "test_fixture"
+            ]
+          },
+          "source_index": {
+            "enum": [
+              "existing-content-index",
+              "test-content-index"
+            ]
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "content_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "slug": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "url": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "status": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "publish_date": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "modified_date": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "post_type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "genre": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "subgenre": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "topic_cluster": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "access_type": {
+                "enum": [
+                  "FREE",
+                  "PREMIUM",
+                  null
+                ]
+              },
+              "primary_keyword": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "secondary_keywords": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "string"
+                }
+              },
+              "search_intent": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "explicit_need": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "latent_need": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "article_type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "content_depth": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "cta_type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "cta_destination": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "seo_policy_version": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "wordpress_post_id": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 1
+              },
+              "date_basis": {
+                "enum": [
+                  "utc",
+                  "site_timezone_unknown"
+                ]
+              },
+              "category": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "minimum": 1
+                    },
+                    "name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "slug": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "slug"
+                  ]
+                }
+              },
+              "tags": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "minimum": 1
+                    },
+                    "name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "slug": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "slug"
+                  ]
+                }
+              },
+              "internal_links": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "string"
+                }
+              },
+              "featured_image": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "wordpress_media_id": {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "url": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "alt_text": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "wordpress_media_id",
+                      "url",
+                      "alt_text"
+                    ]
+                  }
+                ]
+              },
+              "word_count": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "word_count_method": {
+                "enum": [
+                  "cjk_character_plus_latin_number_token_v1",
+                  null
+                ]
+              },
+              "body_available": {
+                "type": "boolean"
+              },
+              "field_provenance": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "content_id",
+              "title",
+              "slug",
+              "url",
+              "status",
+              "publish_date",
+              "modified_date",
+              "post_type",
+              "genre",
+              "subgenre",
+              "topic_cluster",
+              "access_type",
+              "primary_keyword",
+              "secondary_keywords",
+              "search_intent",
+              "explicit_need",
+              "latent_need",
+              "article_type",
+              "content_depth",
+              "cta_type",
+              "cta_destination",
+              "seo_policy_version",
+              "wordpress_post_id",
+              "date_basis",
+              "category",
+              "tags",
+              "internal_links",
+              "featured_image",
+              "word_count",
+              "word_count_method",
+              "body_available",
+              "field_provenance"
+            ]
+          },
+          "candidate_internal_links": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        },
+        "required": [
+          "record_type",
+          "source_index",
+          "metadata",
+          "candidate_internal_links"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "counts",
+    "records"
+  ]
+}

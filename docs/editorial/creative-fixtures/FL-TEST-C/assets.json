@@ -1,0 +1,26 @@
+{
+  "content_id": "FL-TEST-C",
+  "draft_sha256": "d0a261c9e017b572f1d43b6cb7f8e068a45fcb7d8ab8353243843b8d5e4349e0",
+  "visual_style_version": "visual-style-0.1.0",
+  "assets": [
+    {
+      "asset_id": "FL-TEST-C-featured-asset-01",
+      "relative_path": "images/featured-v1.png",
+      "image_sha256": "c9ef8c812329b3731e85ec174fdc92bdcc62464e8487904b8c1f2c181c1e6e23",
+      "mime_type": "image/png",
+      "width": 1672,
+      "height": 941,
+      "state": "generated",
+      "provenance": {
+        "origin": "generated",
+        "source_reference": "docs/editorial/creative-fixtures/FL-TEST-C/image-plan.json#FL-TEST-C-featured",
+        "generator": "built_in_image_gen",
+        "created_at": "2026-10-07T08:50:30.831946+00:00",
+        "license_status": "generated_original",
+        "rights_reference": null,
+        "human_capture_confirmed": false
+      },
+      "source_asset_reference": null
+    }
+  ]
+}

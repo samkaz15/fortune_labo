@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "content_id": "FL-TEST-B",
+  "site_id": null,
+  "mode": "dry_run",
+  "state": "preview_blocked",
+  "payload_ready": false,
+  "network_ready": false,
+  "publication_allowed": false,
+  "human_approval_required_before_publish": true,
+  "proposed_payload": {
+    "status": "draft",
+    "title": "返信が来ないときの連絡と待ち方――分かることから決める",
+    "content": "<p>返信が来ないとき、追加で何か送ったほうがよいのか、それとも待ったほうがよいのか迷うことがあります。まず確認するのは、返事が必要な用件、これまでのやり取り、相手が伝えている希望です。返信の遅さだけで気持ちを決めつけず、連絡の判断と自分の予定を分けて考えてみてください。</p>\n\n<p>このガイドでは、相手の本心を当てる方法や、返信を得られる決まり文句は扱いません。自分が確認できている情報から、送る目的と今日の過ごし方を整理するための手順を示します。</p>\n\n<h2>事実と想像を別の欄に置く</h2>\n\n<!-- A25 pending image: FL-TEST-B-section-01 -->\n\n<p>「昨夜、近況を送った。今は返事がない」という架空の場面で考えてみましょう。ここで分かっている出来事と、「嫌われたのかもしれない」という考えは、別の欄に書きます。後者を無理に消す必要はありませんが、相手が実際に伝えた言葉として扱わないようにします。</p>\n\n<p>メモの一方には送った用件と日時、もう一方には気になっていることを置きます。「予定を確定できない」と「自分への気持ちが知りたい」が両方出てきたら、まずどちらへの返事を求めているのかを選んでください。同じメッセージに全部を載せる前に、今確認する必要のあることを絞るためです。</p>\n\n<p>忙しいのか、どう返そうか迷っているのか、そもそも読んでいないのか。可能性を並べても、この場面でどれが当てはまるかは未確認です。占いの解釈を使う場合も、その解釈によって相手の事情が確認できたことにはしないでください。</p>\n\n<h2>送る前に用件と相手の希望を確認する</h2>\n\n<p>相手から連絡を控えてほしいと言われているなら、その希望を尊重することを、このガイドでは先に置きます。返事を得るために別のアカウントを探したり、知人から返事を促してもらったりする案は取りません。すでに送った内容と、相手の言葉を読み返してから次を考えてください。</p>\n\n<p>予定の相談が続いていて、こちらも日時を決める必要がある場合は、その用件に絞った文面を考えられます。説明用の仮例なら、「日曜の予定は、土曜の昼にこちらの予定を決めようと思っています。都合が合いそうなら、それまでに教えてもらえるとうれしいです。難しければ今回は見送りましょう」という書き方です。すでに一緒の予定を相談している場面の例であり、返信や同意を保証する文章ではありません。</p>\n\n<p>確認する用件がなく、不安を落ち着けるためだけに送りたくなったなら、文章を下書きに置く選び方もあります。読み返すときには「この返事があれば、自分は何を決められるのか」と考えてみてください。答えがまだ出なければ、その日は送らずに自分の予定を決めても構いません。</p>\n\n<h2>待つ間の予定は、自分で決めてよい</h2>\n\n<p>返事が来るかもしれないと思うと、ほかの予定を入れにくいこともあるでしょう。ただ、返信を待つことと、今日の時間をすべて空けておくことは分けて考えられます。買い物を済ませる、夕食を作る、気になっていた本を読むなど、連絡と切り離して選べる用事を一つ置いてみてください。気分が変わるという効果の約束ではなく、時間の使い方を自分で選ぶための提案です。</p>\n\n<p>落ち着いて見返せるときには、自分が望むやり取りも言葉にしておきましょう。「予定の確認には返事がほしい」「毎日の近況は急がなくてよい」のように場面を分けると、相手と話せる機会に伝えたい内容を考えられます。今すぐその希望への回答を求める必要はありません。</p>\n\n<p>この記事でできるのは、事実と想像を分け、連絡の目的を確かめ、自分の予定を選ぶところまでです。さらに自分の傾向を振り返りたいとき、無料診断を選ぶ場合にも、相手の気持ちを確認する手段ではなく、自分が大切にしたい関係を考える材料として使ってください。診断を使わず、ここで書いたメモを読み返すだけでも、この整理は完結します。</p>",
+    "excerpt": "返信待ちの事実と想像を分け、連絡する用件と相手の希望を確かめながら、自分の予定を選ぶためのガイド。",
+    "slug": "waiting-for-reply-boundaries",
+    "categories": null,
+    "tags": null,
+    "featured_media": null,
+    "meta": {}
+  },
+  "request_payload": null,
+  "media_upload_plan": [
+    {
+      "dedup_key": "365fd7f935b31b56c80a84e7d06d2c5ed6983779ef591f493d0473114191142b",
+      "content_id": "FL-TEST-B",
+      "asset_ids": [
+        "FL-TEST-B-featured-asset-01"
+      ],
+      "image_sha256": "6a543c6ad23cb389a053abb252cd41401fcbb92d76bb88313762d489640c6ae6",
+      "relative_path": "images/featured-v1.png",
+      "mime_type": "image/png",
+      "metadata": {
+        "title": "FL-TEST-B-featured",
+        "alt_text": "伏せたスマートフォン、閉じたノート、カップを自然光の机に置いたAI生成イメージ",
+        "caption": "AI生成のイメージ画像です。実在する場所や体験の写真ではありません。"
+      },
+      "action": "upload",
+      "attachment_id": null,
+      "response_reference": null,
+      "association": {
+        "post": null,
+        "state": "after_draft_creation"
+      }
+    },
+    {
+      "dedup_key": "069fdde304442ec6ba4b2a25f62af8f7e918ef3b1f292a651c818a187f62d111",
+      "content_id": "FL-TEST-B",
+      "asset_ids": [
+        "FL-TEST-B-section-01-asset-01"
+      ],
+      "image_sha256": "9bf54a971a8e94d0afad7b1be3f6d618bce369fce23b966e654b05b7eefdf094",
+      "relative_path": "images/section-01.png",
+      "mime_type": "image/png",
+      "metadata": {
+        "title": "FL-TEST-B-section-01",
+        "alt_text": "返信待ちで、送った用件・日時と、まだ分からない相手の事情・気持ちを別々に置く整理図",
+        "caption": "整理用の図です。相手の気持ちを判定するものではありません。"
+      },
+      "action": "upload",
+      "attachment_id": null,
+      "response_reference": null,
+      "association": {
+        "post": null,
+        "state": "after_draft_creation"
+      }
+    }
+  ],
+  "inline_media": [
+    {
+      "image_id": "FL-TEST-B-section-01",
+      "attachment_id": null,
+      "section_heading": "事実と想像を別の欄に置く",
+      "placement": "after_h2",
+      "alt_text": "返信待ちで、送った用件・日時と、まだ分からない相手の事情・気持ちを別々に置く整理図",
+      "caption": "整理用の図です。相手の気持ちを判定するものではありません。"
+    }
+  ],
+  "editorial_metadata": {
+    "content_id": "FL-TEST-B",
+    "access_type": "FREE",
+    "seo_policy_version": "seo-policy-0.1.0-draft",
+    "article_version": "article-1.0.0",
+    "visual_style_version": "visual-style-0.1.0",
+    "draft_sha256": "d347a2a01d0210b44b7078946fb17a8dceb70180562b9a97f069c2cf3d506830",
+    "image_plan_sha256": "50579357b9183ac8f64fafcaf686ee84efd102d9b2a4bcc6596664362d0d29c7",
+    "fact_check_status": "passed",
+    "qa_status": "passed",
+    "internal_links": [],
+    "cta": {
+      "type": "free_fortune",
+      "destination": null,
+      "placement": "本文で回答した後の末尾",
+      "copy_direction": "任意の次の行動。未確認のサービスや公開URLを実在と断定しない。",
+      "status": "candidate"
+    }
+  },
+  "seo_metadata": {
+    "primary_keyword": "返信が来ない どうする",
+    "secondary_keywords": [],
+    "search_intent": "informational",
+    "meta_description": "返信待ちの事実と想像を分け、連絡する用件と相手の希望を確かめながら、自分の予定を選ぶためのガイド。",
+    "canonical_url": null,
+    "keyword_status": "offline_candidate_not_measured"
+  },
+  "qa_reference": "295ad3f27a62101420493a23df2d39a458200b2aba5ef2d0bc3d16e30271d5ee",
+  "blockers": [
+    "media_upload_required:FL-TEST-B-featured",
+    "media_upload_required:FL-TEST-B-section-01"
+  ],
+  "source_article_sha256": "d347a2a01d0210b44b7078946fb17a8dceb70180562b9a97f069c2cf3d506830",
+  "rendered_content_sha256": "1033b11be34217ccebbe9c8663f17915b8507d710176f7867f8d00ed1dae2ce7",
+  "connection_status": "not_connected",
+  "wordpress_post_id": null,
+  "package_sha256": "5b418caef90f27f5b7978ae4f91c247b26d0b16b63455302e84164a3e41f0975"
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "content_id": "FL-TEST-C",
+  "brief_sha256": "895104622e68b60c17ff5d4e5fccc9635bbcc4c39f33491638cb4618fa90094a",
+  "seo_policy_version": "seo-policy-0.1.0-draft",
+  "core_answer": "条件の記入、情報の確認、小さな試行、候補比較を記録し、未確認の点を残したまま次の判断日を決める。90日は編集上の区切りであり成果の期限ではない。",
+  "access_type": "PREMIUM",
+  "access_rationale": "FREEの基本整理に加え、個人条件を使う記入シート、試行記録、比較表、再開手順を繰り返し利用できる。個別鑑定や成果保証ではない。",
+  "sections": [
+    {
+      "heading_level": "h2",
+      "heading": "最初に、守りたい条件と計画の上限を決める",
+      "purpose": "読者が判断と行動を具体化するための説明と仮例",
+      "source_requirement": "ai_structurable",
+      "evidence_refs": [
+        "GR001"
+      ]
+    },
+    {
+      "heading_level": "h2",
+      "heading": "1〜30日：経験を、確かめられる問いにする",
+      "purpose": "読者が判断と行動を具体化するための説明と仮例",
+      "source_requirement": "ai_structurable",
+      "evidence_refs": [
+        "GR001"
+      ]
+    },
+    {
+      "heading_level": "h2",
+      "heading": "31〜60日：一つ試して、結果の読み方を決める",
+      "purpose": "読者が判断と行動を具体化するための説明と仮例",
+      "source_requirement": "ai_structurable",
+      "evidence_refs": [
+        "GR001"
+      ]
+    },
+    {
+      "heading_level": "h2",
+      "heading": "61〜90日：比較表から次の期間を選ぶ",
+      "purpose": "読者が判断と行動を具体化するための説明と仮例",
+      "source_requirement": "ai_structurable",
+      "evidence_refs": [
+        "GR001"
+      ]
+    }
+  ],
+  "evidence_needed": [
+    {
+      "requirement": "ジャンル別役割は公開用Content Intelligenceを参照。本文の仮例と手順は今回の編集提案として示し、効果実証を主張しない。",
+      "claim_kind": "HYPOTHESIS",
+      "source_ref": "GR001",
+      "status": "available"
+    }
+  ],
+  "personal_experience_needed": {
+    "required": false,
+    "source_ref": null,
+    "status": "not_required",
+    "handling": "筆者・顧客の実体験を使わず、具体例は架空の説明用と明示する。A06通常運用の独自素材要件は未解消。"
+  },
+  "internal_link_candidates": [
+    {
+      "target_content_id": "FL-TEST-A",
+      "target_url": null,
+      "anchor_text": "転職したいのに動けないとき、最初に確かめる三つのこと",
+      "rationale": "基本整理と継続ワークを必要に応じて行き来する",
+      "direction": "outbound_from_this_page",
+      "status": "candidate"
+    }
+  ],
+  "cta": {
+    "type": "related_content",
+    "destination": null,
+    "placement": "本文で回答した後の末尾",
+    "copy_direction": "任意の次の行動。未確認のサービスや公開URLを実在と断定しない。",
+    "status": "candidate"
+  },
+  "writing_rules_reference": "docs/editorial/ARTICLE_PRODUCTION_RULES.md",
+  "publication_allowed": false,
+  "human_approval": null,
+  "writing_rules_sha256": "ddd1bac7d7b6bbe30972f96bbabb16f2d7b45931d884d12325e573197dcc2396"
+}

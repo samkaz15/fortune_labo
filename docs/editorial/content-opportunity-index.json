@@ -1,0 +1,258 @@
+{
+  "schema_version": "1.0.0",
+  "inventory_completeness": "complete",
+  "opportunities": [
+    {
+      "opportunity_id": "opp-ffe8f626cc8416fb",
+      "genre": "general_fortune",
+      "topic": "今月の行動を考えるための予定の整理",
+      "keyword": null,
+      "search_intent": "informational",
+      "reader_need": "今の状況で何から始めるか。",
+      "existing_content_overlap": [],
+      "free_premium_candidate": "FREE",
+      "reason": "No matching registered topic/title/keyword in existing and supplied draft indexes; semantic coverage requires human review.",
+      "evidence_refs": [
+        "docs/editorial/content-intelligence.json#/genres/0/main_questions",
+        "docs/editorial/content-intelligence.json#/genres/0/free_content_role",
+        "docs/editorial/FREE_PREMIUM_RULES.md"
+      ],
+      "priority_candidate": "review",
+      "inventory_completeness": "complete",
+      "coverage_status": "no_index_match",
+      "human_review_required": true
+    },
+    {
+      "opportunity_id": "opp-0e1eda8a50268278",
+      "genre": "marriage",
+      "topic": "結婚前に生活の価値観を話し合うための準備",
+      "keyword": null,
+      "search_intent": "informational",
+      "reader_need": "将来の生活に向けて何を話し合うか。",
+      "existing_content_overlap": [],
+      "free_premium_candidate": "FREE",
+      "reason": "No matching registered topic/title/keyword in existing and supplied draft indexes; semantic coverage requires human review.",
+      "evidence_refs": [
+        "docs/editorial/content-intelligence.json#/genres/2/main_questions",
+        "docs/editorial/content-intelligence.json#/genres/2/free_content_role",
+        "docs/editorial/FREE_PREMIUM_RULES.md"
+      ],
+      "priority_candidate": "review",
+      "inventory_completeness": "complete",
+      "coverage_status": "no_index_match",
+      "human_review_required": true
+    },
+    {
+      "opportunity_id": "opp-2eab4a6c1be1b788",
+      "genre": "money",
+      "topic": "お金の使い方を見直すための記録の始め方",
+      "keyword": null,
+      "search_intent": "informational",
+      "reader_need": "支出や貯蓄の何を確認するか。",
+      "existing_content_overlap": [],
+      "free_premium_candidate": "FREE",
+      "reason": "No matching registered topic/title/keyword in existing and supplied draft indexes; semantic coverage requires human review.",
+      "evidence_refs": [
+        "docs/editorial/content-intelligence.json#/genres/4/main_questions",
+        "docs/editorial/content-intelligence.json#/genres/4/free_content_role",
+        "docs/editorial/FREE_PREMIUM_RULES.md"
+      ],
+      "priority_candidate": "review",
+      "inventory_completeness": "complete",
+      "coverage_status": "no_index_match",
+      "human_review_required": true
+    },
+    {
+      "opportunity_id": "opp-76df42e8a9f21711",
+      "genre": "health_lifestyle",
+      "topic": "生活のリズムを振り返るための記録",
+      "keyword": null,
+      "search_intent": "informational",
+      "reader_need": "生活のどこから見直すか。",
+      "existing_content_overlap": [],
+      "free_premium_candidate": "FREE",
+      "reason": "No matching registered topic/title/keyword in existing and supplied draft indexes; semantic coverage requires human review.",
+      "evidence_refs": [
+        "docs/editorial/content-intelligence.json#/genres/5/main_questions",
+        "docs/editorial/content-intelligence.json#/genres/5/free_content_role",
+        "docs/editorial/FREE_PREMIUM_RULES.md"
+      ],
+      "priority_candidate": "review",
+      "inventory_completeness": "complete",
+      "coverage_status": "no_index_match",
+      "human_review_required": true
+    },
+    {
+      "opportunity_id": "opp-5fb2d84fac2a506e",
+      "genre": "self_understanding",
+      "topic": "得意なことを日常の行動から考える",
+      "keyword": null,
+      "search_intent": "informational",
+      "reader_need": "強みを日常でどう使うか。",
+      "existing_content_overlap": [],
+      "free_premium_candidate": "FREE",
+      "reason": "No matching registered topic/title/keyword in existing and supplied draft indexes; semantic coverage requires human review.",
+      "evidence_refs": [
+        "docs/editorial/content-intelligence.json#/genres/6/main_questions",
+        "docs/editorial/content-intelligence.json#/genres/6/free_content_role",
+        "docs/editorial/FREE_PREMIUM_RULES.md"
+      ],
+      "priority_candidate": "review",
+      "inventory_completeness": "complete",
+      "coverage_status": "no_index_match",
+      "human_review_required": true
+    },
+    {
+      "opportunity_id": "opp-d29a7459e65cc44a",
+      "genre": "shrine_visits",
+      "topic": "参拝前に目的と必要な情報を整理する",
+      "keyword": null,
+      "search_intent": "informational",
+      "reader_need": "どのように参拝を計画するか。",
+      "existing_content_overlap": [],
+      "free_premium_candidate": "FREE",
+      "reason": "No matching registered topic/title/keyword in existing and supplied draft indexes; semantic coverage requires human review.",
+      "evidence_refs": [
+        "docs/editorial/content-intelligence.json#/genres/7/main_questions",
+        "docs/editorial/content-intelligence.json#/genres/7/free_content_role",
+        "docs/editorial/FREE_PREMIUM_RULES.md"
+      ],
+      "priority_candidate": "review",
+      "inventory_completeness": "complete",
+      "coverage_status": "no_index_match",
+      "human_review_required": true
+    },
+    {
+      "opportunity_id": "opp-eae0ab4571938233",
+      "genre": "direction_travel_moving",
+      "topic": "移動の予定を考えるための条件整理",
+      "keyword": null,
+      "search_intent": "informational",
+      "reader_need": "日程と行き先をどう検討するか。",
+      "existing_content_overlap": [],
+      "free_premium_candidate": "FREE",
+      "reason": "No matching registered topic/title/keyword in existing and supplied draft indexes; semantic coverage requires human review.",
+      "evidence_refs": [
+        "docs/editorial/content-intelligence.json#/genres/8/main_questions",
+        "docs/editorial/content-intelligence.json#/genres/8/free_content_role",
+        "docs/editorial/FREE_PREMIUM_RULES.md"
+      ],
+      "priority_candidate": "review",
+      "inventory_completeness": "complete",
+      "coverage_status": "no_index_match",
+      "human_review_required": true
+    },
+    {
+      "opportunity_id": "opp-eb7836750f8ad35e",
+      "genre": "compatibility",
+      "topic": "二人の違いを話し合うための確認事項",
+      "keyword": null,
+      "search_intent": "informational",
+      "reader_need": "すれ違いを減らすために何を確認するか。",
+      "existing_content_overlap": [],
+      "free_premium_candidate": "FREE",
+      "reason": "No matching registered topic/title/keyword in existing and supplied draft indexes; semantic coverage requires human review.",
+      "evidence_refs": [
+        "docs/editorial/content-intelligence.json#/genres/9/main_questions",
+        "docs/editorial/content-intelligence.json#/genres/9/free_content_role",
+        "docs/editorial/FREE_PREMIUM_RULES.md"
+      ],
+      "priority_candidate": "review",
+      "inventory_completeness": "complete",
+      "coverage_status": "no_index_match",
+      "human_review_required": true
+    },
+    {
+      "opportunity_id": "opp-7f34a8bb5b231342",
+      "genre": "spiritual_consultation",
+      "topic": "個別相談の前に相談事項をまとめる",
+      "keyword": null,
+      "search_intent": "informational",
+      "reader_need": "相談の前に何を伝えるか。",
+      "existing_content_overlap": [],
+      "free_premium_candidate": "FREE",
+      "reason": "No matching registered topic/title/keyword in existing and supplied draft indexes; semantic coverage requires human review.",
+      "evidence_refs": [
+        "docs/editorial/content-intelligence.json#/genres/10/main_questions",
+        "docs/editorial/content-intelligence.json#/genres/10/free_content_role",
+        "docs/editorial/FREE_PREMIUM_RULES.md"
+      ],
+      "priority_candidate": "review",
+      "inventory_completeness": "complete",
+      "coverage_status": "no_index_match",
+      "human_review_required": true
+    }
+  ],
+  "suppressed": [
+    {
+      "opportunity_id": "opp-64d2953790c74764",
+      "genre": "love",
+      "topic": "連絡の迷いを整理するための確認事項",
+      "keyword": null,
+      "search_intent": "informational",
+      "reader_need": "相手への働きかけをどう考えるか。",
+      "existing_content_overlap": [
+        {
+          "content_id": "FL-TEST-B",
+          "reasons": [
+            "reviewed_editorial_overlap"
+          ],
+          "search_intent_match": true
+        }
+      ],
+      "free_premium_candidate": "FREE",
+      "reason": "編集レビューで、連絡するか待つかを考える確認事項は試作Bの読者課題に重なるため、新規候補から保留した。追加記事を作る前に異なる検索意図・読者課題を説明する必要がある。",
+      "evidence_refs": [
+        "docs/editorial/content-intelligence.json#/genres/1/main_questions",
+        "docs/editorial/content-intelligence.json#/genres/1/free_content_role",
+        "docs/editorial/FREE_PREMIUM_RULES.md",
+        "docs/editorial/reviewed-opportunity-overlaps.json#/overlaps/1",
+        "docs/editorial/test-content-index.json",
+        "docs/editorial/test-articles/FL-TEST-B/brief.json"
+      ],
+      "priority_candidate": "review",
+      "inventory_completeness": "complete",
+      "coverage_status": "overlap_review",
+      "human_review_required": true
+    },
+    {
+      "opportunity_id": "opp-2927fafdc31aac77",
+      "genre": "career",
+      "topic": "働き方を変える前に自分の条件を整理する",
+      "keyword": null,
+      "search_intent": "informational",
+      "reader_need": "働き方を変える前に何を整理するか。",
+      "existing_content_overlap": [
+        {
+          "content_id": "FL-TEST-A",
+          "reasons": [
+            "reviewed_editorial_overlap"
+          ],
+          "search_intent_match": true
+        },
+        {
+          "content_id": "FL-TEST-C",
+          "reasons": [
+            "reviewed_editorial_overlap"
+          ],
+          "search_intent_match": true
+        }
+      ],
+      "free_premium_candidate": "FREE",
+      "reason": "編集レビューで、働き方の条件整理は試作Aの初期整理と試作Cの条件・試行・見直しに重なるため、新規候補から保留した。無料導入と有料ワークの役割差を確認してから追加企画を判断する。",
+      "evidence_refs": [
+        "docs/editorial/content-intelligence.json#/genres/3/main_questions",
+        "docs/editorial/content-intelligence.json#/genres/3/free_content_role",
+        "docs/editorial/FREE_PREMIUM_RULES.md",
+        "docs/editorial/reviewed-opportunity-overlaps.json#/overlaps/0",
+        "docs/editorial/test-content-index.json",
+        "docs/editorial/test-articles/FL-TEST-A/brief.json",
+        "docs/editorial/test-articles/FL-TEST-C/brief.json"
+      ],
+      "priority_candidate": "review",
+      "inventory_completeness": "complete",
+      "coverage_status": "overlap_review",
+      "human_review_required": true
+    }
+  ]
+}

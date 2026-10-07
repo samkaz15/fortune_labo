@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "A08 Private Run Manifest",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "content_id": {
+      "type": "string",
+      "pattern": "^FL-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+    },
+    "state": {
+      "enum": [
+        "awaiting_external_draft",
+        "draft_and_self_review_recorded"
+      ]
+    },
+    "brief_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "blueprint_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "rules_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "prompt_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "draft_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "self_review_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "seo_policy_version": {
+      "type": "string",
+      "pattern": "^seo-policy-[0-9]+\\.[0-9]+\\.[0-9]+(?:-draft)?$"
+    },
+    "publication_allowed": {
+      "const": false
+    },
+    "human_approval": {
+      "const": null
+    },
+    "next_stage": {
+      "enum": [
+        "A08_external_writer",
+        "A29_contract_only"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "content_id",
+    "state",
+    "brief_sha256",
+    "blueprint_sha256",
+    "rules_sha256",
+    "prompt_sha256",
+    "draft_sha256",
+    "self_review_sha256",
+    "seo_policy_version",
+    "publication_allowed",
+    "human_approval",
+    "next_stage"
+  ],
+  "additionalProperties": false
+}

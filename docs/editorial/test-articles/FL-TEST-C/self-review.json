@@ -1,0 +1,117 @@
+{
+  "reviewer_kind": "model_self_review",
+  "checks": [
+    {
+      "check_id": "search_intent",
+      "status": "passed",
+      "evidence": "導入で最初に行う整理を回答し、最初に、守りたい条件と計画の上限を決めるから手順を示す。keywordは試作用で需要実測なし。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "explicit_need",
+      "status": "passed",
+      "evidence": "最初に、守りたい条件と計画の上限を決めると1〜30日：経験を、確かめられる問いにするに具体的な記入・確認手順を置いた。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "latent_need",
+      "status": "passed",
+      "evidence": "未確認を無理に結論へ変えず、自分の次の判断を選べる構成。読者仮説であり個人データではない。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "paragraph_flow",
+      "status": "passed",
+      "evidence": "各H2は場面、提案、仮例、次の判断を複数文の段落でつなぐ。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "sentence_variation",
+      "status": "passed",
+      "evidence": "説明文と依頼形を組み合わせ、全行を一文ずつ改行しない。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "ending_variation",
+      "status": "passed",
+      "evidence": "です／ます、提案の依頼形、構わないという許容表現を文脈に応じて使用。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "heading_density",
+      "status": "passed",
+      "evidence": "4個のH2。文単位の見出しを追加していない。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "list_density",
+      "status": "passed",
+      "evidence": "A/Bは本文段落中心。Cの3表は記入・比較用で本文の説明を代替しない。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "non_uniform_structure",
+      "status": "passed",
+      "evidence": "Aは条件整理、Bは連絡の境界、Cは期間別の記入ワークに構造を変えた。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "concrete_examples",
+      "status": "passed",
+      "evidence": "本文で架空の例と明示。A/Cの資料作成場面、Bの予定確認文面が具体例。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "claim_separation",
+      "status": "passed",
+      "evidence": "架空の場面と編集提案を表示。効果や返信・転職の成功を保証していない。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "no_fabricated_experience",
+      "status": "passed",
+      "evidence": "実在相談者、筆者の訪問、実績、鑑定者の見解を追加していない。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "free_completeness",
+      "status": "passed",
+      "evidence": "A/Bは本文で最初の判断を完結。Cも約束した記入手順を全段階提示。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "premium_difference",
+      "status": "passed",
+      "evidence": "Cのみ条件シート、試行メモ、候補比較表と中断時の再開手順を提供。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "natural_cta",
+      "status": "passed",
+      "evidence": "最後の段落に任意の次の行動。実在未確認のURLや予約ボタンを置かない。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "internal_link_candidates",
+      "status": "passed",
+      "evidence": "A/Cは相互のfixtureタイトルを参照しURLはnull。Bは根拠のある対象がないため0件。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    },
+    {
+      "check_id": "seo_policy_trace",
+      "status": "passed",
+      "evidence": "Brief/Blueprint/runとSelf Reviewにseo-policy-0.1.0-draftを保持。",
+      "notes": "A08によるモデル自己レビュー。人間の承認ではない。"
+    }
+  ],
+  "known_gaps": [
+    "実CTAと内部リンクのURLは未確認",
+    "正式SEO policyと上流A06の戦略採用は未承認",
+    "自然さと事実主張は独立モデルQAの対象。公開には人間承認が別途必要"
+  ],
+  "human_approval": null,
+  "content_id": "FL-TEST-C",
+  "brief_sha256": "895104622e68b60c17ff5d4e5fccc9635bbcc4c39f33491638cb4618fa90094a",
+  "draft_sha256": "d0a261c9e017b572f1d43b6cb7f8e068a45fcb7d8ab8353243843b8d5e4349e0",
+  "seo_policy_version": "seo-policy-0.1.0-draft"
+}

@@ -1,0 +1,51 @@
+{
+  "content_id": "FL-TEST-B",
+  "site_id": null,
+  "uploads": [
+    {
+      "dedup_key": "365fd7f935b31b56c80a84e7d06d2c5ed6983779ef591f493d0473114191142b",
+      "content_id": "FL-TEST-B",
+      "asset_ids": [
+        "FL-TEST-B-featured-asset-01"
+      ],
+      "image_sha256": "6a543c6ad23cb389a053abb252cd41401fcbb92d76bb88313762d489640c6ae6",
+      "relative_path": "images/featured-v1.png",
+      "mime_type": "image/png",
+      "metadata": {
+        "title": "FL-TEST-B-featured",
+        "alt_text": "伏せたスマートフォン、閉じたノート、カップを自然光の机に置いたAI生成イメージ",
+        "caption": "AI生成のイメージ画像です。実在する場所や体験の写真ではありません。"
+      },
+      "action": "upload",
+      "attachment_id": null,
+      "response_reference": null,
+      "association": {
+        "post": null,
+        "state": "after_draft_creation"
+      }
+    },
+    {
+      "dedup_key": "069fdde304442ec6ba4b2a25f62af8f7e918ef3b1f292a651c818a187f62d111",
+      "content_id": "FL-TEST-B",
+      "asset_ids": [
+        "FL-TEST-B-section-01-asset-01"
+      ],
+      "image_sha256": "9bf54a971a8e94d0afad7b1be3f6d618bce369fce23b966e654b05b7eefdf094",
+      "relative_path": "images/section-01.png",
+      "mime_type": "image/png",
+      "metadata": {
+        "title": "FL-TEST-B-section-01",
+        "alt_text": "返信待ちで、送った用件・日時と、まだ分からない相手の事情・気持ちを別々に置く整理図",
+        "caption": "整理用の図です。相手の気持ちを判定するものではありません。"
+      },
+      "action": "upload",
+      "attachment_id": null,
+      "response_reference": null,
+      "association": {
+        "post": null,
+        "state": "after_draft_creation"
+      }
+    }
+  ],
+  "executed": false
+}

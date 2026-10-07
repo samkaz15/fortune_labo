@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0",
+  "sources": [
+    {
+      "source_id": "GR001",
+      "source_type": "private_research_document",
+      "source_title": "Private editorial source 01",
+      "access_scope": "private",
+      "derived_artifacts": [
+        "docs/editorial/content-intelligence.json",
+        "docs/editorial/CONTENT_INTELLIGENCE.md",
+        "docs/editorial/genre-taxonomy.json",
+        "docs/editorial/GENRE_TAXONOMY.md",
+        "docs/editorial/FREE_PREMIUM_RULES.md"
+      ]
+    },
+    {
+      "source_id": "GR002",
+      "source_type": "private_research_document",
+      "source_title": "Private editorial source 02",
+      "access_scope": "private",
+      "derived_artifacts": [
+        "docs/editorial/content-intelligence.json",
+        "docs/editorial/CONTENT_INTELLIGENCE.md"
+      ]
+    },
+    {
+      "source_id": "GR003",
+      "source_type": "private_research_document",
+      "source_title": "Private editorial source 03",
+      "access_scope": "private",
+      "derived_artifacts": [
+        "docs/editorial/content-intelligence.json",
+        "docs/editorial/CONTENT_INTELLIGENCE.md"
+      ]
+    },
+    {
+      "source_id": "GR004",
+      "source_type": "private_research_document",
+      "source_title": "Private editorial source 04",
+      "access_scope": "private",
+      "derived_artifacts": [
+        "docs/editorial/content-intelligence.json",
+        "docs/editorial/CONTENT_INTELLIGENCE.md"
+      ]
+    }
+  ]
+}

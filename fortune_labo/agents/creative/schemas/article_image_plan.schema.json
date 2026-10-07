@@ -1,0 +1,506 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "A11 Article Image Plan",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "content_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "article_version": {
+      "type": "string",
+      "pattern": "^article-[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "source_article_reference": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_blueprint_reference": {
+      "type": "string",
+      "minLength": 1
+    },
+    "draft_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "blueprint_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "visual_style_version": {
+      "type": "string",
+      "pattern": "^visual-style-[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "visual_identity_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "featured_exception_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "image_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "content_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "image_role": {
+            "enum": [
+              "featured",
+              "section",
+              "diagram",
+              "explanation",
+              "atmosphere",
+              "example"
+            ]
+          },
+          "visual_type": {
+            "enum": [
+              "PHOTO",
+              "ILLUSTRATION",
+              "DIAGRAM",
+              "INFOGRAPHIC",
+              "ABSTRACT",
+              "NO_IMAGE"
+            ]
+          },
+          "section_id": {
+            "type": "string",
+            "pattern": "^(featured|h2-[0-9]{2,})$"
+          },
+          "section_heading": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1
+          },
+          "visual_subject": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "composition": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "environment": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "lighting": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "mood": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "aspect_ratio": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[1-9][0-9]*:[1-9][0-9]*$"
+          },
+          "recommended_width": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 8192
+          },
+          "recommended_height": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 8192
+          },
+          "alt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "alt_text": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "caption": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "generation_prompt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "negative_requirements": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "placement": {
+            "enum": [
+              "featured",
+              "after_h2",
+              "after_section",
+              "none"
+            ]
+          },
+          "render_method": {
+            "enum": [
+              "raster",
+              "html_svg_overlay",
+              "native_svg_render",
+              "none"
+            ]
+          },
+          "text_policy": {
+            "enum": [
+              "none",
+              "short_labels_only",
+              "native_text_layer"
+            ]
+          },
+          "text_labels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "no_image_reason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "generation_status": {
+            "enum": [
+              "planned",
+              "generated",
+              "supplied",
+              "failed",
+              "not_applicable"
+            ]
+          },
+          "generation_error": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "generated_asset_reference": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/$defs/asset"
+              }
+            ]
+          },
+          "factual_subject_kind": {
+            "enum": [
+              "none",
+              "real_place",
+              "real_person",
+              "historical_person",
+              "traditional_object"
+            ]
+          },
+          "factual_reference_required": {
+            "type": "boolean"
+          },
+          "factual_source_reference": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "requires_actual_photo": {
+            "type": "boolean"
+          },
+          "illustrative_disclosure": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          }
+        },
+        "required": [
+          "image_id",
+          "content_id",
+          "image_role",
+          "visual_type",
+          "section_id",
+          "section_heading",
+          "purpose",
+          "visual_subject",
+          "composition",
+          "environment",
+          "lighting",
+          "mood",
+          "aspect_ratio",
+          "recommended_width",
+          "recommended_height",
+          "alt",
+          "alt_text",
+          "caption",
+          "generation_prompt",
+          "negative_requirements",
+          "required",
+          "placement",
+          "render_method",
+          "text_policy",
+          "text_labels",
+          "no_image_reason",
+          "generation_status",
+          "generation_error",
+          "generated_asset_reference"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "status": {
+      "enum": [
+        "planned",
+        "partially_generated",
+        "needs_attention",
+        "assets_ready_for_qa",
+        "no_images_required"
+      ]
+    },
+    "human_approval": {
+      "const": null
+    },
+    "publication_allowed": {
+      "const": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "content_id",
+    "article_version",
+    "source_article_reference",
+    "source_blueprint_reference",
+    "draft_sha256",
+    "blueprint_sha256",
+    "visual_style_version",
+    "visual_identity_sha256",
+    "featured_exception_reason",
+    "images",
+    "status",
+    "human_approval",
+    "publication_allowed"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "asset": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Verified local creative asset reference",
+      "type": "object",
+      "properties": {
+        "asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "relative_path": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_./-]*$"
+        },
+        "image_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "mime_type": {
+          "enum": [
+            "image/png",
+            "image/svg+xml"
+          ]
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8192
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8192
+        },
+        "state": {
+          "enum": [
+            "generated",
+            "supplied"
+          ]
+        },
+        "provenance": {
+          "type": "object",
+          "properties": {
+            "origin": {
+              "enum": [
+                "generated",
+                "native_vector",
+                "original_photo",
+                "licensed_asset",
+                "user_provided_photo"
+              ]
+            },
+            "source_reference": {
+              "type": "string",
+              "minLength": 1
+            },
+            "generator": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "minLength": 1
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "license_status": {
+              "enum": [
+                "generated_original",
+                "original_code",
+                "confirmed",
+                "pending"
+              ]
+            },
+            "rights_reference": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "minLength": 1
+            },
+            "human_capture_confirmed": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "origin",
+            "source_reference",
+            "generator",
+            "created_at",
+            "license_status",
+            "rights_reference",
+            "human_capture_confirmed"
+          ],
+          "additionalProperties": false
+        },
+        "source_asset_reference": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "relative_path": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_./-]*$"
+                },
+                "image_sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "mime_type": {
+                  "const": "image/svg+xml"
+                },
+                "width": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 8192
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 8192
+                }
+              },
+              "required": [
+                "relative_path",
+                "image_sha256",
+                "mime_type",
+                "width",
+                "height"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "asset_id",
+        "relative_path",
+        "image_sha256",
+        "mime_type",
+        "width",
+        "height",
+        "state",
+        "provenance",
+        "source_asset_reference"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

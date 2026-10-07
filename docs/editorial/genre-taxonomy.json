@@ -1,0 +1,139 @@
+{
+  "version": "0.2.0",
+  "status": "foundation_direction_approved_production_pending",
+  "evidence_source": [
+    {
+      "source_id": "GR001"
+    }
+  ],
+  "genres": [
+    {
+      "genre_id": "general_fortune",
+      "genre_name": "総合運・月運",
+      "subgenres": [],
+      "subgenre_status": "unclassified",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ]
+    },
+    {
+      "genre_id": "love",
+      "genre_name": "恋愛",
+      "subgenres": [],
+      "subgenre_status": "unclassified",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ]
+    },
+    {
+      "genre_id": "marriage",
+      "genre_name": "結婚",
+      "subgenres": [],
+      "subgenre_status": "unclassified",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ]
+    },
+    {
+      "genre_id": "career",
+      "genre_name": "仕事・キャリア",
+      "subgenres": [],
+      "subgenre_status": "unclassified",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ]
+    },
+    {
+      "genre_id": "money",
+      "genre_name": "金運",
+      "subgenres": [],
+      "subgenre_status": "unclassified",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ]
+    },
+    {
+      "genre_id": "health_lifestyle",
+      "genre_name": "健康・生活習慣",
+      "subgenres": [],
+      "subgenre_status": "unclassified",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ]
+    },
+    {
+      "genre_id": "self_understanding",
+      "genre_name": "自己理解・才能",
+      "subgenres": [],
+      "subgenre_status": "unclassified",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ]
+    },
+    {
+      "genre_id": "shrine_visits",
+      "genre_name": "神社・参拝",
+      "subgenres": [],
+      "subgenre_status": "unclassified",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ]
+    },
+    {
+      "genre_id": "direction_travel_moving",
+      "genre_name": "方位・旅行・引越し",
+      "subgenres": [],
+      "subgenre_status": "unclassified",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ]
+    },
+    {
+      "genre_id": "compatibility",
+      "genre_name": "相性",
+      "subgenres": [],
+      "subgenre_status": "unclassified",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ]
+    },
+    {
+      "genre_id": "spiritual_consultation",
+      "genre_name": "霊視・個別相談",
+      "subgenres": [],
+      "subgenre_status": "unclassified",
+      "evidence_source": [
+        {
+          "source_id": "GR001"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    "genre_idは表示名から独立した固定識別子。",
+    "主たる読者の課題に対応するgenreを一つ選ぶ。",
+    "判断根拠が不足すればunclassifiedとする。",
+    "subgenreとtopic_clusterを推測で確定しない。",
+    "分類への登録はA06の制作条件や人間承認の代わりにならない。"
+  ]
+}

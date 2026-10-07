@@ -1,0 +1,201 @@
+{
+  "schema_version": "2.0.0",
+  "content_id": "FL-TEST-B",
+  "mode": "offline_test",
+  "title": "返信が来ないときの連絡と待ち方――分かることから決める",
+  "genre": "love",
+  "keyword": "返信が来ない どうする",
+  "secondary_keywords": [],
+  "search_intent": "informational",
+  "explicit_need": "連絡の仕方を整理する",
+  "latent_need": "不安を言葉にする",
+  "persona": "返事を待ち、追加の連絡をするか迷う人",
+  "reader_stage": "consideration",
+  "access_type": "FREE",
+  "content_depth": "standard",
+  "article_type": "situation_guide",
+  "internal_link_candidates": [],
+  "cta": {
+    "type": "free_fortune",
+    "destination": null,
+    "placement": "本文で回答した後の末尾",
+    "copy_direction": "任意の次の行動。未確認のサービスや公開URLを実在と断定しない。",
+    "status": "candidate"
+  },
+  "seo_policy_version": "seo-policy-0.1.0-draft",
+  "a06_source": {
+    "status": "not_issued",
+    "brief_ref": null,
+    "opportunity_ref": null,
+    "brief_id": null,
+    "opportunity_id": null,
+    "tier": null,
+    "content_path": null,
+    "visit_record_id": null,
+    "binding_gaps": [
+      "A06 acceptance and production strategy differences are unresolved; offline test only."
+    ]
+  },
+  "strategy_assessment": {
+    "moat_alignment": "conflicting",
+    "strategy_review_status": "pending",
+    "rationale": "The requested offline rerun does not resolve the existing A06 production positioning constraints."
+  },
+  "source_refs": [
+    "GR001",
+    "GR002",
+    "docs/editorial/FREE_PREMIUM_RULES.md"
+  ],
+  "source_status": "structured_from_user_research",
+  "handoff": {
+    "from": "A07",
+    "to": "A08",
+    "state": "offline_test_only",
+    "next_stages": [
+      "A29",
+      "A32",
+      "A28",
+      "human_approval",
+      "A25_wordpress_draft"
+    ]
+  },
+  "human_approval": null,
+  "publication_allowed": false,
+  "tbd": [
+    "正式SEO policyとA06の通常採用",
+    "CTAと内部リンクの公開URL",
+    "商品仕様と人間の公開承認",
+    "検索需要の実測とkeyword採用"
+  ],
+  "selection_context": {
+    "status": "user_requested_offline_fixture",
+    "opportunity_id": null,
+    "inventory_completeness": "not_supplied",
+    "coverage_status": "not_assessed",
+    "evidence_refs": [],
+    "existing_content_overlap": [],
+    "human_review_required": true
+  },
+  "performance_context": {
+    "status": "unmeasured",
+    "metric_groups": {
+      "seo": null,
+      "engagement": null,
+      "conversion": null,
+      "retention": null
+    },
+    "observed_groups": [],
+    "assessment": "No performance winner or priority score is inferred; review each purpose separately.",
+    "evidence_refs": []
+  },
+  "access_basis": {
+    "intelligence_version": "0.2.0",
+    "genre_id": "love",
+    "recommended_access_type": "BOTH",
+    "source_refs": [
+      "GR001"
+    ],
+    "rules_reference": "docs/editorial/FREE_PREMIUM_RULES.md",
+    "rules_sha256": "9fb522a229b40087acc728e73aaf23e56e41e9cb514a1bd12ee6f0d5da064787"
+  },
+  "input_manifest": {
+    "index_sha256": "20db1919a5d6812bd1063bedac0d4874078c8898888d7e05c077913a73386226",
+    "intelligence_sha256": "46b99cfe1224ec54188256f43bb270bc2eb0cbe23f99b8785357fa5e3c5bd971",
+    "a06_brief_sha256": null,
+    "a06_opportunity_sha256": null,
+    "performance_sha256": null,
+    "opportunities_sha256": null,
+    "decision_sha256": "cbbc666c461b94c611a396fdc1b6faf6e97308d46eb013b79e5be73c41551381",
+    "policy_register_sha256": "5f2dc01c65da400b82790c639517efd91cb61795b9816f0a40bc91fc98ddbbd9"
+  },
+  "topic": "連絡する目的と自分の予定を整理する",
+  "core_answer": "返信の遅さから気持ちを断定せず、用件、これまでのやり取り、相手が伝えた希望を確かめる。返信待ちの判断と自分の予定を分ける。",
+  "h2_h3_intent": [
+    {
+      "heading_level": "h2",
+      "heading": "事実と想像を別の欄に置く",
+      "purpose": "読者が判断と行動を具体化するための説明と仮例",
+      "source_requirement": "ai_structurable",
+      "evidence_refs": [
+        "GR001"
+      ]
+    },
+    {
+      "heading_level": "h2",
+      "heading": "送る前に用件と相手の希望を確認する",
+      "purpose": "読者が判断と行動を具体化するための説明と仮例",
+      "source_requirement": "ai_structurable",
+      "evidence_refs": [
+        "GR001"
+      ]
+    },
+    {
+      "heading_level": "h2",
+      "heading": "待つ間の予定は、自分で決めてよい",
+      "purpose": "読者が判断と行動を具体化するための説明と仮例",
+      "source_requirement": "ai_structurable",
+      "evidence_refs": [
+        "GR001"
+      ]
+    }
+  ],
+  "evidence_needed": [
+    {
+      "requirement": "ジャンル別役割は公開用Content Intelligenceを参照。本文の仮例と手順は今回の編集提案として示し、効果実証を主張しない。",
+      "claim_kind": "HYPOTHESIS",
+      "source_ref": "GR001",
+      "status": "available"
+    }
+  ],
+  "personal_experience_needed": {
+    "required": false,
+    "source_ref": null,
+    "status": "not_required",
+    "handling": "筆者・顧客の実体験を使わず、具体例は架空の説明用と明示する。A06通常運用の独自素材要件は未解消。"
+  },
+  "access_rationale": "連絡の判断と過ごし方を本文だけで整理できるFREE。任意の振り返り導線を末尾に置き、回答を診断の先へ隠さない。",
+  "access_decision": {
+    "basic_answer_complete": true,
+    "premium_added_value": [],
+    "premium_value_source_refs": [],
+    "premium_value_dimensions": []
+  },
+  "selection": {
+    "opportunity_id": null,
+    "existing_content_resolution": null,
+    "offline_selection_reason": "ユーザーが指定したA/B/C比較試作。既存記事0件の確認に基づく。既存Opportunityの需要検証を経た採用ではない。"
+  },
+  "acquisition_role": {
+    "statement": "読者の問いに答え、適切な次の行動につなぐ。",
+    "source_refs": [
+      "GR001"
+    ],
+    "status": "derived_from_intelligence"
+  },
+  "engagement_role": {
+    "statement": "内容を自分の状況に照らして考えられる説明を提供する。",
+    "source_refs": [
+      "GR001"
+    ],
+    "status": "derived_from_intelligence"
+  },
+  "conversion_role": {
+    "statement": "一般的な回答の後に残る個別課題を示す。",
+    "source_refs": [
+      "GR001"
+    ],
+    "status": "derived_from_intelligence"
+  },
+  "retention_role": {
+    "statement": "関係の変化に応じた見直し",
+    "source_refs": [
+      "GR002"
+    ],
+    "status": "derived_from_intelligence"
+  },
+  "premium_value": {
+    "statement": null,
+    "source_refs": [],
+    "status": "not_applicable"
+  }
+}

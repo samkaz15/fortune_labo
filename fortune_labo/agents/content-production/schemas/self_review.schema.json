@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "A08 Self Review",
+  "type": "object",
+  "properties": {
+    "reviewer_kind": {
+      "enum": [
+        "model_self_review",
+        "human_editorial_review"
+      ]
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 17,
+      "maxItems": 17,
+      "items": {
+        "type": "object",
+        "properties": {
+          "check_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "passed",
+              "needs_revision",
+              "not_applicable"
+            ]
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "check_id",
+          "status",
+          "evidence",
+          "notes"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "known_gaps": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "human_approval": {
+      "const": null
+    },
+    "content_id": {
+      "type": "string",
+      "pattern": "^FL-[A-Z0-9]+(?:-[A-Z0-9]+)*$"
+    },
+    "brief_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "draft_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "seo_policy_version": {
+      "type": "string",
+      "pattern": "^seo-policy-[0-9]+\\.[0-9]+\\.[0-9]+(?:-draft)?$"
+    }
+  },
+  "required": [
+    "reviewer_kind",
+    "checks",
+    "known_gaps",
+    "human_approval",
+    "content_id",
+    "brief_sha256",
+    "draft_sha256",
+    "seo_policy_version"
+  ],
+  "additionalProperties": false
+}

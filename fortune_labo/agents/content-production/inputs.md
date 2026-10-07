@@ -1,0 +1,9 @@
+# A08 — Inputs
+
+必須入力はA07 Brief v2とWriting正本。Blueprint以降もBrief本文は不変であり、実現不能ならA07へ差し戻して新しいrunを作る。勝手なタイトル・outline変更はaccept_draftで拒否する。
+
+`prepare_run(brief, output_dir, *, private_root, rules_path=None)` は新規private runを作る。private_rootはpublic repositoryと親子関係のない独立先を指定し、output_dirがその配下であることを確認する。存在するrunへ上書きしない。
+
+Draft本文とSelf Reviewは呼出元モデル/担当者が与える。Self Reviewにはreviewer_kind、17基準それぞれのstatus/evidence/notes、known_gaps、human_approval=nullを含める。テンプレートのneeds_reviewを残したまま完了にはできない。
+
+prepare_runとverify_runはBrief記載のversionをリポジトリのSEO_POLICY_REGISTERへ一意照合する。offline scope、pending_human_approval、承認情報null、外部write不可を満たさない場合は拒否する。呼出側のpolicy入力やhashだけを権限根拠にしない。台帳に別versionが追加されても保存済Briefを最新versionへ書き換えず、そのversion自身の登録状態を確認する。

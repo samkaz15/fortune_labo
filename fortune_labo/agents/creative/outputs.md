@@ -1,0 +1,13 @@
+# A11 — Outputs
+
+主出力は `article_image_plan`。content_id、article_version、draft_sha256、blueprint_sha256、visual_style_version、Visual Identity hash、画像一覧、状態を記録する。DraftはファイルbytesのSHA-256、Blueprintはcanonical JSONのSHA-256。文章が変われば旧planを流用しない。
+
+各画像にはimage_id/content_id/image_role/visual_type/section_id/section_heading/purpose/visual_subject/composition/environment/lighting/mood/aspect_ratio/recommended_width/recommended_height/alt_text/caption/generation_prompt/negative_requirements/required/placementを持たせる。`alt` は既存handoff用aliasで、alt_textと同値にする。
+
+render_methodはraster/html_svg_overlay/native_svg_render/none。AI rasterの文字はnoneまたはshort_labels_only、native層はnative_text_layer。NO_IMAGEは理由を必須とし、描画・配置・assetを持たない。factual_subject_kind、参照要否と参照ID、実写真要求、生成物の開示も保持する。
+
+`generated_asset_reference` は実ファイルに結び付くasset_id、relative_path、image_sha256、mime_type、実寸、state、provenanceを保持する。originはgenerated/native_vector/original_photo/licensed_asset/user_provided_photo。生成画像にはgenerator、元参照、生成時刻、生成物としての権利状態を記録する。原写真や許諾素材は実写由来・利用権を別に確認する。
+
+native SVGからPNGを作った場合はorigin=native_vector、generator=native_svg_renderer、license_status=original_code、source_referenceにasset_root配下のSVG相対pathを指定する。add_assetはSVGとPNGを実際に検証し、source_asset_referenceへSVGのhash・mime・寸法も記録する。PNGはA25のmedia候補にできるが、直接SVGのWordPress受入は別判断である。
+
+実アセットを検証した結果はgeneratedまたはsupplied、未生成はplanned、失敗はfailed、不要はnot_applicable。全assetが揃ってもplanはassets_ready_for_qaであり、公開承認ではない。

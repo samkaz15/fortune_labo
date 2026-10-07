@@ -1,0 +1,35 @@
+{
+  "export_scope": "explicitly_authorized_creative_fixture",
+  "content_id": "FL-TEST-A",
+  "contains_private_source": false,
+  "contains_legacy_draft": false,
+  "publication_allowed": false,
+  "source_article_ref": "docs/editorial/test-articles/FL-TEST-A/article.md",
+  "source_article_sha256": "adcb4e41b30cb9fcacf63666e957443e32656c27ff5fcdb96ec7b863450c15be",
+  "assets": [
+    {
+      "path": "docs/editorial/creative-fixtures/FL-TEST-A/images/featured-v1.png",
+      "sha256": "a912014f28e8af518f317f609be5d60116785f85deaee31f46b125c545d30058",
+      "origin": "generated",
+      "generator": "built_in_image_gen",
+      "source_article_sha256": "adcb4e41b30cb9fcacf63666e957443e32656c27ff5fcdb96ec7b863450c15be",
+      "privacy_review": "passed"
+    },
+    {
+      "path": "docs/editorial/creative-fixtures/FL-TEST-A/images/section-01.png",
+      "sha256": "14f1d8c0e9dcf1a963d13711b3da231931e2ae9b4f2c34be78926f815b103517",
+      "origin": "native_vector",
+      "generator": "native_svg_renderer",
+      "source_article_sha256": "adcb4e41b30cb9fcacf63666e957443e32656c27ff5fcdb96ec7b863450c15be",
+      "privacy_review": "passed"
+    },
+    {
+      "path": "docs/editorial/creative-fixtures/FL-TEST-A/images/section-01.svg",
+      "sha256": "151327ef99749e1c0fa0afd6d131d975cbb788fea5a32c12f90c9ce824b1185b",
+      "origin": "native_vector",
+      "generator": "native_svg_renderer",
+      "source_article_sha256": "adcb4e41b30cb9fcacf63666e957443e32656c27ff5fcdb96ec7b863450c15be",
+      "privacy_review": "passed"
+    }
+  ]
+}

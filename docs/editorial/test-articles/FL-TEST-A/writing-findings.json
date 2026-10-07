@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "method": "structural_heuristic_not_quality_verdict",
+  "findings": [],
+  "paragraph_count": 11,
+  "requires_editorial_review": true
+}

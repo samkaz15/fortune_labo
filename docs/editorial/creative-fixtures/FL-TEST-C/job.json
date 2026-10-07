@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "job_id": "job-FL-TEST-C-d0a261c9e017",
+  "content_id": "FL-TEST-C",
+  "pipeline_version": "article-creative-1.0.0",
+  "routing": [
+    "A06",
+    "A07",
+    "A08",
+    "A11",
+    "A29",
+    "A32",
+    "A28",
+    "A25_draft",
+    "human_approval",
+    "human_publish"
+  ],
+  "article_version": "article-1.0.0",
+  "draft_sha256": "d0a261c9e017b572f1d43b6cb7f8e068a45fcb7d8ab8353243843b8d5e4349e0",
+  "blueprint_sha256": "8a82b48f67035784ab55e9f89fea2228b66c21ba05ade7ef847a28c6fd0da066",
+  "seo_policy_version": "seo-policy-0.1.0-draft",
+  "visual_style_version": "visual-style-0.1.0",
+  "image_plan_sha256": "c07da945dd7f7e18fd651fa81d234b48e996c7452f0dc1ebb2cfacbe7061d4e0",
+  "qa_sha256": "3007e95b065a0bff67e3f4a2b6ccd19832ea628c379879812ed4c1073d9cb9a7",
+  "draft_package_sha256": "096215d3fe9ff7ae887a02fbee766d9c8a86c251186a789f1268c335138f2ddd",
+  "access_type": "PREMIUM",
+  "stage_status": {
+    "article": "article_ready",
+    "images": "images_ready",
+    "A29": "passed",
+    "A32": "passed",
+    "A28": "passed",
+    "wordpress": "draft_sync_pending"
+  },
+  "statuses": [
+    "article_ready",
+    "draft_sync_pending"
+  ],
+  "article_preserved": true,
+  "artifacts": {
+    "article": "docs/editorial/test-articles/FL-TEST-C/article.md",
+    "blueprint": "docs/editorial/test-articles/FL-TEST-C/blueprint.json",
+    "image_plan": "docs/editorial/creative-fixtures/FL-TEST-C/image-plan.json",
+    "assets": "docs/editorial/creative-fixtures/FL-TEST-C/assets.json",
+    "qa": "docs/editorial/creative-fixtures/FL-TEST-C/qa.json",
+    "wordpress_draft_payload": "docs/editorial/creative-fixtures/FL-TEST-C/wordpress-draft-payload.json",
+    "media_upload_plan": "docs/editorial/creative-fixtures/FL-TEST-C/media-upload-plan.json"
+  },
+  "assets": [
+    {
+      "image_id": "FL-TEST-C-featured",
+      "section_id": "featured",
+      "asset_id": "FL-TEST-C-featured-asset-01",
+      "image_sha256": "c9ef8c812329b3731e85ec174fdc92bdcc62464e8487904b8c1f2c181c1e6e23"
+    }
+  ],
+  "attempts": [],
+  "connection_status": "not_connected",
+  "wordpress_post_id": null,
+  "draft_payload_ready": false,
+  "execution_allowed": false,
+  "publication_allowed": false,
+  "human_approval": null,
+  "human_approval_required_before_publish": true
+}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" role="img" aria-labelledby="title desc">
+  <title id="title">仕事の条件を三つに分ける整理図</title>
+  <desc id="desc">変えたいこと、残したいこと、未確認のことを別々に記録する。最後に未確認の条件を一つ確かめる。</desc>
+  <rect width="1200" height="460" fill="#f7f5ef"/>
+  <rect x="40" y="65" width="350" height="245" rx="18" fill="#e7ede6"/>
+  <rect x="425" y="65" width="350" height="245" rx="18" fill="#ede7dd"/>
+  <rect x="810" y="65" width="350" height="245" rx="18" fill="#e6eaeb"/>
+  <g fill="#303c37" text-anchor="middle" font-family="Hiragino Sans, Noto Sans CJK JP, sans-serif">
+    <text x="215" y="140" font-size="29" font-weight="600">変えたいこと</text>
+    <text x="600" y="140" font-size="29" font-weight="600">残したいこと</text>
+    <text x="985" y="140" font-size="29" font-weight="600">未確認のこと</text>
+    <text x="215" y="218" font-size="23">急な依頼への対応</text>
+    <text x="600" y="218" font-size="23">資料を組み立てる仕事</text>
+    <text x="985" y="218" font-size="23">締切を相談できるか</text>
+    <text x="600" y="395" font-size="26">次に確かめる条件を、一つ選ぶ</text>
+  </g>
+</svg>

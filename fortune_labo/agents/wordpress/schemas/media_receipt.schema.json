@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "A25 Media Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "asset_id": {
+      "type": "string"
+    },
+    "content_id": {
+      "type": "string"
+    },
+    "image_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "site_id": {
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "uploaded",
+        "failed"
+      ]
+    },
+    "attachment_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "source_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "response_reference": {
+      "type": "string",
+      "minLength": 1
+    },
+    "receipt_type": {
+      "enum": [
+        "wordpress_response",
+        "test_fixture"
+      ]
+    }
+  },
+  "required": [
+    "asset_id",
+    "content_id",
+    "image_sha256",
+    "site_id",
+    "state",
+    "attachment_id",
+    "source_url",
+    "response_reference",
+    "receipt_type"
+  ]
+}

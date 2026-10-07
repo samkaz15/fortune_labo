@@ -1,0 +1,594 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "A25 WordPress Draft Package",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "content_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "enum": [
+        "dry_run",
+        "test_fixture"
+      ]
+    },
+    "state": {
+      "enum": [
+        "payload_ready",
+        "preview_blocked"
+      ]
+    },
+    "payload_ready": {
+      "type": "boolean"
+    },
+    "network_ready": {
+      "const": false
+    },
+    "publication_allowed": {
+      "const": false
+    },
+    "human_approval_required_before_publish": {
+      "const": true
+    },
+    "proposed_payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "const": "draft"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1
+        },
+        "excerpt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "slug": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "categories": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "tags": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "featured_media": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "status",
+        "title",
+        "content",
+        "excerpt",
+        "slug",
+        "categories",
+        "tags",
+        "featured_media",
+        "meta"
+      ]
+    },
+    "request_payload": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "const": "draft"
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "content": {
+              "type": "string",
+              "minLength": 1
+            },
+            "excerpt": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "slug": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "categories": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "tags": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "featured_media": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "meta": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "status",
+            "title",
+            "content",
+            "meta",
+            "featured_media"
+          ]
+        }
+      ]
+    },
+    "media_upload_plan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "dedup_key": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "content_id": {
+            "type": "string"
+          },
+          "asset_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "image_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "relative_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "mime_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "alt_text": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "caption": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "title",
+              "alt_text",
+              "caption"
+            ]
+          },
+          "action": {
+            "enum": [
+              "upload",
+              "retry_upload",
+              "reuse_attachment",
+              "requires_conversion"
+            ]
+          },
+          "attachment_id": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "response_reference": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "association": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "post": {
+                "type": "null"
+              },
+              "state": {
+                "const": "after_draft_creation"
+              }
+            },
+            "required": [
+              "post",
+              "state"
+            ]
+          }
+        },
+        "required": [
+          "dedup_key",
+          "content_id",
+          "asset_ids",
+          "image_sha256",
+          "relative_path",
+          "mime_type",
+          "metadata",
+          "action",
+          "attachment_id",
+          "response_reference",
+          "association"
+        ]
+      }
+    },
+    "inline_media": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "image_id": {
+            "type": "string"
+          },
+          "attachment_id": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "section_heading": {
+            "type": "string"
+          },
+          "placement": {
+            "enum": [
+              "after_h2",
+              "after_section"
+            ]
+          },
+          "alt_text": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "caption": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "image_id",
+          "attachment_id",
+          "section_heading",
+          "placement",
+          "alt_text",
+          "caption"
+        ]
+      }
+    },
+    "editorial_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "content_id": {
+          "type": "string"
+        },
+        "access_type": {
+          "enum": [
+            "FREE",
+            "PREMIUM",
+            null
+          ]
+        },
+        "seo_policy_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "article_version": {
+          "type": "string"
+        },
+        "visual_style_version": {
+          "type": "string"
+        },
+        "draft_sha256": {
+          "type": "string"
+        },
+        "image_plan_sha256": {
+          "type": "string"
+        },
+        "fact_check_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qa_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "internal_links": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {}
+        },
+        "cta": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "content_id",
+        "access_type",
+        "seo_policy_version",
+        "article_version",
+        "visual_style_version",
+        "draft_sha256",
+        "image_plan_sha256",
+        "fact_check_status",
+        "qa_status",
+        "internal_links",
+        "cta"
+      ]
+    },
+    "seo_metadata": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true
+    },
+    "qa_reference": {
+      "type": "string"
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_article_sha256": {
+      "type": "string"
+    },
+    "rendered_content_sha256": {
+      "type": "string"
+    },
+    "connection_status": {
+      "const": "not_connected"
+    },
+    "wordpress_post_id": {
+      "type": "null"
+    },
+    "package_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "site_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "content_id",
+    "mode",
+    "state",
+    "payload_ready",
+    "network_ready",
+    "publication_allowed",
+    "human_approval_required_before_publish",
+    "proposed_payload",
+    "request_payload",
+    "media_upload_plan",
+    "inline_media",
+    "editorial_metadata",
+    "seo_metadata",
+    "qa_reference",
+    "blockers",
+    "source_article_sha256",
+    "rendered_content_sha256",
+    "connection_status",
+    "wordpress_post_id",
+    "package_sha256",
+    "site_id"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "payload_ready": {
+            "const": false
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "state": {
+            "const": "preview_blocked"
+          },
+          "request_payload": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "payload_ready": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "state": {
+            "const": "payload_ready"
+          },
+          "blockers": {
+            "maxItems": 0
+          },
+          "request_payload": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "status": {
+                "const": "draft"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "content": {
+                "type": "string",
+                "minLength": 1
+              },
+              "excerpt": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "slug": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "categories": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "tags": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "featured_media": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "meta": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            },
+            "required": [
+              "status",
+              "title",
+              "content",
+              "meta",
+              "featured_media"
+            ]
+          },
+          "site_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "proposed_payload": {
+            "properties": {
+              "featured_media": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
