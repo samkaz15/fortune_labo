@@ -1,0 +1,323 @@
+{
+  "method": "sentence_candidates_not_verified_claims",
+  "requires_full_draft_review": true,
+  "claims": [
+    {
+      "claim_id": "CLAIM-001",
+      "line": 3,
+      "text": "求人を開いては閉じてしまい、応募するところまで進めない。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-002",
+      "line": 3,
+      "text": "そんなときは、転職するかどうかの結論より先に、変えたい条件、残したい条件、まだ確認していないことを書き分けてみてください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-003",
+      "line": 3,
+      "text": "今日の作業は、そのうち一つを確かめるところまでです。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-004",
+      "line": 5,
+      "text": "「仕事を変えたい」という気持ちがあっても、応募先を選ぶ材料がそろっているとは限りません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-005",
+      "line": 5,
+      "text": "ここでは、気持ちを無理に強くする方法ではなく、何が分かれば次を考えられるのかを整理します。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-006",
+      "line": 5,
+      "text": "紙一枚か、後から書き足せるメモを用意してください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-007",
+      "line": 9,
+      "text": "最初に書くのは、理想の会社名ではなく、最近の仕事で変えたいと感じた一場面です。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-008",
+      "line": 9,
+      "text": "「今の仕事が合わない」だけで止まったら、いつ、何をしていたときにそう思ったのかを付け加えます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-009",
+      "line": 9,
+      "text": "その場面から変えたい部分と、続けてもよい部分を別々に取り出してみましょう。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-010",
+      "line": 11,
+      "text": "たとえば、説明用の架空の場面として「資料を作る仕事は続けたいが、夕方に翌朝までの修正を頼まれると予定を組めない」と書いたとします。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-011",
+      "line": 11,
+      "text": "この場合、確かめたいのは資料作成の仕事があるかだけではありません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-012",
+      "line": 11,
+      "text": "依頼の締切を誰が決めるか、急な対応がどの程度あるかも、候補を見るときの問いになります。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-013",
+      "line": 11,
+      "text": "実在する人の経験や、転職で解決した事例を示すものではありません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-014",
+      "line": 13,
+      "text": "メモには「変えたい：急な依頼への対応」「残したい：資料を組み立てる仕事」と置きます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-015",
+      "line": 13,
+      "text": "同じ職種を続ける案も、今の職場で依頼の受け方を相談する案も、ここでは候補に残せます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-016",
+      "line": 13,
+      "text": "一つの不満から、仕事全体をやめる結論まで一気に進めなくて構いません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-017",
+      "line": 17,
+      "text": "次に、候補の募集内容を一件だけ読み、メモに書いた条件が分かるかを見ます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-018",
+      "line": 17,
+      "text": "「働きやすい環境」のような説明だけでは判断できなければ、未確認と書いてください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-019",
+      "line": 17,
+      "text": "自分に都合のよい意味を補う代わりに、確認したい問いへ変えるのがこの作業です。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-020",
+      "line": 19,
+      "text": "先ほどの仮例なら、「急な依頼はどの部署から来るのか」「締切の相談はできるのか」という問いが考えられます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-021",
+      "line": 19,
+      "text": "募集内容で答えが見つからなければ、問い合わせや面談を検討する段階で聞く候補として残します。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-022",
+      "line": 19,
+      "text": "今日すぐに連絡を取る必要はありません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-023",
+      "line": 19,
+      "text": "まずは、掲載済みの情報と、相手に確認しないと分からない情報の境目を見つけてください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-024",
+      "line": 21,
+      "text": "求人そのものを選べない場合は、最近担当した仕事を一つ書くところに戻れます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-025",
+      "line": 21,
+      "text": "「何を頼まれたか」「自分はどの部分を進めたか」「次も担当したい部分は何か」が書ければ、その言葉を手がかりに募集内容を読めます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-026",
+      "line": 21,
+      "text": "うまく言葉にできない欄は、調べる課題として空けておきましょう。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-027",
+      "line": 25,
+      "text": "作業の終わりには、「確認したこと」「残った問い」「次に見るもの」を一行ずつ残します。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-028",
+      "line": 25,
+      "text": "たとえば「担当業務は分かった／依頼の締切は未確認／別の募集も一件見る」という形です。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-029",
+      "line": 25,
+      "text": "応募するか、今の職場で相談するかは、このメモを増やしてから考えられます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-030",
+      "line": 27,
+      "text": "読み返す時期は、自分が時間を取れる日に置いてください。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-031",
+      "line": 27,
+      "text": "日付を決める目的は決断を急がせることではなく、途中まで考えた内容を再開できるようにすることです。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-032",
+      "line": 27,
+      "text": "予定が変わったら、メモを残したまま見直す日を動かして構いません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-033",
+      "line": 29,
+      "text": "ここまでで次に確かめることが決まったなら、無料の整理はそこで完了です。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    },
+    {
+      "claim_id": "CLAIM-034",
+      "line": 29,
+      "text": "数週間にわたって試したことや候補の比較も記録したい場合には、関連ワーク「転職を考える人の90日ワーク――条件、試行、見直しを一冊に残す」を検討できます。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": true
+    },
+    {
+      "claim_id": "CLAIM-035",
+      "line": 29,
+      "text": "そちらは継続して記入するための別の道具で、この一歩を始めるための必須条件ではありません。",
+      "claim_kind": "unclassified",
+      "status": "requires_fact_review",
+      "evidence_refs": [],
+      "numeric_or_absolute_signal": false
+    }
+  ],
+  "content_id": "FL-TEST-A",
+  "review_note": "抽出は全て候補。本文全体をモデルで確認し、架空例・編集上の提案・成果非保証を照合した。外部の統計や成功実績は主張していない。候補の最終分類と公開判断はA29契約と人間レビューへ渡す。"
+}

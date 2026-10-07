@@ -1,0 +1,11 @@
+# A07 — Outputs
+
+主出力は [Brief v2](schemas/brief.schema.json)。genre/topic/keyword/search_intent/explicit_need/latent_need/persona、FREE/PREMIUM、content_depth/core_answer/evidence_needed/personal_experience_needed/internal_link_candidates/CTA/seo_policy_versionを保持する。
+
+追加する判断証跡は、access_rationale、acquisition_role、engagement_role、conversion_role、retention_role、premium_value、access_basis、access_decision、selection/selection_context、performance_context、input_manifest。役割には出典IDと状態を付け、未確定はTBDにする。FREEのpremium_valueはnull/not_applicable。
+
+`access_decision.basic_answer_complete=true` は両区分の必要条件。PREMIUMにはpremium_added_value、premium_value_dimensions、premium_value_source_refsが必要であり、最後の参照はIntelligenceのPremium役割の出典IDへ結びつける。文字数・不安・情報の出し惜しみだけでは成立しない。
+
+実行補助 `build_brief(index_item, intelligence, *, decision, a06_brief=None, a06_opportunity=None, performance=None, opportunities=None, policy_register=None)` は新しいdictを返す。ファイル保存や外部公開はしない。具体例は `tests/test_agents_pipeline.py` のsynthetic_inputs。v2を旧v1スキーマへそのまま送らず、A08 v2契約へ渡す。
+
+access_basis.confidenceは出典を持つ派生判断ならmedium、根拠不足ならlowとし、人間の適合確認を要求する。役割オブジェクトのstatementが意味上の値なので、FREEのpremium_value.statementはnull、statusはnot_applicableとなる。evidence_refsはIntelligenceの安全な出典IDと判定ルールを指す。既存の保存済みv2 Briefとの互換性のため追加のprovenanceキーはschema上optionalだが、新規buildでは常に出力する。

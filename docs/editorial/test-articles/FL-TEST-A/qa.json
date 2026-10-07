@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "content_id": "FL-TEST-A",
+  "brief_sha256": "d9348d247ff617fa2ea7082c4b268b5632a90226681701451680c9357f7e81c8",
+  "draft_sha256": "adcb4e41b30cb9fcacf63666e957443e32656c27ff5fcdb96ec7b863450c15be",
+  "seo_policy_version": "seo-policy-0.1.0-draft",
+  "artifact_ids": [
+    "FL-TEST-A-brief",
+    "FL-TEST-A-draft",
+    "FL-TEST-A-claims"
+  ],
+  "stages": [
+    {
+      "agent": "A29",
+      "status": "contract_pending"
+    },
+    {
+      "agent": "A32",
+      "status": "contract_pending"
+    },
+    {
+      "agent": "A28",
+      "status": "contract_pending"
+    }
+  ],
+  "findings": [
+    "A29相当モデル確認: 仮例・編集提案の表示と成果非保証を全文確認。主張候補は人間の最終確認対象。",
+    "A32相当モデル確認: Search Intent、日本語、段落、具体性、区分差をSelf Reviewと別の比較レポートへ記録。",
+    "A28相当構造確認: Brief/Draft hash、policy版、metadataと未解決の公開blockerを照合。"
+  ],
+  "blockers": [
+    "QA agent implementations are absent",
+    "Human article approval is absent",
+    "Operational SEO policy and A06 acceptance require verification"
+  ],
+  "human_approval": null,
+  "wordpress_handoff_allowed": false,
+  "publication_allowed": false
+}

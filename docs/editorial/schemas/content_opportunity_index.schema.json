@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "content_opportunity_index",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "inventory_completeness": {
+      "enum": [
+        "complete",
+        "partial",
+        "unknown"
+      ]
+    },
+    "opportunities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "opportunity_id": {
+            "type": "string"
+          },
+          "genre": {
+            "type": "string"
+          },
+          "topic": {
+            "type": "string"
+          },
+          "keyword": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "search_intent": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reader_need": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "existing_content_overlap": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "content_id": {
+                  "type": "string"
+                },
+                "reasons": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "search_intent_match": {
+                  "type": [
+                    "boolean",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "content_id",
+                "reasons",
+                "search_intent_match"
+              ]
+            }
+          },
+          "free_premium_candidate": {
+            "enum": [
+              "FREE",
+              "PREMIUM",
+              null
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "priority_candidate": {
+            "enum": [
+              "review",
+              "consider",
+              "defer",
+              null
+            ]
+          },
+          "inventory_completeness": {
+            "enum": [
+              "complete",
+              "partial",
+              "unknown"
+            ]
+          },
+          "coverage_status": {
+            "enum": [
+              "overlap_review",
+              "no_index_match",
+              "potential_gap"
+            ]
+          },
+          "human_review_required": {
+            "const": true
+          }
+        },
+        "required": [
+          "opportunity_id",
+          "genre",
+          "topic",
+          "keyword",
+          "search_intent",
+          "reader_need",
+          "existing_content_overlap",
+          "free_premium_candidate",
+          "reason",
+          "evidence_refs",
+          "priority_candidate",
+          "inventory_completeness",
+          "coverage_status",
+          "human_review_required"
+        ]
+      }
+    },
+    "suppressed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "opportunity_id": {
+            "type": "string"
+          },
+          "genre": {
+            "type": "string"
+          },
+          "topic": {
+            "type": "string"
+          },
+          "keyword": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "search_intent": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reader_need": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "existing_content_overlap": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "content_id": {
+                  "type": "string"
+                },
+                "reasons": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "search_intent_match": {
+                  "type": [
+                    "boolean",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "content_id",
+                "reasons",
+                "search_intent_match"
+              ]
+            }
+          },
+          "free_premium_candidate": {
+            "enum": [
+              "FREE",
+              "PREMIUM",
+              null
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "priority_candidate": {
+            "enum": [
+              "review",
+              "consider",
+              "defer",
+              null
+            ]
+          },
+          "inventory_completeness": {
+            "enum": [
+              "complete",
+              "partial",
+              "unknown"
+            ]
+          },
+          "coverage_status": {
+            "enum": [
+              "overlap_review",
+              "no_index_match",
+              "potential_gap"
+            ]
+          },
+          "human_review_required": {
+            "const": true
+          }
+        },
+        "required": [
+          "opportunity_id",
+          "genre",
+          "topic",
+          "keyword",
+          "search_intent",
+          "reader_need",
+          "existing_content_overlap",
+          "free_premium_candidate",
+          "reason",
+          "evidence_refs",
+          "priority_candidate",
+          "inventory_completeness",
+          "coverage_status",
+          "human_review_required"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "inventory_completeness",
+    "opportunities",
+    "suppressed"
+  ]
+}

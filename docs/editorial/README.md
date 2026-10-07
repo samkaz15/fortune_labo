@@ -1,6 +1,6 @@
 # Editorial Intelligence Foundation
 
-編集基盤の方向性は承認済み。公開Repositoryには要約されたInsight、分類・制作ルール、Schema、Provenanceと、この依頼で認められた実装を保存する。非公開原資料、実記事の本文・入力データ、テスト記事の本文は公開対象にしない。
+編集基盤の方向性は承認済み。公開Repositoryには要約されたInsight、分類・制作ルール、Schema、Provenanceと、この依頼で認められた実装を保存する。非公開原資料と実記事の入力データは公開しない。追加指示で許可された今回のA07→A08生成テスト3本（A/B/C）は、下書き・Fixtureとして専用パスへ保存する。旧Draft本文や原資料の再掲は含めない。
 
 | Foundation | 内容 |
 | --- | --- |
@@ -17,4 +17,4 @@
 
 通常の受け渡し順は `A06 → Content Index → A07 → A08 → A29 → A32 → A28 → Human Approval → A25 WordPress Draft`。A29/A32/A28の本体が未実装ならQA Contractとして扱う。A07は根拠を含むBriefを作成し、A08はBriefを変更せずBlueprint、Draft、Self Reviewを作成する。
 
-記事の非公開テストとFoundation承認は、正式SEO policy、A06の個別採用、商品化、記事公開の承認を兼ねない。WordPress書込・自動公開・SNS投稿・大量生成・自動Scheduling・Performance Scoreは今回の対象外である。
+GitHub上のテストFixtureとFoundation承認は、正式SEO policy、A06の個別採用、商品化、記事公開の承認を兼ねない。WordPress書込・自動公開・SNS投稿・大量生成・自動Scheduling・Performance Scoreは今回の対象外である。

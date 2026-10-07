@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "scope": {
+    "site_id": "fortune_labo",
+    "source_type": "user_confirmation",
+    "source_ref": "user_attestation:2026-10-07-existing-articles-zero",
+    "completeness": "complete",
+    "coverage_complete": true,
+    "statuses_requested": [
+      "all"
+    ],
+    "statuses_observed": [],
+    "expected_count": 0,
+    "imported_count": 0,
+    "imported_at": "2026-10-07T08:12:36.081955+00:00",
+    "limitations": [
+      "User-confirmed initial state: zero existing articles. Test fixtures belong to the separate editorial test index. No WordPress import executed."
+    ]
+  },
+  "items": [],
+  "duplicates": []
+}

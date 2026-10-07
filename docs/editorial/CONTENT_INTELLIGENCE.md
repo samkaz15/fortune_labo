@@ -23,3 +23,5 @@ Version: 0.2.0。Editorial Foundationの方向性は承認済み。SEO policy、
 A07はジャンルのInsight、既存記事との重複、A06の検索意図と制作条件、利用可能な実測値からBriefを作る。A08はそのBriefを変更せず [Article Production Rules](ARTICLE_PRODUCTION_RULES.md) に従う。調査にジャンルが存在するだけでは、A06のTierや実体験要件を満たしたことにならない。
 
 医療・金融の結果、他人の心理、未来の成否を占いで保証しない。神社記事には既存A06どおり実訪問記録と許諾が必要であり、不足する見立てや実体験をAIで創作しない。
+
+`topic_candidates` は上記の公開用要約から作成した編集候補である。検索需要や正式A06 opportunityではない。各ジャンルに基礎的な問いのFREE候補を一つ登録し、未確認のkeywordはnullとする。既存記事との比較結果は新規制作の許可を意味しない。

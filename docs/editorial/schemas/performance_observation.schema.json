@@ -1,0 +1,1112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "performance_observation",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "content_id": {
+      "type": "string"
+    },
+    "source": {
+      "enum": [
+        "Search Console",
+        "GA4",
+        "WordPress",
+        "SNS"
+      ]
+    },
+    "period_start": {
+      "type": "string",
+      "format": "date"
+    },
+    "period_end": {
+      "type": "string",
+      "format": "date"
+    },
+    "timezone": {
+      "type": "string",
+      "minLength": 1
+    },
+    "collected_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "definition_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_reference": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "filters": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "impressions": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "clicks": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "ctr": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "average_position": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "users": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "sessions": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "engaged_sessions": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "engagement_rate": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "average_engagement_time": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "scroll_depth": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 100
+        },
+        "fortune_cta_clicks": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "fortune_start": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "fortune_complete": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "member_registration": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "premium_conversion": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "returning_users": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "repeat_article_views": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      },
+      "required": [
+        "impressions",
+        "clicks",
+        "ctr",
+        "average_position",
+        "users",
+        "sessions",
+        "engaged_sessions",
+        "engagement_rate",
+        "average_engagement_time",
+        "scroll_depth",
+        "fortune_cta_clicks",
+        "fortune_start",
+        "fortune_complete",
+        "member_registration",
+        "premium_conversion",
+        "returning_users",
+        "repeat_article_views"
+      ]
+    },
+    "metric_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "impressions": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "count"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "clicks": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "count"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "ctr": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "ratio"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "average_position": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "position"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "users": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "count"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "sessions": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "count"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "engaged_sessions": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "count"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "engagement_rate": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "ratio"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "average_engagement_time": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "seconds"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "scroll_depth": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "percent"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "fortune_cta_clicks": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "count"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "fortune_start": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "count"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "fortune_complete": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "count"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "member_registration": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "count"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "premium_conversion": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "count"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "returning_users": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "count"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        },
+        "repeat_article_views": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "unit": {
+              "const": "count"
+            },
+            "source_metric": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "definition": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aggregation": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "numerator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "denominator": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          },
+          "required": [
+            "unit",
+            "source_metric",
+            "definition",
+            "aggregation",
+            "numerator",
+            "denominator"
+          ]
+        }
+      },
+      "required": [
+        "impressions",
+        "clicks",
+        "ctr",
+        "average_position",
+        "users",
+        "sessions",
+        "engaged_sessions",
+        "engagement_rate",
+        "average_engagement_time",
+        "scroll_depth",
+        "fortune_cta_clicks",
+        "fortune_start",
+        "fortune_complete",
+        "member_registration",
+        "premium_conversion",
+        "returning_users",
+        "repeat_article_views"
+      ]
+    },
+    "data_quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sampling": {
+          "enum": [
+            "unknown",
+            "none",
+            "present"
+          ]
+        },
+        "thresholding": {
+          "enum": [
+            "unknown",
+            "none",
+            "present"
+          ]
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "sampling",
+        "thresholding",
+        "notes"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "content_id",
+    "source",
+    "period_start",
+    "period_end",
+    "timezone",
+    "collected_at",
+    "definition_version",
+    "source_reference",
+    "filters",
+    "dimensions",
+    "metrics",
+    "metric_metadata",
+    "data_quality"
+  ]
+}

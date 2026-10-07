@@ -39,6 +39,11 @@ Run the read-only checks from the repository root with Python 3:
 
 ```bash
 python3 -B scripts/check_public_export.py --manifest docs/editorial/public-export-manifest.json
+python3 -B scripts/validate_editorial.py --schemas-only
+python3 -B scripts/verify_test_fixtures.py
+python3 -B -m unittest discover -s tests -v
 ```
 
 These checks validate the editorial artifacts; they do not authorize WordPress writes, publication, SNS posts, or scheduling.
+
+[A07 Content Strategy](fortune_labo/agents/content-strategy/README.md) and [A08 Content Production](fortune_labo/agents/content-production/README.md) provide formal specifications, prompts, schemas and offline execution helpers. The [Content Index](docs/editorial/CONTENT_INDEX_SPEC.md) distinguishes zero existing WordPress articles from three explicitly authorized generated fixtures. [Comparison QA](docs/editorial/TEST_ARTICLE_COMPARISON.md) records the model review and remaining release blockers.

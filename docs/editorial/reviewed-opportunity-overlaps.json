@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "review_type": "assistant_editorial_coverage_review",
+  "reviewed_on": "2026-10-07",
+  "scope": "User-approved offline test drafts only; not publication approval.",
+  "human_approval": null,
+  "overlaps": [
+    {
+      "opportunity_id": "opp-2927fafdc31aac77",
+      "content_ids": [
+        "FL-TEST-A",
+        "FL-TEST-C"
+      ],
+      "evidence_refs": [
+        "docs/editorial/reviewed-opportunity-overlaps.json#/overlaps/0",
+        "docs/editorial/test-content-index.json",
+        "docs/editorial/test-articles/FL-TEST-A/brief.json",
+        "docs/editorial/test-articles/FL-TEST-C/brief.json"
+      ],
+      "reason": "編集レビューで、働き方の条件整理は試作Aの初期整理と試作Cの条件・試行・見直しに重なるため、新規候補から保留した。無料導入と有料ワークの役割差を確認してから追加企画を判断する。"
+    },
+    {
+      "opportunity_id": "opp-64d2953790c74764",
+      "content_ids": [
+        "FL-TEST-B"
+      ],
+      "evidence_refs": [
+        "docs/editorial/reviewed-opportunity-overlaps.json#/overlaps/1",
+        "docs/editorial/test-content-index.json",
+        "docs/editorial/test-articles/FL-TEST-B/brief.json"
+      ],
+      "reason": "編集レビューで、連絡するか待つかを考える確認事項は試作Bの読者課題に重なるため、新規候補から保留した。追加記事を作る前に異なる検索意図・読者課題を説明する必要がある。"
+    }
+  ]
+}

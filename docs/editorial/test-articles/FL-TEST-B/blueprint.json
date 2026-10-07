@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0.0",
+  "content_id": "FL-TEST-B",
+  "brief_sha256": "fd3c75562ea15d0183ad355a66375099566461e8b175314696c7706c080ff8cf",
+  "seo_policy_version": "seo-policy-0.1.0-draft",
+  "core_answer": "返信の遅さから気持ちを断定せず、用件、これまでのやり取り、相手が伝えた希望を確かめる。返信待ちの判断と自分の予定を分ける。",
+  "access_type": "FREE",
+  "access_rationale": "連絡の判断と過ごし方を本文だけで整理できるFREE。任意の振り返り導線を末尾に置き、回答を診断の先へ隠さない。",
+  "sections": [
+    {
+      "heading_level": "h2",
+      "heading": "事実と想像を別の欄に置く",
+      "purpose": "読者が判断と行動を具体化するための説明と仮例",
+      "source_requirement": "ai_structurable",
+      "evidence_refs": [
+        "GR001"
+      ]
+    },
+    {
+      "heading_level": "h2",
+      "heading": "送る前に用件と相手の希望を確認する",
+      "purpose": "読者が判断と行動を具体化するための説明と仮例",
+      "source_requirement": "ai_structurable",
+      "evidence_refs": [
+        "GR001"
+      ]
+    },
+    {
+      "heading_level": "h2",
+      "heading": "待つ間の予定は、自分で決めてよい",
+      "purpose": "読者が判断と行動を具体化するための説明と仮例",
+      "source_requirement": "ai_structurable",
+      "evidence_refs": [
+        "GR001"
+      ]
+    }
+  ],
+  "evidence_needed": [
+    {
+      "requirement": "ジャンル別役割は公開用Content Intelligenceを参照。本文の仮例と手順は今回の編集提案として示し、効果実証を主張しない。",
+      "claim_kind": "HYPOTHESIS",
+      "source_ref": "GR001",
+      "status": "available"
+    }
+  ],
+  "personal_experience_needed": {
+    "required": false,
+    "source_ref": null,
+    "status": "not_required",
+    "handling": "筆者・顧客の実体験を使わず、具体例は架空の説明用と明示する。A06通常運用の独自素材要件は未解消。"
+  },
+  "internal_link_candidates": [],
+  "cta": {
+    "type": "free_fortune",
+    "destination": null,
+    "placement": "本文で回答した後の末尾",
+    "copy_direction": "任意の次の行動。未確認のサービスや公開URLを実在と断定しない。",
+    "status": "candidate"
+  },
+  "writing_rules_reference": "docs/editorial/ARTICLE_PRODUCTION_RULES.md",
+  "publication_allowed": false,
+  "human_approval": null,
+  "writing_rules_sha256": "ddd1bac7d7b6bbe30972f96bbabb16f2d7b45931d884d12325e573197dcc2396"
+}

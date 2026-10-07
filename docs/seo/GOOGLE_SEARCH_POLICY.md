@@ -7,7 +7,7 @@
 | 承認済み現行 version | `null` |
 | 承認者 / 承認日 / 承認記録 | すべて `null` |
 | 確認日 | 2026-10-07 |
-| 今回使用できる範囲 | 依頼済みの非公開テスト3本とQA |
+| 今回使用できる範囲 | 依頼済みのWordPress未公開のテストFixture3本とQA |
 
 機械可読な正本は [SEO_POLICY_REGISTER.json](SEO_POLICY_REGISTER.json)。本書を追加したこと、テストが成功したこと、Draft PR が作成されたことは、運用 policy の人間承認を意味しない。
 

@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "content_id": "FL-TEST-B",
+  "state": "draft_and_self_review_recorded",
+  "brief_sha256": "fd3c75562ea15d0183ad355a66375099566461e8b175314696c7706c080ff8cf",
+  "blueprint_sha256": "9ffc2e82e194131ff4295e66c1be99f2db9bd8c13e5ccb7fa5decfce4607aa85",
+  "rules_sha256": "ddd1bac7d7b6bbe30972f96bbabb16f2d7b45931d884d12325e573197dcc2396",
+  "prompt_sha256": "ddfc21370a714c06f064d6da877475febcc9fb5098581357c480b0abb8269345",
+  "draft_sha256": "d347a2a01d0210b44b7078946fb17a8dceb70180562b9a97f069c2cf3d506830",
+  "self_review_sha256": "f2d5a45138af04bc0af81de5252a0216c20dfd97597801382b8955fe06d74bd3",
+  "seo_policy_version": "seo-policy-0.1.0-draft",
+  "publication_allowed": false,
+  "human_approval": null,
+  "next_stage": "A29_contract_only"
+}

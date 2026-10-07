@@ -8,8 +8,12 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-PRIVATE_PARTS = {'test-articles', 'private', '.editorial-private', '.editorial-source', 'imports', '__pycache__'}
+PRIVATE_PARTS = {'private', '.editorial-private', '.editorial-source', 'imports', '__pycache__'}
 FORBIDDEN_NAMES = {'genre-research.json', 'content-index.json', 'content-opportunities.json', 'classification-results.json'}
+FIXTURE_IDS = {'FL-TEST-A', 'FL-TEST-B', 'FL-TEST-C'}
+FIXTURE_FILES = {'brief.json', 'blueprint.json', 'production-prompt.md', 'draft-prompt.md',
+                 'article.md', 'self-review.json', 'claims.json', 'qa.json', 'comparison.md',
+                 'manifest.json', 'run.json', 'writing-rules.md', 'writing-findings.json'}
 PROVENANCE_KEYS = {'source_id', 'source_type', 'source_title', 'access_scope', 'derived_artifacts'}
 # Patterns are assembled so the scanner source itself contains no source locator.
 CONTENT_PATTERNS = {
@@ -62,6 +66,28 @@ def scan(manifest_path: Path, selected=None, private_reference=None):
         if PRIVATE_PARTS.intersection(p.parts) or p.name in FORBIDDEN_NAMES:
             errors.append(f'{relative}: private artifact path')
             continue
+        if 'test-articles' in p.parts:
+            fixture_prefix = ('docs', 'editorial', 'test-articles')
+            if (len(p.parts) != 5 or p.parts[:3] != fixture_prefix
+                    or p.parts[3] not in FIXTURE_IDS or p.name not in FIXTURE_FILES):
+                errors.append(f'{relative}: not an authorized generated fixture path')
+                continue
+            receipt_path = p.parent / 'manifest.json'
+            if receipt_path.as_posix() not in allowed:
+                errors.append(f'{relative}: fixture export receipt is not allowlisted')
+                continue
+            try:
+                receipt = json.loads((ROOT / receipt_path).read_text(encoding='utf-8'))
+                if (receipt.get('export_scope') != 'explicitly_authorized_a07_a08_fixture'
+                        or receipt.get('content_id') != p.parts[3]
+                        or receipt.get('contains_private_source') is not False
+                        or receipt.get('contains_legacy_draft') is not False
+                        or receipt.get('publication_allowed') is not False):
+                    errors.append(f'{relative}: invalid generated fixture export receipt')
+                    continue
+            except (OSError, ValueError, TypeError):
+                errors.append(f'{relative}: missing generated fixture export receipt')
+                continue
         full = ROOT / p
         if not full.is_file() or full.is_symlink() or ROOT not in full.resolve().parents:
             errors.append(f'{relative}: missing file or unsafe resolution')
@@ -78,6 +104,27 @@ def scan(manifest_path: Path, selected=None, private_reference=None):
             errors.append(f'{relative}: private source identifier')
         if any(value in body for value in private_fragments):
             errors.append(f'{relative}: retained private source passage')
+        if relative == 'docs/editorial/existing-content-index.json':
+            try:
+                inventory = json.loads(body)
+                scope = inventory['scope']
+                if (inventory.get('items') != [] or inventory.get('duplicates') != []
+                        or scope.get('source_type') != 'user_confirmation'
+                        or scope.get('expected_count') != 0 or scope.get('imported_count') != 0):
+                    errors.append(f'{relative}: only the user-confirmed empty inventory is public')
+            except (ValueError, KeyError, TypeError):
+                errors.append(f'{relative}: invalid empty-inventory fixture')
+        if relative == 'docs/editorial/test-content-index.json':
+            try:
+                items = json.loads(body)['items']
+                if len(items) != 3 or {row['content_id'] for row in items} != FIXTURE_IDS:
+                    errors.append(f'{relative}: only the three authorized generated fixtures may be indexed')
+                for row in items:
+                    if (row.get('status') != 'test_draft' or row.get('wordpress_post_id') is not None
+                            or row.get('url') is not None or row.get('publish_date') is not None):
+                        errors.append(f'{relative}: real article record is not public-fixture data')
+            except (ValueError, KeyError, TypeError):
+                errors.append(f'{relative}: invalid test-fixture index')
         if p.name == 'provenance.json':
             try:
                 data = json.loads(body)

@@ -2,6 +2,8 @@
 
 > Purpose: a single index of the AI agents that may participate in the fortune_labo business operating system.
 
+Implemented editorial foundation: [A07 Content Strategy](../../fortune_labo/agents/content-strategy/README.md) and [A08 Content Production](../../fortune_labo/agents/content-production/README.md) have specifications, prompts, schemas and offline helpers. A29/A32/A28 currently have a [QA contract](../editorial/QA_HANDOFF_CONTRACT.md), not agent implementations. The existing A06 files are unchanged. No scheduling or WordPress publishing is enabled.
+
 ## 1. Core business agents
 
 | ID | Agent | Primary mission | Main outputs | Priority |

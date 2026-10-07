@@ -12,7 +12,7 @@
 | 影響評価 | IA-001 |
 | source IDs | GS-001, GS-002, GS-003, GS-004, GS-005 |
 | 人間の承認者 / 日時 / 記録 | null / null / null |
-| 今回の適用範囲 | 依頼済みの非公開テスト記事3本とQA |
+| 今回の適用範囲 | 依頼済みのWordPress未公開のテストFixture3本とQA |
 
 記事制作ルールとGoogle一次資料の参照関係、影響評価、人間承認、version登録、記事ごとの適用version記録を定義した。2022年の原点を保持し、helpful content のコア統合と現行のpeople-first / spam資料を必要な範囲で参照した。
 
