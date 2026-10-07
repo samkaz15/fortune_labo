@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "scope": "initial_public_foundation",
+  "files": [
+    "README.md",
+    "docs/editorial/A07_A08_BRIEF_CONTRACT.md",
+    "docs/editorial/ARTICLE_PRODUCTION_RULES.md",
+    "docs/editorial/CONTENT_INDEX_SPEC.md",
+    "docs/editorial/CONTENT_INTELLIGENCE.md",
+    "docs/editorial/FREE_PREMIUM_RULES.md",
+    "docs/editorial/GENRE_TAXONOMY.md",
+    "docs/editorial/IMPLEMENTATION_NOTES.md",
+    "docs/editorial/PUBLIC_EXPORT_POLICY.md",
+    "docs/editorial/QA_REPORT.md",
+    "docs/editorial/README.md",
+    "docs/editorial/content-intelligence.json",
+    "docs/editorial/genre-taxonomy.json",
+    "docs/editorial/public-export-manifest.json",
+    "docs/editorial/schemas/a07_a08_brief.schema.json",
+    "docs/editorial/schemas/content_index.schema.json",
+    "docs/editorial/sources/provenance.json",
+    "docs/seo/GOOGLE_SEARCH_POLICY.md",
+    "docs/seo/GOOGLE_UPDATE_REGISTER.md",
+    "docs/seo/SEO_CHANGELOG.md",
+    "docs/seo/SEO_POLICY_REGISTER.json",
+    "scripts/check_public_export.py",
+    "scripts/validate_editorial.py"
+  ]
+}

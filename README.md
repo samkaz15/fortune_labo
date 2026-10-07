@@ -30,3 +30,15 @@ Research → Strategy → Build → Publish → Measure → Learn → Prioritize
 ## Security
 
 Secrets, API keys, tokens, passwords, and production credentials must never be committed to this repository. Use environment variables and `.env` files locally; only `.env.example` belongs in Git.
+
+## Editorial intelligence foundation
+
+The [editorial foundation](docs/editorial/README.md) contains public-safe structured insights, genre taxonomy, access and writing rules, schemas, and opaque source provenance. Private research and article bodies are excluded from this public repository. The [Google Search policy](docs/seo/GOOGLE_SEARCH_POLICY.md) remains a versioned proposal awaiting human approval. Existing A06 specifications remain unchanged.
+
+Run the read-only checks from the repository root with Python 3:
+
+```bash
+python3 -B scripts/check_public_export.py --manifest docs/editorial/public-export-manifest.json
+```
+
+These checks validate the editorial artifacts; they do not authorize WordPress writes, publication, SNS posts, or scheduling.

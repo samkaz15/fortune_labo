@@ -1,0 +1,23 @@
+{
+  "register_version": "1.0.0",
+  "current_approved_policy": null,
+  "policy_versions": [
+    {
+      "version": "seo-policy-0.1.0-draft",
+      "status": "pending_human_approval",
+      "created_at": "2026-10-07",
+      "supersedes": null,
+      "assessment_id": "IA-001",
+      "assessment_reference": "docs/seo/GOOGLE_UPDATE_REGISTER.md#ia-001--初期案の影響評価",
+      "source_ids": ["GS-001", "GS-002", "GS-003", "GS-004", "GS-005"],
+      "rule_ids": ["SEO-P01", "SEO-P02", "SEO-P03", "SEO-P04", "SEO-P05", "SEO-P06"],
+      "approved_by": null,
+      "approved_at": null,
+      "approval_reference": null,
+      "effective_at": null,
+      "permitted_scope": "offline_test_articles_and_qa_only",
+      "scope_basis": "User explicitly requested the Editorial foundation, three unpublished test articles, and QA; this is not human approval of the operational SEO policy.",
+      "external_write_authorized": false
+    }
+  ]
+}
