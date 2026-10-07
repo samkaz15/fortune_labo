@@ -1,0 +1,13 @@
+# A11 — Rules
+
+Visual Identityを守り、穏やかな自然光・余白・抑えた色を基調とする。星空、宇宙、過剰な発光、金紫の装飾、水晶球などを内容に無関係に用いない。図や画像が本文と同じ説明を繰り返すだけならNO_IMAGEにする。
+
+元Draft、Blueprint、Brief、runは不変。article_version、content_id、Draft/Blueprint hashが異なる画像計画を流用しない。画像追加は後段planとA25用派生payloadで行う。
+
+AI画像へ日本語の長文・本文・表を埋め込まない。短ラベルでも実画像で確認する。長い説明が必要ならnative text層か本文を使う。native SVGからPNGにした図はAI文字描画と区別し、SVG元データと派生PNGの両hashを残す。推奨寸法と実寸を区別し、合わない画像を黙ってcropしない。
+
+全generated画像はcaptionでAI生成の説明用画像と分かるようにし、human_capture_confirmed=falseを維持する。実在対象はfactual referenceを確認する。requires_actual_photo=trueならcaptionで開示してもgenerated/native_vectorは代替不可で、原写真・権利確認済みの実写・ユーザー提供実写を使う。参照・許諾・実体験を架空に作らない。
+
+promptの存在は生成成功を意味しない。実ファイルがない、画像データが壊れている、hashや寸法が違う、SVG masterが失われた場合はasset完了にしない。生成失敗はerrorを残し、別の成功画像を当該生成結果として流用しない。
+
+A11の検証は公開許可、医学・法律上の監修、実在対象の真実性や権利の自動保証を意味しない。実画像と参照の適合はQAで確認する。

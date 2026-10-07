@@ -1,5 +1,7 @@
 # Public Export Policy
 
+追加のCreative Fixtureは今回の3 content_idに限定する。各folderのmanifest.jsonで元記事ref/hash、assetのpath/hash、生成由来、privacy reviewを確認する。PNG/SVGを含む各ファイルを公開許可リストへ明示追加し、原資料の識別子や本文をコピーしない。native SVGの実行コード・外部参照も拒否する。WordPressの実接続情報・応答・個人データは公開対象へ追加しない。
+
 公開対象はユーザーが承認したFoundationと今回の実装に限定する。原資料、取得した記事の実データ、旧テストDraft本文、個人情報を含む成果物は公開しない。追加指示で明示的に許可された今回のA07→A08生成3本は、GitHubのDraft/Fixtureとして保存できる。
 
 初期Foundationの許可リストは [public-export-manifest.json](public-export-manifest.json) に固定パスで保存する。STEP 2以降の実装はレビュー後に別manifestまたは同manifestへの明示的追加を必要とする。ディレクトリ全体を自動で追加しない。

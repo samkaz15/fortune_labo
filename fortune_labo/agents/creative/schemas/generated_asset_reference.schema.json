@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Verified local creative asset reference",
+  "type": "object",
+  "properties": {
+    "asset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "relative_path": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_./-]*$"
+    },
+    "image_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "mime_type": {
+      "enum": [
+        "image/png",
+        "image/svg+xml"
+      ]
+    },
+    "width": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8192
+    },
+    "height": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8192
+    },
+    "state": {
+      "enum": [
+        "generated",
+        "supplied"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "origin": {
+          "enum": [
+            "generated",
+            "native_vector",
+            "original_photo",
+            "licensed_asset",
+            "user_provided_photo"
+          ]
+        },
+        "source_reference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "generator": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "license_status": {
+          "enum": [
+            "generated_original",
+            "original_code",
+            "confirmed",
+            "pending"
+          ]
+        },
+        "rights_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "human_capture_confirmed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "origin",
+        "source_reference",
+        "generator",
+        "created_at",
+        "license_status",
+        "rights_reference",
+        "human_capture_confirmed"
+      ],
+      "additionalProperties": false
+    },
+    "source_asset_reference": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "relative_path": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_./-]*$"
+            },
+            "image_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "mime_type": {
+              "const": "image/svg+xml"
+            },
+            "width": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8192
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8192
+            }
+          },
+          "required": [
+            "relative_path",
+            "image_sha256",
+            "mime_type",
+            "width",
+            "height"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": [
+    "asset_id",
+    "relative_path",
+    "image_sha256",
+    "mime_type",
+    "width",
+    "height",
+    "state",
+    "provenance",
+    "source_asset_reference"
+  ],
+  "additionalProperties": false
+}

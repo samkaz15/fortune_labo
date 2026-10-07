@@ -4,6 +4,8 @@
 
 Implemented editorial foundation: [A07 Content Strategy](../../fortune_labo/agents/content-strategy/README.md) and [A08 Content Production](../../fortune_labo/agents/content-production/README.md) have specifications, prompts, schemas and offline helpers. A29/A32/A28 currently have a [QA contract](../editorial/QA_HANDOFF_CONTRACT.md), not agent implementations. The existing A06 files are unchanged. No scheduling or WordPress publishing is enabled.
 
+The downstream [A11 Creative](../../fortune_labo/agents/creative/README.md) and [A25 WordPress](../../fortune_labo/agents/wordpress/README.md) now provide article-bound image planning and draft-only packaging. The current route is A08 → A11 → A29 → A32 → A28 → A25 draft → human approval → human publishing. The write transport remains disconnected.
+
 ## 1. Core business agents
 
 | ID | Agent | Primary mission | Main outputs | Priority |

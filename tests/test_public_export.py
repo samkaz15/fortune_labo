@@ -1,5 +1,6 @@
 """Public export rejects private data even when a path was manually allowed."""
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 import tempfile
@@ -102,6 +103,71 @@ class PublicExportTests(unittest.TestCase):
         manifest = self.root / 'manifest.json'
         manifest.write_text(json.dumps({'files': ['../outside.txt']}))
         self.assertTrue(module.scan(manifest))
+
+    def creative_fixture(self, asset_bytes=b'\x89PNG\r\n\x1a\nfixture', suffix='.png', origin='generated'):
+        article_rel = 'docs/editorial/test-articles/FL-TEST-A/article.md'
+        article = self.root / article_rel
+        article.parent.mkdir(parents=True)
+        article.write_text('# Generated article\n\nAn illustrative test.')
+        digest = hashlib.sha256(article.read_bytes()).hexdigest()
+        asset_rel = 'docs/editorial/creative-fixtures/FL-TEST-A/images/featured' + suffix
+        asset = self.root / asset_rel
+        asset.parent.mkdir(parents=True)
+        asset.write_bytes(asset_bytes)
+        receipt_rel = 'docs/editorial/creative-fixtures/FL-TEST-A/manifest.json'
+        receipt = {'export_scope': 'explicitly_authorized_creative_fixture',
+                   'content_id': 'FL-TEST-A', 'contains_private_source': False,
+                   'contains_legacy_draft': False, 'publication_allowed': False,
+                   'source_article_ref': article_rel, 'source_article_sha256': digest,
+                   'assets': [{'path': asset_rel, 'sha256': hashlib.sha256(asset_bytes).hexdigest(),
+                               'origin': origin, 'generator': 'synthetic-test',
+                               'source_article_sha256': digest, 'privacy_review': 'passed'}]}
+        (self.root / receipt_rel).write_text(json.dumps(receipt))
+        manifest = self.root / 'creative-manifest.json'
+        manifest.write_text(json.dumps({'files': [article_rel, asset_rel, receipt_rel]}))
+        return manifest, asset_rel, article
+
+    def test_allow_provenance_bound_generated_raster(self):
+        manifest, asset, _ = self.creative_fixture()
+        self.assertEqual([], module.scan(manifest, [asset]))
+
+    def test_reject_stale_creative_source_article(self):
+        manifest, asset, article = self.creative_fixture()
+        article.write_text('# Changed article')
+        self.assertTrue(module.scan(manifest, [asset]))
+
+    def test_reject_changed_creative_asset(self):
+        manifest, asset, _ = self.creative_fixture()
+        (self.root / asset).write_bytes(b'changed')
+        self.assertTrue(module.scan(manifest, [asset]))
+
+    def test_reject_non_generated_asset(self):
+        manifest, asset, _ = self.creative_fixture(origin='private_reference_photo')
+        self.assertTrue(module.scan(manifest, [asset]))
+
+    def test_reject_fake_raster_signature(self):
+        manifest, asset, _ = self.creative_fixture(asset_bytes=b'Not a raster')
+        self.assertTrue(module.scan(manifest, [asset]))
+
+    def test_reject_private_locator_in_raster_metadata(self):
+        data = b'\x89PNG\r\n\x1a\n' + ('https://' + 'docs.' + 'google.com/document/d/private-test').encode()
+        manifest, asset, _ = self.creative_fixture(asset_bytes=data)
+        self.assertTrue(module.scan(manifest, [asset]))
+
+    def test_allow_safe_native_vector(self):
+        svg = b'<svg xmlns="http://www.w3.org/2000/svg"><text x="1" y="10">Example</text></svg>'
+        manifest, asset, _ = self.creative_fixture(svg, '.svg', 'native_vector')
+        self.assertEqual([], module.scan(manifest, [asset]))
+
+    def test_reject_executable_native_vector(self):
+        svg = b'<svg xmlns="http://www.w3.org/2000/svg"><script>alert(1)</script></svg>'
+        manifest, asset, _ = self.creative_fixture(svg, '.svg', 'native_vector')
+        self.assertTrue(module.scan(manifest, [asset]))
+
+    def test_reject_external_stylesheet_in_native_vector(self):
+        svg = b'<svg xmlns="http://www.w3.org/2000/svg"><style>@import "remote.css";</style></svg>'
+        manifest, asset, _ = self.creative_fixture(svg, '.svg', 'native_vector')
+        self.assertTrue(module.scan(manifest, [asset]))
 
 
 if __name__ == '__main__':

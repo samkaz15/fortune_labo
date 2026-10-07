@@ -1,0 +1,288 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "job_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "content_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pipeline_version": {
+      "const": "article-creative-1.0.0"
+    },
+    "routing": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "article_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "draft_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "blueprint_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "seo_policy_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "visual_style_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "image_plan_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "qa_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "draft_package_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "access_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stage_status": {
+      "type": "object",
+      "properties": {
+        "article": {
+          "type": "string",
+          "minLength": 1
+        },
+        "images": {
+          "type": "string",
+          "minLength": 1
+        },
+        "A29": {
+          "type": "string",
+          "minLength": 1
+        },
+        "A32": {
+          "type": "string",
+          "minLength": 1
+        },
+        "A28": {
+          "type": "string",
+          "minLength": 1
+        },
+        "wordpress": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "article",
+        "images",
+        "A29",
+        "A32",
+        "A28",
+        "wordpress"
+      ],
+      "additionalProperties": false
+    },
+    "statuses": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "article_preserved": {
+      "const": true
+    },
+    "artifacts": {
+      "type": "object",
+      "properties": {
+        "article": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blueprint": {
+          "type": "string",
+          "minLength": 1
+        },
+        "image_plan": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assets": {
+          "type": "string",
+          "minLength": 1
+        },
+        "qa": {
+          "type": "string",
+          "minLength": 1
+        },
+        "wordpress_draft_payload": {
+          "type": "string",
+          "minLength": 1
+        },
+        "media_upload_plan": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "article",
+        "blueprint",
+        "image_plan",
+        "assets",
+        "qa",
+        "wordpress_draft_payload",
+        "media_upload_plan"
+      ],
+      "additionalProperties": false
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "image_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "section_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "asset_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "image_sha256": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "image_id",
+          "section_id",
+          "asset_id",
+          "image_sha256"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "attempts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "attempt",
+          "stage",
+          "result",
+          "error",
+          "draft_sha256",
+          "retryable"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "attempt": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "stage": {
+            "enum": [
+              "images",
+              "A29",
+              "A32",
+              "A28",
+              "wordpress"
+            ]
+          },
+          "result": {
+            "enum": [
+              "image_incomplete",
+              "fact_review_required",
+              "editorial_revision_required",
+              "qa_failed",
+              "draft_sync_failed"
+            ]
+          },
+          "error": {
+            "type": "string",
+            "minLength": 1
+          },
+          "draft_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "retryable": {
+            "const": true
+          }
+        }
+      }
+    },
+    "connection_status": {
+      "type": "string",
+      "minLength": 1
+    },
+    "wordpress_post_id": {
+      "type": "null"
+    },
+    "draft_payload_ready": {
+      "type": "boolean"
+    },
+    "execution_allowed": {
+      "const": false
+    },
+    "publication_allowed": {
+      "const": false
+    },
+    "human_approval": {
+      "type": "null"
+    },
+    "human_approval_required_before_publish": {
+      "const": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "job_id",
+    "content_id",
+    "pipeline_version",
+    "routing",
+    "article_version",
+    "draft_sha256",
+    "blueprint_sha256",
+    "seo_policy_version",
+    "visual_style_version",
+    "image_plan_sha256",
+    "qa_sha256",
+    "draft_package_sha256",
+    "access_type",
+    "stage_status",
+    "statuses",
+    "article_preserved",
+    "artifacts",
+    "assets",
+    "attempts",
+    "connection_status",
+    "wordpress_post_id",
+    "draft_payload_ready",
+    "execution_allowed",
+    "publication_allowed",
+    "human_approval",
+    "human_approval_required_before_publish"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Versioned article and creative job"
+}

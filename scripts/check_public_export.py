@@ -2,10 +2,12 @@
 """Check an explicit export manifest without emitting matching private content."""
 from __future__ import annotations
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import re
 import sys
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 PRIVATE_PARTS = {'private', '.editorial-private', '.editorial-source', 'imports', '__pycache__'}
@@ -14,6 +16,10 @@ FIXTURE_IDS = {'FL-TEST-A', 'FL-TEST-B', 'FL-TEST-C'}
 FIXTURE_FILES = {'brief.json', 'blueprint.json', 'production-prompt.md', 'draft-prompt.md',
                  'article.md', 'self-review.json', 'claims.json', 'qa.json', 'comparison.md',
                  'manifest.json', 'run.json', 'writing-rules.md', 'writing-findings.json'}
+CREATIVE_FILES = {'image-plan.json', 'assets.json', 'job.json', 'qa.json',
+                  'wordpress-draft-payload.json', 'media-upload-plan.json', 'manifest.json'}
+RASTER_SUFFIXES = {'.png', '.jpg', '.jpeg', '.webp'}
+ASSET_SUFFIXES = RASTER_SUFFIXES | {'.svg'}
 PROVENANCE_KEYS = {'source_id', 'source_type', 'source_title', 'access_scope', 'derived_artifacts'}
 # Patterns are assembled so the scanner source itself contains no source locator.
 CONTENT_PATTERNS = {
@@ -34,6 +40,103 @@ def _strings(value):
     elif isinstance(value, list):
         for item in value:
             yield from _strings(item)
+
+
+def _creative_check(relative, allowed):
+    """Bind an explicitly selected generated asset to its authorized article."""
+    p = Path(relative)
+    errors, asset = [], None
+    base = ('docs', 'editorial', 'creative-fixtures')
+    valid_root = len(p.parts) >= 5 and p.parts[:3] == base and p.parts[3] in FIXTURE_IDS
+    valid_text = len(p.parts) == 5 and p.name in CREATIVE_FILES
+    valid_overlay = len(p.parts) == 5 and p.name.startswith('overlay') and p.suffix == '.svg'
+    valid_image = len(p.parts) == 6 and p.parts[4] == 'images' and p.suffix.lower() in ASSET_SUFFIXES
+    if not valid_root or not (valid_text or valid_overlay or valid_image):
+        return [f'{relative}: not an authorized creative fixture path'], None
+    folder = Path(*p.parts[:4])
+    receipt_path = folder / 'manifest.json'
+    full_receipt = ROOT / receipt_path
+    if (receipt_path.as_posix() not in allowed or full_receipt.is_symlink()
+            or ROOT not in full_receipt.resolve().parents):
+        return [f'{relative}: creative export receipt is not safely allowlisted'], None
+    try:
+        receipt = json.loads(full_receipt.read_text(encoding='utf-8'))
+        expected_article = f'docs/editorial/test-articles/{p.parts[3]}/article.md'
+        article = ROOT / expected_article
+        if (receipt.get('export_scope') != 'explicitly_authorized_creative_fixture'
+                or receipt.get('content_id') != p.parts[3]
+                or receipt.get('contains_private_source') is not False
+                or receipt.get('contains_legacy_draft') is not False
+                or receipt.get('publication_allowed') is not False
+                or receipt.get('source_article_ref') != expected_article
+                or expected_article not in allowed or article.is_symlink()
+                or ROOT not in article.resolve().parents
+                or receipt.get('source_article_sha256') != hashlib.sha256(article.read_bytes()).hexdigest()):
+            return [f'{relative}: creative receipt is not bound to the authorized source article'], None
+        assets = receipt.get('assets')
+        if not isinstance(assets, list) or not all(isinstance(row, dict) for row in assets):
+            return [f'{relative}: creative receipt needs an explicit asset list'], None
+        paths = [row.get('path') for row in assets]
+        if len(paths) != len(set(paths)):
+            errors.append(f'{relative}: duplicate creative asset path')
+        for row in assets:
+            path = row.get('path', '')
+            asset_path = Path(path)
+            if (not isinstance(path, str) or path not in allowed or asset_path.is_absolute()
+                    or '..' in asset_path.parts or folder not in asset_path.parents
+                    or asset_path.suffix.lower() not in ASSET_SUFFIXES
+                    or row.get('origin') not in ('generated', 'native_vector')
+                    or not isinstance(row.get('generator'), str) or not row['generator'].strip()
+                    or row.get('privacy_review') != 'passed'
+                    or row.get('source_article_sha256') != receipt['source_article_sha256']):
+                errors.append(f'{relative}: invalid creative asset provenance')
+                continue
+            full_asset = ROOT / asset_path
+            if (not full_asset.is_file() or full_asset.is_symlink() or ROOT not in full_asset.resolve().parents
+                    or row.get('sha256') != hashlib.sha256(full_asset.read_bytes()).hexdigest()):
+                errors.append(f'{relative}: creative asset bytes do not match provenance')
+            if path == relative:
+                asset = row
+        if (valid_image or valid_overlay) and asset is None:
+            errors.append(f'{relative}: creative asset is not listed in its receipt')
+    except (OSError, ValueError, KeyError, TypeError):
+        errors.append(f'{relative}: invalid creative export receipt')
+    return errors, asset
+
+
+def _valid_raster(data, suffix):
+    if suffix == '.png':
+        return data.startswith(b'\x89PNG\r\n\x1a\n')
+    if suffix in ('.jpg', '.jpeg'):
+        return data.startswith(b'\xff\xd8\xff')
+    if suffix == '.webp':
+        return data[:4] == b'RIFF' and data[8:12] == b'WEBP'
+    return False
+
+
+def _safe_svg(body):
+    if re.search(r'<!DOCTYPE|<!ENTITY', body, re.I):
+        return False
+    try:
+        root = ET.fromstring(body)
+        if root.tag.rsplit('}', 1)[-1] != 'svg':
+            return False
+        for node in root.iter():
+            if node.tag.rsplit('}', 1)[-1].lower() in ('script', 'foreignobject', 'iframe', 'image',
+                                                      'animate', 'animatemotion', 'animatetransform', 'set'):
+                return False
+            if node.tag.rsplit('}', 1)[-1].lower() == 'style' and re.search(
+                    r'@import|url\((?!\s*#)|javascript:|expression\(', node.text or '', re.I):
+                return False
+            for key, value in node.attrib.items():
+                name = key.rsplit('}', 1)[-1].lower()
+                if name.startswith('on') or name == 'href' and not value.startswith('#'):
+                    return False
+                if re.search(r'url\((?!\s*#)|javascript:', value, re.I):
+                    return False
+        return True
+    except ET.ParseError:
+        return False
 
 
 def scan(manifest_path: Path, selected=None, private_reference=None):
@@ -88,15 +191,35 @@ def scan(manifest_path: Path, selected=None, private_reference=None):
             except (OSError, ValueError, TypeError):
                 errors.append(f'{relative}: missing generated fixture export receipt')
                 continue
+        creative_asset = None
+        if 'creative-fixtures' in p.parts:
+            creative_errors, creative_asset = _creative_check(relative, allowed)
+            if creative_errors:
+                errors.extend(creative_errors)
+                continue
         full = ROOT / p
         if not full.is_file() or full.is_symlink() or ROOT not in full.resolve().parents:
             errors.append(f'{relative}: missing file or unsafe resolution')
+            continue
+        data = full.read_bytes()
+        if p.suffix.lower() in RASTER_SUFFIXES:
+            if creative_asset is None or not _valid_raster(data, p.suffix.lower()):
+                errors.append(f'{relative}: raster requires generated provenance and matching media signature')
+            if any(value.encode('utf-8') in data for value in private_fragments | private_identifiers):
+                errors.append(f'{relative}: private source metadata in raster')
+            metadata_text = data.decode('utf-8', errors='ignore')
+            for name, pattern in CONTENT_PATTERNS.items():
+                if pattern.search(metadata_text):
+                    errors.append(f'{relative}: {name} in raster metadata')
+            # Rendering/semantic image review is separate from this byte and provenance check.
             continue
         try:
             body = full.read_text(encoding='utf-8')
         except UnicodeError:
             errors.append(f'{relative}: binary exports require separate review')
             continue
+        if creative_asset is not None and p.suffix.lower() == '.svg' and not _safe_svg(body):
+            errors.append(f'{relative}: unsafe or externally linked native SVG')
         for name, pattern in CONTENT_PATTERNS.items():
             if pattern.search(body):
                 errors.append(f'{relative}: {name}')

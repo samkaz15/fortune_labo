@@ -1,0 +1,29 @@
+{
+  "content_id": "FL-TEST-C",
+  "site_id": null,
+  "uploads": [
+    {
+      "dedup_key": "5bdecb9e073cee743d17400112cbfb598ffbb7585556ac55bfdff12b462b1ee9",
+      "content_id": "FL-TEST-C",
+      "asset_ids": [
+        "FL-TEST-C-featured-asset-01"
+      ],
+      "image_sha256": "c9ef8c812329b3731e85ec174fdc92bdcc62464e8487904b8c1f2c181c1e6e23",
+      "relative_path": "images/featured-v1.png",
+      "mime_type": "image/png",
+      "metadata": {
+        "title": "FL-TEST-C-featured",
+        "alt_text": "白紙のワークブックと付箋付きの三枚の用紙、鉛筆を並べたAI生成イメージ",
+        "caption": "AI生成のイメージ画像です。実在する場所や体験の写真ではありません。"
+      },
+      "action": "upload",
+      "attachment_id": null,
+      "response_reference": null,
+      "association": {
+        "post": null,
+        "state": "after_draft_creation"
+      }
+    }
+  ],
+  "executed": false
+}

@@ -1,5 +1,7 @@
 # Editorial Intelligence Foundation
 
+追加の [Article + Creative Pipeline](ARTICLE_CREATIVE_PIPELINE.md) は、既存の不変Brief/DraftへA11とA25 draft-only packagingを接続する。[画像・Draft QA](CREATIVE_PIPELINE_QA.md) と各 [Job A](creative-fixtures/FL-TEST-A/job.json) / [Job B](creative-fixtures/FL-TEST-B/job.json) / [Job C](creative-fixtures/FL-TEST-C/job.json) を参照。実WordPressへの書込みは未実行。
+
 編集基盤の方向性は承認済み。公開Repositoryには要約されたInsight、分類・制作ルール、Schema、Provenanceと、この依頼で認められた実装を保存する。非公開原資料と実記事の入力データは公開しない。追加指示で許可された今回のA07→A08生成テスト3本（A/B/C）は、下書き・Fixtureとして専用パスへ保存する。旧Draft本文や原資料の再掲は含めない。
 
 | Foundation | 内容 |

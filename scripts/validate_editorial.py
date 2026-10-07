@@ -300,6 +300,8 @@ def run(root=ROOT, schemas_only=False):
     if schemas_only:
         paths += sorted((root / 'fortune_labo/agents/content-strategy/schemas').glob('*.schema.json'))
         paths += sorted((root / 'fortune_labo/agents/content-production/schemas').glob('*.schema.json'))
+        paths += sorted((root / 'fortune_labo/agents/creative/schemas').glob('*.schema.json'))
+        paths += sorted((root / 'fortune_labo/agents/wordpress/schemas').glob('*.schema.json'))
     for path in paths:
         schema = load(path)
         audit_schema(schema)

@@ -1,0 +1,9 @@
+# A11 — Integrations
+
+creative.pyは標準ライブラリだけでローカルplanとassetを検証する。ネットワーク、画像生成SDK、WordPress、SNS、外部write機能を持たない。実生成は明示された画像生成ツール、native図は編集可能なSVGと明示されたrendererで行う。
+
+受入形式は非interlace PNGと安全なnative SVG。PNGは構造、CRC、圧縮pixel長、寸法を確認する。SVGはXML構造と寸法を確認し、script・外部resource・event handler等を拒否する。unsupported形式を未検証のまま完了にしない。これは画像内容の意味・文字・絵の正しさを検査するものではない。
+
+検証済みPNGからWordPress media upload planを作るのはA25。直接SVGはWordPress標準の受入を前提にせず変換判断を行う。native_svg_renderは検証済みSVG masterとPNG派生の組を渡す。
+
+非公開原文・非公開Docs URL・認証情報をplan、prompt、caption、alt、画像へ入れない。公開Fixture保存はユーザーが指定した範囲とprivacy検査を守り、A11の検証だけで自動exportしない。
